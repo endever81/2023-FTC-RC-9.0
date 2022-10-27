@@ -841,7 +841,7 @@ boolean onHeadingShoot(double speed, double angle, double PCoeff) {
 
 public void lift(double power, double inches)
 {
-    int newLiftTarget;
+  /*  int newLiftTarget;
     
     if (opModeIsActive()) {
         
@@ -863,12 +863,12 @@ public void lift(double power, double inches)
     }
     robot.arm.setPower(0);
     robot.arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-   
+   */
 }
     
-}
 
- 
+
+
 
 
    
