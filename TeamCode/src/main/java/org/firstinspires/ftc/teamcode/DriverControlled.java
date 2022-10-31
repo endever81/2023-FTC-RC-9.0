@@ -80,7 +80,7 @@ public void runOpMode() {
     }
     
     
-   double motorspinner = 0;
+  /* double motorspinner = 0;
    
  if (gamepad2.left_bumper){
     motorspinner = .6;
@@ -89,8 +89,8 @@ public void runOpMode() {
     if (gamepad2.right_bumper){
     motorspinner = -.6;
     }
-   
-   double liftleftPower = gamepad2.left_stick_y;
+   */
+   double liftleftPower = -gamepad2.left_stick_y;
     double liftrightPower = gamepad2.left_stick_y;
    
    
@@ -101,7 +101,7 @@ public void runOpMode() {
     robot.rightRearDrive.setPower(rear_right);
     robot.liftleft.setPower(liftleftPower);
     robot.liftright.setPower(liftrightPower);
-    robot.spinner.setPower(motorspinner);
+    //robot.spinner.setPower(motorspinner);
     robot.rightintake.setPower(servoRightPower);
     robot.leftintake.setPower(servoLeftPower);
     
