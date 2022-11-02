@@ -1,8 +1,3 @@
-package org.firstinspires.ftc.teamcode.util;
-
-/**
- * A direction for an axis to be remapped to
- */
-public enum AxisDirection {
-    POS_X, NEG_X, POS_Y, NEG_Y, POS_Z, NEG_Z
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e18128bbb692c83ef4f4c20a1b526609993e605315a418aba312151de90f25d8
+size 174

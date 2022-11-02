@@ -1,32 +1,3 @@
-/**
- * Top-level build file for ftc_app project.
- *
- * It is extraordinarily rare that you will ever need to edit this file.
- */
-
-buildscript {
-    repositories {
-        mavenCentral()
-        google()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.2'
-    }
-}
-
-// This is now required because aapt2 has to be downloaded from the
-// google() repository beginning with version 3.2 of the Android Gradle Plugin
-allprojects {
-    repositories {
-        mavenCentral()
-        google()
-    }
-}
-
-repositories {
-    mavenCentral()
-
-    flatDir {
-        dirs '../libs'
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:85dd283f5292d33aa08681a13f7ffb0fdcde3b7d71c2b0f25db70558af1c4b05
+size 603
