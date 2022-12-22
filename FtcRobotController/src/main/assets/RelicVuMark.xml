@@ -1,3 +1,6 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:441fa37f7d4dd6d098a60c40be2053d06a93559650135080ef6d3b0458fd2b70
-size 176
+<?xml version='1.0' encoding='UTF-8'?>
+<QCARConfig>
+    <Tracking>
+        <VuMark name="RelicRecovery" size="304.80000376701355 223.630235354" />
+    </Tracking>
+</QCARConfig>

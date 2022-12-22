@@ -1,3 +1,93 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5c27ee0ba772621ff462229c5c98f8c77a490b4b6ff57f5d96f0e90657167a39
-size 3598
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.CRServo;
+//import com.qualcomm.robotcore.util.Hardware;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
+import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
+
+import org.firstinspires.ftc.robotcontroller.external.samples.SensorREV2mDistance;
+
+
+public class HardwareRobot {
+
+    public DcMotor leftFrontDrive = null;
+    public DcMotor rightFrontDrive = null;
+    public DcMotor leftRearDrive = null;
+    public DcMotor rightRearDrive = null;
+    public DcMotor liftleft = null;
+    public DcMotor liftright = null;
+    public DcMotor spinner = null;
+    public CRServo leftintake = null;
+    public CRServo rightintake = null;
+    public Servo servorelease = null;
+    public Servo rightPickup = null;
+    public Servo leftPickup = null;
+    public DistanceSensor leftDistance = null;
+    public DistanceSensor centerDistance = null;
+    public DistanceSensor rightDistance = null;
+    public DistanceSensor pole = null;
+    public RevBlinkinLedDriver blinkinLedDriver = null;
+
+
+
+    //public Servo grabber = null;
+
+    HardwareMap hwMap = null;
+   
+    private ElapsedTime period = new ElapsedTime();
+
+    public HardwareRobot (){
+    }
+   
+    public void init(HardwareMap ahwMap){
+        hwMap = ahwMap; //saves a reference Hardware Map
+
+        leftFrontDrive = hwMap.get(DcMotor.class, "motor_front_left");
+        rightFrontDrive = hwMap.get(DcMotor.class, "motor_front_right");
+        leftRearDrive = hwMap.get(DcMotor.class, "motor_rear_left");
+        rightRearDrive = hwMap.get(DcMotor.class, "motor_rear_right");
+        liftleft = hwMap.get(DcMotor.class, "lift_left");
+        liftright = hwMap.get(DcMotor.class, "lift_right");
+       // spinner = hwMap.get(DcMotor.class, "motor_spinner");
+       
+       leftintake = hwMap.get(CRServo.class, "left_intake");
+       rightintake = hwMap.get(CRServo.class, "right_intake");
+        servorelease = hwMap.get(Servo.class, "servo_release");
+        //grabber = hwMap.get(Servo.class, "servo_grabber");
+        leftPickup = hwMap.get(Servo.class, "servo_left_pickup");
+        rightPickup = hwMap.get(Servo.class, "servo_right_pickup");
+
+        leftDistance = hwMap.get(DistanceSensor.class, "sensor_distance_left");
+        centerDistance = hwMap.get(DistanceSensor.class, "sensor_distance_center");
+        rightDistance = hwMap.get(DistanceSensor.class, "sensor_distance_right");
+        pole = hwMap.get(DistanceSensor.class, "sensor_distance_pole");
+
+        blinkinLedDriver = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
+        blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
+
+
+        leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
+        rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
+        leftRearDrive.setDirection(DcMotor.Direction.REVERSE);
+        rightRearDrive.setDirection(DcMotor.Direction.FORWARD);
+        
+        liftleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        liftright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+       
+        leftFrontDrive.setPower(0);
+        rightFrontDrive.setPower(0);
+        leftRearDrive.setPower(0);
+        rightRearDrive.setPower(0);
+       // spinner.setPower(0);
+        //grabber.setPosition(.45);
+        leftintake.setPower(0);
+        rightintake.setPower(0);
+        servorelease.setPosition(.5);
+    }
+
+}
+

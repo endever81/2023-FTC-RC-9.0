@@ -21,31 +21,29 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
 
-@Autonomous(name = "RED: Left Side", group = "Automonous")
+@Autonomous(name = "BLUE: Left Side EXTRA", group = "Automonous")
 
-public class Red_Left extends LinearOpMode{
+public class Blue_Left_Extra_Cones extends LinearOpMode{
 
-   //private static final String TFOD_MODEL_ASSET = "PowerPlay.tflite";
-    //private static final String TFOD_MODEL_ASSET = "InitialModel22-23.tflite";    //custom model
-
+    // private static final String TFOD_MODEL_ASSET = "PowerPlay.tflite";
     private static final String TFOD_MODEL_ASSET = "InitialModel22-23.tflite";
 
 
     private static final String[] LABELS = {
-            "1 Bolt", //   "1 Bolt",
-            "2 Bulb",//  "2 Bulb",
+            "1 Bolt", // "1 Bolt"
+            "2 Bulb", // "2 Bulb"
             "3 Panel" // "3 Panel"
     };
 
     private static final String VUFORIA_KEY =
             "AcSWQyT/////AAABmXXMracDmUH2jST1AK/jjlB9bLitWfl+EeHaTDyQwcEVZ0/pIKzSLLnKb++x6kKcTYJnrBSWXcbq43Pa/x7v0cEfSLljqPHAntPUwrcTa7Ag5MR/KnSvxThO52HlzZ1T9S5JJtViLz5JLvrm8siLeJIK9uPiqKkYG3IkLBtXnHMLjB/4kfn5zfjnDzpwjgl+2bNzztz/dM91B1u6kroe/QCHWSWBeEgG8vJnVG/ko1aVkiroqaR/al9iui+lPRzAMMcSMKgxxW5sV5DcVdKWVXJq309wm2lUDXKT/4V3C8w48/KkI1J/B7YdB5um6TPCo6Jt8eaczYV3cuX3HmStOvTH1S5ixph1K/9TmyPoKhas";
 
- 
+
     private VuforiaLocalizer vuforia;
 
-   
+
     private TFObjectDetector tfod;
-   
+
     private ElapsedTime runtime = new ElapsedTime();
 
     static final double COUNTS_PER_MOTOR_REV = 384.5;    // Neverest 40:1
@@ -56,17 +54,17 @@ public class Red_Left extends LinearOpMode{
     static final double DRIVE_SPEED = 0.2;
     static final double STRAFE_SPEED = 0.2;
     static final double TURN_SPEED = 0.2;
-   
+
     static final double     HEADING_THRESHOLD       = 1 ;      // As tight as we can make it with an integer gyro
     static final double     P_TURN_COEFF            = 0.02;     // Larger is more responsive, but also less stable
     static final double     P_DRIVE_COEFF           = 0.02;     // Larger is more responsive, but also less stable
     //int size = 0;
-   
-   
 
-// Calls up IMU (Inertial Measruement Unit within REV Hub)
+
+
+    // Calls up IMU (Inertial Measruement Unit within REV Hub)
     BNO055IMU imu;
-   
+
     Orientation angles;
 
     HardwareRobot robot = new HardwareRobot();
@@ -78,8 +76,8 @@ public class Red_Left extends LinearOpMode{
 
 
         robot.init(hardwareMap);
-        robot.blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BREATH_RED);
 
+        robot.blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BREATH_BLUE);
 
         initVuforia();
         initTfod();
@@ -173,60 +171,52 @@ public class Red_Left extends LinearOpMode{
             telemetry.addData(">", "Left");
             telemetry.update();
             sleep(500);
-
-            gyroStrafe(.3, 4, 0); //strafe away from low junction
-            lift(.5, 28); // raise lift and hold position
-            gyroDrive(.3, 42, 0);  //Approach thrid tile in
-            gyroTurn(.5, -45); //turn toward high junction
-            gyroDrive(.4, 13, -45);  //approach high junction
-
-//Drop the Cone
-
-            gyroDrive(.5, -.5,-45); // back off high jucntion
-            lift(.1, -3); // lower lift and hold position
-            sleep(1500);
+//||||||||    Take Cone to Medium Pole
+            gyroStrafe(.5, 4, 0); //strafe away from low junction
+            gyroDriveLift(.4,42,0,1,29);
+            gyroTurn(.5, -47); //turn toward high junction
+            gyroDrive(.4, 11.5, -47);  //approach high junction
+// *****************************************************************************
+//Sleeve and Drop the Cone
+            lift(.1, -4); // lower lift and hold position
             robot.servorelease.setPosition(.35);
-            sleep(1500);
-            gyroDrive(.2, -10,-45); // back into end position
-            lift(.5, -25); // lower lift and hold position
-            gyroTurn(.5, 0);
-            gyroStrafe(.5, -35, 0);
-
-//Drop the Cone
-/*
-            gyroDrive(.6, -.5,-50); // back off high jucntion
-            //lift(.5, -25); // lower lift and hold position
-            sleep(1000);
-            robot.servorelease.setPosition(.35);
-            sleep(1000);
-            gyroDrive(.5, -17,-50); // back into end position
-            lift(1, -33); // lower lift and hold position
-
-            gyroTurn(.8, 90); //turn to 90 degress
-            robot.servorelease.setPosition(.5);
-            robot.leftintake.setPower(-1);//start intake for cone stack
-            robot.rightintake.setPower(1);
-            gyroDrive(.7, 30,90); // drive to cone stack
             sleep(500);
-            robot.leftintake.setPower(0);//stop intake for cone stack
+
+// *****************************************************************************
+//Go To Cone Stack
+            gyroDrive(.4, -10.5,-47); // back away from terminal
+            robot.servorelease.setPosition(.5); //return intake to correct position
+            gyroTurn(.5, 0);
+            gyroStrafe(.5,-5,0);
+
+            gyroDriveLift(.5,25, 0, 1,-18);
+            gyroTurn(.5, 92); //turn toward stack
+            robot.rightintake.setPower(1);
+            robot.leftintake.setPower(-1);
+            gyroDrive(.3, 30,92); // back into end position
+            sleep(500);
             robot.rightintake.setPower(0);
-            lift(1, 12); // raise cone off stack
-
-            gyroDrive(.7, -28,90); // drive to tower
-            gyroTurn(.8, -46);
-            gyroDrive(.5, 9, -46);  //approach high junction
-            gyroDrive(.6, -.5,-46); // back off high jucntion
-            lift(1, 22); // lower lift and hold position
-            gyroDrive(.5, 9, -46);
-            sleep(1000);
+            robot.leftintake.setPower(0);
+            lift(.8, 10);
+//*****************************************************************************
+// Return to medium terminal with cone
+            gyroDrive(.5, -32,92); // back into end position
+            gyroTurn(.5, 240); //turn to 0 degress
+            lift(1, 13);
+            gyroDrive(.5, 12,240); // back into end position
+// *****************************************************************************
+//Sleeve and Drop the Cone
+            lift(.1, -4); // lower lift and hold position
             robot.servorelease.setPosition(.35);
-            sleep(1000);
-            gyroDrive(.7, -8,-47); // back into end position
-            gyroTurn(1,0);
-            gyroStrafeLift(.9,-35,0,1,-39);
+            sleep(500);
+            gyroDrive(.4, -10.5,240); // back away from terminal
+            robot.servorelease.setPosition(.5);
 
-*/
-
+// *****************************************************************************
+//Final Orientation and park in designated zone
+            gyroTurn(.5, 0); //turn to 0 degress
+            gyroStrafe(.4,-40,0);
+            gyroDriveLift(.5,-15,0,1,-25);
 
 
 
@@ -240,29 +230,50 @@ public class Red_Left extends LinearOpMode{
             telemetry.addData(">", "Center");
             telemetry.update();
             sleep(500);
-
-
-            gyroStrafe(.3, 4, 0); //strafe away from low junction
-            lift(.5, 28); // raise lift and hold position
-            gyroDrive(.3, 42, 0);  //Approach thrid tile in
-            gyroTurn(.5, -45); //turn toward high junction
-            gyroDrive(.4, 13, -45);  //approach high junction
-
-//Drop the Cone
-
-            gyroDrive(.5, -.5,-45); // back off high jucntion
-            lift(.1, -3); // lower lift and hold position
-            sleep(1500);
+//||||||||    Take Cone to Medium Pole
+            gyroStrafe(.5, 4, 0); //strafe away from low junction
+            gyroDriveLift(.4,42,0,1,29);
+            gyroTurn(.5, -47); //turn toward high junction
+            gyroDrive(.4, 11.5, -47);  //approach high junction
+// *****************************************************************************
+//Sleeve and Drop the Cone
+            lift(.1, -4); // lower lift and hold position
             robot.servorelease.setPosition(.35);
-            sleep(1500);
-            gyroDrive(.2, -10,-45); // back into end position
-            lift(.5, -25); // lower lift and hold position
+            sleep(500);
+
+// *****************************************************************************
+//Go To Cone Stack
+            gyroDrive(.4, -10.5,-47); // back away from terminal
+            robot.servorelease.setPosition(.5); //return intake to correct position
             gyroTurn(.5, 0);
+            gyroStrafe(.5,-5,0);
 
+            gyroDriveLift(.5,25, 0, 1,-18);
+            gyroTurn(.5, 92); //turn toward stack
+            robot.rightintake.setPower(1);
+            robot.leftintake.setPower(-1);
+            gyroDrive(.3, 30,92); // back into end position
+            sleep(500);
+            robot.rightintake.setPower(0);
+            robot.leftintake.setPower(0);
+            lift(.8, 10);
+//*****************************************************************************
+// Return to medium terminal with cone
+            gyroDrive(.5, -32,92); // back into end position
+            gyroTurn(.5, 240); //turn to 0 degress
+            lift(1, 13);
+            gyroDrive(.5, 12,240); // back into end position
+// *****************************************************************************
+//Sleeve and Drop the Cone
+            lift(.1, -4); // lower lift and hold position
+            robot.servorelease.setPosition(.35);
+            sleep(500);
+            gyroDrive(.4, -10.5,240); // back away from terminal
+            robot.servorelease.setPosition(.5);
 
-
-
-           // robot.claw.setPosition(.4);  //close claw
+// *****************************************************************************
+//Final Orientation and park in designated zone
+            gyroTurn(.5, 0); //turn to 0 degress
 
 
 
@@ -278,85 +289,52 @@ public class Red_Left extends LinearOpMode{
             telemetry.update();
             sleep(1000);
             //Position 3 - RIGHT
-
-          //  robot.claw.setPosition(.4);  //close claw
-
-            gyroStrafe(.3, 4, 0); //strafe away from low junction
-            lift(.5, 28); // raise lift and hold position
-            gyroDrive(.3, 42, 0);  //Approach thrid tile in
-            gyroTurn(.5, -45); //turn toward high junction
-            gyroDrive(.4, 13, -45);  //approach high junction
-
-//Drop the Cone
-
-            //gyroDrive(.5, -.5,-45); // back off high jucntion
-            lift(.1, -3); // lower lift and hold position
-            sleep(1500);
+//||||||||    Take Cone to Medium Pole
+            gyroStrafe(.5, 4, 0); //strafe away from low junction
+            gyroDriveLift(.4,42,0,1,29);
+            gyroTurn(.5, -47); //turn toward high junction
+            gyroDrive(.4, 11.5, -47);  //approach high junction
+// *****************************************************************************
+//Sleeve and Drop the Cone
+            lift(.1, -4); // lower lift and hold position
             robot.servorelease.setPosition(.35);
-            sleep(1500);
-            gyroDrive(.2, -15,-45); // back into end position
-            lift(.5, -25); // lower lift and hold position
-            gyroTurn(.5, 0);
-            gyroStrafe(.5, 42, 0);
-            gyroDrive(.5, 10, 0);
-
-
-
-        }
-
-        // ***|| RECOGNITION FAILED ||***
-        // ***|| RECOGNITION FAILED ||***
-        // ***|| RECOGNITION FAILED ||***
-
-        if (x == 0) {
-            telemetry.addData(">", "Did not See");
-            telemetry.update();
             sleep(500);
 
-         //   robot.claw.setPosition(.4);  //close claw
+// *****************************************************************************
+//Go To Cone Stack
+            gyroDrive(.4, -10.5,-47); // back away from terminal
+            robot.servorelease.setPosition(.5); //return intake to correct position
+            gyroTurn(.5, 0);
+            gyroStrafe(.5,-5,0);
 
-            gyroStrafe(.3, 4, 0); //strafe away from low junction
-            lift(.5, 20); // raise lift and hold position
-            gyroDrive(.3, 78, 0);  //Approach thrid tile in
-            gyroTurn(.5, -47); //turn toward high junction
-            lift(.5, 19); // raise lift and hold position
-            gyroDrive(.4, 12, -47);  //approach high junction
-
-//Drop the Cone
-
-            gyroDrive(.5, -.5,-47); // back off high jucntion
-            //lift(.5, -25); // lower lift and hold position
-            sleep(1500);
-            robot.servorelease.setPosition(.35);
-            sleep(1500);
-            gyroDrive(.3, -7,-47); // back into end position
-            lift(.5, -39); // lower lift and hold position
-
-            robot.servorelease.setPosition(.5);
-            robot.rightintake.setPower(-1);
-            robot.leftintake.setPower(1);
-            gyroTurn(.5, 90); //turn to 0 degress
-            gyroDrive(.5, 35,90); // back into end position
+            gyroDriveLift(.5,25, 0, 1,-18);
+            gyroTurn(.5, 92); //turn toward stack
+            robot.rightintake.setPower(1);
+            robot.leftintake.setPower(-1);
+            gyroDrive(.3, 30,92); // back into end position
+            sleep(500);
             robot.rightintake.setPower(0);
             robot.leftintake.setPower(0);
-            gyroDrive(.5, -35,90); // back into end position
-            gyroTurn(.5, -47); //turn to 0 degress
-            lift(1, 33);
-            gyroDrive(.5, 6,-47); // back into end position
-
-            lift(.5, -25); // lower lift and hold position
+            lift(.8, 10);
+//*****************************************************************************
+// Return to medium terminal with cone
+            gyroDrive(.5, -32,92); // back into end position
+            gyroTurn(.5, 241); //turn to 0 degress
+            lift(1, 13);
+            gyroDrive(.5, 12.5,241); // back into end position
+// *****************************************************************************
+//Sleeve and Drop the Cone
+            lift(.1, -4); // lower lift and hold position
             robot.servorelease.setPosition(.35);
-            sleep(1500);
-            gyroDrive(.3, -7,-47); // back into end position
-            lift(.5, -5); // lower lift and hold position
-
+            sleep(500);
+            gyroDrive(.4, -10.5,241); // back away from terminal
             robot.servorelease.setPosition(.5);
 
+// *****************************************************************************
+//Final Orientation and park in designated zone
             gyroTurn(.5, 0); //turn to 0 degress
-            gyroStrafe(.4, -45, 0); //strafe toward the wall
-            gyroStrafe(.4, 6, 0); //strafe away from the wall
-            gyroDrive(.5, -15,0); // back into end position
-
+            gyroStrafe(.4,45,0);
+            gyroDriveLift(.5,-15,0,1,-25);
 
         }
 
@@ -365,7 +343,7 @@ public class Red_Left extends LinearOpMode{
 
 
 
-public double getError(double targetAngle) {
+    public double getError(double targetAngle) {
 
         double robotError;
 
@@ -376,11 +354,11 @@ public double getError(double targetAngle) {
         while (robotError <= -180) robotError += 360;
         return robotError;
     }
-   
-        public double getSteer(double error, double PCoeff) {
+
+    public double getSteer(double error, double PCoeff) {
         return Range.clip(error * PCoeff, -1, 1);
     }
-boolean onHeading(double speed, double angle, double PCoeff) {
+    boolean onHeading(double speed, double angle, double PCoeff) {
         double   error ;
         double   steer ;
         boolean  onTarget = false ;
@@ -403,11 +381,11 @@ boolean onHeading(double speed, double angle, double PCoeff) {
         }
 
         // Send desired speeds to motors.
-       
-            robot.rightFrontDrive.setPower(rightSpeed);
-            robot.leftFrontDrive.setPower(leftSpeed);
-            robot.rightRearDrive.setPower(rightSpeed);
-            robot.leftRearDrive.setPower(leftSpeed);
+
+        robot.rightFrontDrive.setPower(rightSpeed);
+        robot.leftFrontDrive.setPower(leftSpeed);
+        robot.rightRearDrive.setPower(rightSpeed);
+        robot.leftRearDrive.setPower(leftSpeed);
 
         // Display it for the driver.
         telemetry.addData("Target", "%5.2f", angle);
@@ -416,7 +394,7 @@ boolean onHeading(double speed, double angle, double PCoeff) {
 
         return onTarget;
     }
-   
+
     public void gyroTurn (  double speed, double angle) {
 
         // keep looping while we are still active, and not on heading.
@@ -425,9 +403,9 @@ boolean onHeading(double speed, double angle, double PCoeff) {
             telemetry.update();
         }
     }
-   
-   
-public void gyroDrive ( double speed,  double distance,  double angle) {
+
+
+    public void gyroDrive ( double speed,  double distance,  double angle) {
 
         int newFrontLeftTarget;
         int newFrontRightTarget;
@@ -460,15 +438,15 @@ public void gyroDrive ( double speed,  double distance,  double angle) {
             robot.leftFrontDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.rightRearDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.leftRearDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-           
-         
+
+
             // start motion.
             speed = Range.clip(Math.abs(speed), 0.0, 1.0);
             robot.rightFrontDrive.setPower(speed);
             robot.leftFrontDrive.setPower(speed);
             robot.rightRearDrive.setPower(speed);
             robot.leftRearDrive.setPower(speed);
-           
+
 
             // keep looping while we are still active, and BOTH motors are running.
             while (opModeIsActive() &&
@@ -484,8 +462,8 @@ public void gyroDrive ( double speed,  double distance,  double angle) {
                     steer *= -1.0;
 
                 leftSpeed = speed - steer;
-               rightSpeed = speed + steer;
-               
+                rightSpeed = speed + steer;
+
 
 
                 //Normalize speeds if either one exceeds +/- 1.0;
@@ -495,16 +473,16 @@ public void gyroDrive ( double speed,  double distance,  double angle) {
                     leftSpeed /= max;
                     rightSpeed /= max;
                 }
- 
- 
-             
- 
- 
+
+
+
+
+
                 robot.rightFrontDrive.setPower(rightSpeed);
                 robot.leftFrontDrive.setPower(leftSpeed);
                 robot.rightRearDrive.setPower(rightSpeed);
                 robot.leftRearDrive.setPower(leftSpeed);
-               
+
 
                 // Display drive status for the driver.
                 telemetry.addData("Err/St",  "%5.1f/%5.1f",  error, steer);
@@ -516,8 +494,8 @@ public void gyroDrive ( double speed,  double distance,  double angle) {
                         robot.leftRearDrive.getCurrentPosition());
                 telemetry.addData("Speed",   "%5.2f:%5.2f",  leftSpeed, rightSpeed);
                 angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-        telemetry.addData("Heading", angles.firstAngle);
-        //telemetry.addData("Correction", correction);
+                telemetry.addData("Heading", angles.firstAngle);
+                //telemetry.addData("Correction", correction);
                 telemetry.update();
             }
 
@@ -534,11 +512,11 @@ public void gyroDrive ( double speed,  double distance,  double angle) {
             robot.rightRearDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.leftRearDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
-       
-       
-     }  
-     
-     public void gyroDriveNoBrake ( double speed,  double distance,  double angle) {
+
+
+    }
+
+    public void gyroDriveNoBrake ( double speed,  double distance,  double angle) {
 
         int newFrontLeftTarget;
         int newFrontRightTarget;
@@ -571,15 +549,15 @@ public void gyroDrive ( double speed,  double distance,  double angle) {
             robot.leftFrontDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.rightRearDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.leftRearDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-           
-         
+
+
             // start motion.
             speed = Range.clip(Math.abs(speed), 0.0, 1.0);
             robot.rightFrontDrive.setPower(speed);
             robot.leftFrontDrive.setPower(speed);
             robot.rightRearDrive.setPower(speed);
             robot.leftRearDrive.setPower(speed);
-           
+
 
             // keep looping while we are still active, and BOTH motors are running.
             while (opModeIsActive() &&
@@ -595,8 +573,8 @@ public void gyroDrive ( double speed,  double distance,  double angle) {
                     steer *= -1.0;
 
                 leftSpeed = speed - steer;
-               rightSpeed = speed + steer;
-               
+                rightSpeed = speed + steer;
+
 
 
                 //Normalize speeds if either one exceeds +/- 1.0;
@@ -606,16 +584,16 @@ public void gyroDrive ( double speed,  double distance,  double angle) {
                     leftSpeed /= max;
                     rightSpeed /= max;
                 }
- 
- 
-             
- 
- 
+
+
+
+
+
                 robot.rightFrontDrive.setPower(rightSpeed);
-            robot.leftFrontDrive.setPower(leftSpeed);
-            robot.rightRearDrive.setPower(rightSpeed);
-            robot.leftRearDrive.setPower(leftSpeed);
-               
+                robot.leftFrontDrive.setPower(leftSpeed);
+                robot.rightRearDrive.setPower(rightSpeed);
+                robot.leftRearDrive.setPower(leftSpeed);
+
 
                 // Display drive status for the driver.
                 telemetry.addData("Err/St",  "%5.1f/%5.1f",  error, steer);
@@ -627,12 +605,12 @@ public void gyroDrive ( double speed,  double distance,  double angle) {
                         robot.leftRearDrive.getCurrentPosition());
                 telemetry.addData("Speed",   "%5.2f:%5.2f",  leftSpeed, rightSpeed);
                 angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-        telemetry.addData("Heading", angles.firstAngle);
-        //telemetry.addData("Correction", correction);
+                telemetry.addData("Heading", angles.firstAngle);
+                //telemetry.addData("Correction", correction);
                 telemetry.update();
             }
 
-     
+
 
 
             // Turn off RUN_TO_POSITION
@@ -641,11 +619,11 @@ public void gyroDrive ( double speed,  double distance,  double angle) {
             robot.rightRearDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.leftRearDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
-       
-       
-     } 
-     
-     public void gyroStrafe ( double speed,  double distance,  double angle) {
+
+
+    }
+
+    public void gyroStrafe ( double speed,  double distance,  double angle) {
 
         int newFrontLeftTarget;
         int newFrontRightTarget;
@@ -667,7 +645,7 @@ public void gyroDrive ( double speed,  double distance,  double angle) {
             newFrontLeftTarget = robot.leftFrontDrive.getCurrentPosition() + moveCounts;
             newRearRightTarget = robot.rightRearDrive.getCurrentPosition() + moveCounts;
             newRearLeftTarget = robot.leftRearDrive.getCurrentPosition() - moveCounts;
-            
+
 
             robot.rightFrontDrive.setTargetPosition(newFrontRightTarget);
             robot.leftFrontDrive.setTargetPosition(newFrontLeftTarget);
@@ -679,15 +657,15 @@ public void gyroDrive ( double speed,  double distance,  double angle) {
             robot.leftFrontDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.rightRearDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.leftRearDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-           
-         
+
+
             // start motion.
             speed = Range.clip(Math.abs(speed), 0.0, 1.0);
             robot.rightFrontDrive.setPower(speed);
             robot.leftFrontDrive.setPower(speed);
             robot.rightRearDrive.setPower(speed);
             robot.leftRearDrive.setPower(speed);
-           
+
 
             // keep looping while we are still active, and BOTH motors are running.
             while (opModeIsActive() &&
@@ -704,8 +682,8 @@ public void gyroDrive ( double speed,  double distance,  double angle) {
                     steer *= -1.0;
 
                 leftSpeed = speed - steer;
-               rightSpeed = speed + steer;
-               
+                rightSpeed = speed + steer;
+
 
 
                 //Normalize speeds if either one exceeds +/- 1.0;
@@ -715,13 +693,13 @@ public void gyroDrive ( double speed,  double distance,  double angle) {
                     leftSpeed /= max;
                     rightSpeed /= max;
                 }
- 
+
                 robot.rightFrontDrive.setPower(leftSpeed);
                 robot.leftFrontDrive.setPower(speed);
                 robot.rightRearDrive.setPower(speed);
                 robot.leftRearDrive.setPower(rightSpeed);
-                
-               
+
+
 
                 // Display drive status for the driver.
                 telemetry.addData("Err/St",  "%5.1f/%5.1f",  error, steer);
@@ -733,8 +711,8 @@ public void gyroDrive ( double speed,  double distance,  double angle) {
                         robot.leftRearDrive.getCurrentPosition());
                 telemetry.addData("Speed",   "%5.2f:%5.2f",  leftSpeed, rightSpeed);
                 angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-        telemetry.addData("Heading", angles.firstAngle);
-        //telemetry.addData("Correction", correction);
+                telemetry.addData("Heading", angles.firstAngle);
+                //telemetry.addData("Correction", correction);
                 telemetry.update();
             }
 
@@ -750,9 +728,9 @@ public void gyroDrive ( double speed,  double distance,  double angle) {
             robot.leftFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.rightRearDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.leftRearDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);        }
-       
+
     }
-  
+
 
 
 
@@ -776,13 +754,13 @@ public void gyroDrive ( double speed,  double distance,  double angle) {
 
 
     private void initTfod() {
-       int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
-            "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
+                "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
-       tfodParameters.minResultConfidence = 0.60f;
-       tfodParameters.isModelTensorFlow2 = true;
-       tfodParameters.inputSize = 320;
-       tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
+        tfodParameters.minResultConfidence = 0.60f;
+        tfodParameters.isModelTensorFlow2 = true;
+        tfodParameters.inputSize = 320;
+        tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABELS);
 
     }
@@ -792,7 +770,7 @@ public void gyroDrive ( double speed,  double distance,  double angle) {
 
 
 
-boolean onHeadingShoot(double speed, double angle, double PCoeff) {
+    boolean onHeadingShoot(double speed, double angle, double PCoeff) {
         double   error ;
         double   steer ;
         boolean  onTarget = false ;
@@ -814,10 +792,10 @@ boolean onHeadingShoot(double speed, double angle, double PCoeff) {
         }
         // Send desired speeds to motors.
 
-            robot.rightFrontDrive.setPower(rightSpeed);
-            robot.leftFrontDrive.setPower(leftSpeed);
-            robot.rightRearDrive.setPower(rightSpeed);
-            robot.leftRearDrive.setPower(leftSpeed);
+        robot.rightFrontDrive.setPower(rightSpeed);
+        robot.leftFrontDrive.setPower(leftSpeed);
+        robot.rightRearDrive.setPower(rightSpeed);
+        robot.leftRearDrive.setPower(leftSpeed);
 
 
 
@@ -831,48 +809,280 @@ boolean onHeadingShoot(double speed, double angle, double PCoeff) {
         return onTarget;
     }
 
-   
-
-public void lift(double power, double inches)
-{
-    int newLiftTargetRight;
-    int newLiftTargetLeft;
 
 
-    if (opModeIsActive()) {
+    public void lift(double power, double inches)
+    {
+        int newLiftTargetRight;
+        int newLiftTargetLeft;
 
 
-        newLiftTargetLeft = robot.liftleft.getCurrentPosition() + (int) (inches * (1140 / (3.5 * 3.1415)));
-        newLiftTargetRight = robot.liftright.getCurrentPosition() - (int) (inches * (1140 / (3.5 * 3.1415)));
-
-        robot.liftleft.setTargetPosition(newLiftTargetLeft);
-        robot.liftright.setTargetPosition(newLiftTargetRight);
-
-        robot.liftleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.liftright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        if (opModeIsActive()) {
 
 
-        runtime.reset();
-        robot.liftleft.setPower(Math.abs(power));
-        robot.liftright.setPower(Math.abs(power));
+            newLiftTargetLeft = robot.liftleft.getCurrentPosition() + (int) (inches * (1140 / (3.5 * 3.1415)));
+            newLiftTargetRight = robot.liftright.getCurrentPosition() - (int) (inches * (1140 / (3.5 * 3.1415)));
+
+            robot.liftleft.setTargetPosition(newLiftTargetLeft);
+            robot.liftright.setTargetPosition(newLiftTargetRight);
+
+            robot.liftleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.liftright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 
-        while (opModeIsActive() && robot.liftleft.isBusy() && robot.liftright.isBusy()) {
-            telemetry.addData("Lift", "Running at %7d, 7%d",
-                    robot.liftleft.getCurrentPosition(), robot.liftright.getCurrentPosition());
-            telemetry.update();
+            runtime.reset();
+            robot.liftleft.setPower(Math.abs(power));
+            robot.liftright.setPower(Math.abs(power));
 
+
+            while (opModeIsActive() && robot.liftleft.isBusy() && robot.liftright.isBusy()) {
+                telemetry.addData("Lift", "Running at %7d, 7%d",
+                        robot.liftleft.getCurrentPosition(), robot.liftright.getCurrentPosition());
+                telemetry.update();
+
+            }
+            //robot.lift.setPower(0);            //removed to hold motor position
+            //robot.lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);   //removed to hold motor position
         }
-        //robot.lift.setPower(0);            //removed to hold motor position
-        //robot.lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);   //removed to hold motor position
+
     }
-   
-}
+    public void gyroDriveLift ( double speed,  double distance,  double angle, double liftSpeed, double liftDistance) {
+
+        int newFrontLeftTarget;
+        int newFrontRightTarget;
+        int newRearLeftTarget;
+        int newRearRightTarget;
+        int newleftLiftTarget;
+        int newrightLiftTarget;
+        int     moveCounts;
+        double  max;
+        double  error;
+        double  steer;
+        double  leftSpeed;
+        double  rightSpeed;
+
+        // Ensure that the opmode is still active
+        if (opModeIsActive()) {
+
+            // Determine new target position, and pass to motor controller
+            moveCounts = (int)(distance * COUNTS_PER_INCH);
+            newFrontRightTarget = robot.rightFrontDrive.getCurrentPosition() + moveCounts;
+            newFrontLeftTarget = robot.leftFrontDrive.getCurrentPosition() + moveCounts;
+            newRearRightTarget = robot.rightRearDrive.getCurrentPosition() + moveCounts;
+            newRearLeftTarget = robot.leftRearDrive.getCurrentPosition() + moveCounts;
+            newleftLiftTarget = robot.liftleft.getCurrentPosition() + (int) (liftDistance * (1140/(3.5 * 3.1415)));
+            newrightLiftTarget = robot.liftright.getCurrentPosition() - (int) (liftDistance * (1140/(3.5 * 3.1415)));
+
+            robot.rightFrontDrive.setTargetPosition(newFrontRightTarget);
+            robot.leftFrontDrive.setTargetPosition(newFrontLeftTarget);
+            robot.rightRearDrive.setTargetPosition(newRearRightTarget);
+            robot.leftRearDrive.setTargetPosition(newRearLeftTarget);
+            robot.liftleft.setTargetPosition(newleftLiftTarget);
+            robot.liftright.setTargetPosition(newrightLiftTarget);
+
+            // Turn On RUN_TO_POSITION
+            robot.rightFrontDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.leftFrontDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.rightRearDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.leftRearDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.liftleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.liftright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+
+
+            // keep looping while we are still active, and BOTH motors are running.
+            while (opModeIsActive() &&
+                    (robot.leftFrontDrive.isBusy() && robot.liftright.isBusy() && robot.liftleft.isBusy() && robot.rightFrontDrive.isBusy() && robot.rightRearDrive.isBusy()
+                            && robot.leftRearDrive.isBusy())) {
+
+
+                // adjust relative speed based on heading error.
+                error = getError(angle);
+                steer = getSteer(error, P_DRIVE_COEFF);
+
+
+                // if driving in reverse, the motor correction also needs to be reversed
+                if (distance < 0)
+                    steer *= -1.0;
+
+                leftSpeed = speed - steer;
+                rightSpeed = speed + steer;
+
+
+
+                //Normalize speeds if either one exceeds +/- 1.0;
+                max = Math.max(Math.abs(leftSpeed), Math.abs(rightSpeed));
+                if (max > 1.0)
+                {
+                    leftSpeed /= max;
+                    rightSpeed /= max;
+                }
+
+                robot.rightFrontDrive.setPower(rightSpeed);
+                robot.leftFrontDrive.setPower(leftSpeed);
+                robot.rightRearDrive.setPower(rightSpeed);
+                robot.leftRearDrive.setPower(leftSpeed);
+                robot.liftleft.setPower(Math.abs(liftSpeed));
+                robot.liftright.setPower(Math.abs(liftSpeed));
+
+/*
+                // Display drive status for the driver.
+                telemetry.addData("Err/St",  "%5.1f/%5.1f",  error, steer);
+                telemetry.addData("Target",  "%7d:%7d:%7d:%7d",      newFrontRightTarget, newFrontLeftTarget,
+                        newRearRightTarget, newRearLeftTarget);
+                telemetry.addData("Actual",  "%7d:%7d:%7d:%7d",   robot.rightFrontDrive.getCurrentPosition(),
+                        robot.leftFrontDrive.getCurrentPosition(),
+                        robot.rightRearDrive.getCurrentPosition(),
+                        robot.leftRearDrive.getCurrentPosition());
+                telemetry.addData("Speed",   "%5.2f:%5.2f",  leftSpeed, rightSpeed);
+                angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+                telemetry.addData("Heading", angles.firstAngle);
+                //telemetry.addData("Correction", correction);
+                telemetry.update();
+
+ */
+            }
+
+            // Stop all motion;
+            robot.rightFrontDrive.setPower(0);
+            robot.leftFrontDrive.setPower(0);
+            robot.rightRearDrive.setPower(0);
+            robot.leftRearDrive.setPower(0);
+            robot.liftleft.setPower(0);
+            robot.liftright.setPower(0);
+
+            // Turn off RUN_TO_POSITION
+            robot.rightFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            robot.leftFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            robot.rightRearDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            robot.leftRearDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+    }
+    public void gyroStrafeLift ( double speed,  double distance,  double angle, double liftSpeed, double liftDistance) {
+
+        int newFrontLeftTarget;
+        int newFrontRightTarget;
+        int newRearLeftTarget;
+        int newRearRightTarget;
+        int newleftLiftTarget;
+        int newrightLiftTarget;
+        int     moveCounts;
+        double  max;
+        double  error;
+        double  steer;
+        double  leftSpeed;
+        double  rightSpeed;
+
+        // Ensure that the opmode is still active
+        if (opModeIsActive()) {
+
+            // Determine new target position, and pass to motor controller
+            moveCounts = (int)(distance * COUNTS_PER_INCH);
+            newFrontRightTarget = robot.rightFrontDrive.getCurrentPosition() - moveCounts;
+            newFrontLeftTarget = robot.leftFrontDrive.getCurrentPosition() + moveCounts;
+            newRearRightTarget = robot.rightRearDrive.getCurrentPosition() + moveCounts;
+            newRearLeftTarget = robot.leftRearDrive.getCurrentPosition() - moveCounts;
+            newleftLiftTarget = robot.liftleft.getCurrentPosition() + (int) (liftDistance * (1140/(3.5 * 3.1415)));
+            newrightLiftTarget = robot.liftright.getCurrentPosition() - (int) (liftDistance * (1140/(3.5 * 3.1415)));
+
+            robot.rightFrontDrive.setTargetPosition(newFrontRightTarget);
+            robot.leftFrontDrive.setTargetPosition(newFrontLeftTarget);
+            robot.rightRearDrive.setTargetPosition(newRearRightTarget);
+            robot.leftRearDrive.setTargetPosition(newRearLeftTarget);
+            robot.liftleft.setTargetPosition(newleftLiftTarget);
+            robot.liftright.setTargetPosition(newrightLiftTarget);
+
+            // Turn On RUN_TO_POSITION
+            robot.rightFrontDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.leftFrontDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.rightRearDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.leftRearDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.liftleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.liftright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+
+            // start motion.
+            speed = Range.clip(Math.abs(speed), 0.0, 1.0);
+            robot.rightFrontDrive.setPower(speed);
+            robot.leftFrontDrive.setPower(speed);
+            robot.rightRearDrive.setPower(speed);
+            robot.leftRearDrive.setPower(speed);
+            robot.liftleft.setPower(-liftSpeed);
+            robot.liftright.setPower(liftSpeed);
+
+            // keep looping while we are still active, and BOTH motors are running.
+            while (opModeIsActive() &&
+                    (robot.leftFrontDrive.isBusy() && robot.liftright.isBusy() && robot.liftleft.isBusy() && robot.rightFrontDrive.isBusy() && robot.rightRearDrive.isBusy()
+                            && robot.leftRearDrive.isBusy())) {
+
+
+                // adjust relative speed based on heading error.
+                error = getError(angle);
+                steer = getSteer(error, P_DRIVE_COEFF);
+
+                // if driving in reverse, the motor correction also needs to be reversed
+                if (distance < 0)
+                    steer *= -1.0;
+
+                leftSpeed = speed - steer;
+                rightSpeed = speed + steer;
+
+
+
+                //Normalize speeds if either one exceeds +/- 1.0;
+                max = Math.max(Math.abs(leftSpeed), Math.abs(rightSpeed));
+                if (max > 1.0)
+                {
+                    leftSpeed /= max;
+                    rightSpeed /= max;
+                }
+
+
+
+
+
+                robot.rightFrontDrive.setPower(leftSpeed);
+                robot.leftFrontDrive.setPower(speed);
+                robot.rightRearDrive.setPower(speed);
+                robot.leftRearDrive.setPower(rightSpeed);
+
+
+                // Display drive status for the driver.
+                telemetry.addData("Err/St",  "%5.1f/%5.1f",  error, steer);
+                telemetry.addData("Target",  "%7d:%7d:%7d:%7d",      newFrontRightTarget, newFrontLeftTarget,
+                        newRearRightTarget, newRearLeftTarget);
+                telemetry.addData("Actual",  "%7d:%7d:%7d:%7d",      robot.rightFrontDrive.getCurrentPosition(),
+                        robot.leftFrontDrive.getCurrentPosition(),
+                        robot.rightRearDrive.getCurrentPosition(),
+                        robot.leftRearDrive.getCurrentPosition());
+                telemetry.addData("Speed",   "%5.2f:%5.2f",  leftSpeed, rightSpeed);
+                angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+                telemetry.addData("Heading", angles.firstAngle);
+                //telemetry.addData("Correction", correction);
+                telemetry.update();
+            }
+
+            // Stop all motion;
+            robot.rightFrontDrive.setPower(0);
+            robot.leftFrontDrive.setPower(0);
+            robot.rightRearDrive.setPower(0);
+            robot.leftRearDrive.setPower(0);
+            robot.liftleft.setPower(0);
+            robot.liftright.setPower(0);
+
+            // Turn off RUN_TO_POSITION
+            robot.rightFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            robot.leftFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            robot.rightRearDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            robot.leftRearDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+
+    }
 
 }
 
- 
 
 
-   
+
+
 

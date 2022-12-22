@@ -1,3 +1,23 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:143d3448d08560bbeb2d726c8d3ce6b1f7f7df349b92b54739711e01644e176c
-size 599
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This is a placeholder for adding future style-specific content in the robot controller only -->
+<resources>
+
+    <style name="AppThemeRedRC" parent="AppTheme.Red">
+    </style>
+
+    <style name="AppThemeGreenRC" parent="AppTheme.Green">
+    </style>
+
+    <style name="AppThemeBlueRC" parent="AppTheme.Blue">
+    </style>
+
+    <style name="AppThemePurpleRC" parent="AppTheme.Purple">
+    </style>
+
+    <style name="AppThemeOrangeRC" parent="AppTheme.Orange">
+    </style>
+
+    <style name="AppThemeTealRC" parent="AppTheme.Teal">
+    </style>
+
+</resources>

@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1e3a0ef5a8e53c790a5f0875538bab5318760f1d3c74ac6f500e7b619df4d7bb
-size 413
+package org.firstinspires.ftc.teamcode.trajectorysequence.sequencesegment;
+
+import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.trajectory.TrajectoryMarker;
+
+import java.util.List;
+
+public final class WaitSegment extends SequenceSegment {
+    public WaitSegment(Pose2d pose, double seconds, List<TrajectoryMarker> markers) {
+        super(seconds, pose, pose, markers);
+    }
+}

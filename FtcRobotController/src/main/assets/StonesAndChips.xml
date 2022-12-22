@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c13270adfaa2d07a1f41a4cce31ae8bb26dfbf7431fd4d37fd660ba10359721d
-size 285
+<?xml version="1.0"?>
+<QCARConfig xsi:noNamespaceSchemaLocation="qcar_config.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Tracking>
+        <ImageTarget name="stones" size="247 173"/>
+        <ImageTarget name="chips" size="247 173"/>
+    </Tracking>
+</QCARConfig>

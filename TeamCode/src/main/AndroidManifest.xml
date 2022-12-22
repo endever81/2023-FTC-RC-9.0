@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:98746b00d8660ca234a3814e481611c14099b9c9a48202b7abff2159d03d529d
-size 494
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Note: the actual manifest file used in your APK merges this file with contributions
+     from the modules on which your app depends (such as FtcRobotController, etc).
+     So it won't ultimately be as empty as it might here appear to be :-) -->
+
+<!-- The package name here determines the package for your R class and your BuildConfig class -->
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <application/>
+</manifest>
