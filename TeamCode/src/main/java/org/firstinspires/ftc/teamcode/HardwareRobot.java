@@ -26,10 +26,6 @@ public class HardwareRobot {
     public Servo servorelease = null;
     public Servo rightPickup = null;
     public Servo leftPickup = null;
-    public DistanceSensor leftDistance = null;
-    public DistanceSensor centerDistance = null;
-    public DistanceSensor rightDistance = null;
-    public DistanceSensor pole = null;
     public RevBlinkinLedDriver blinkinLedDriver = null;
 
 
@@ -61,11 +57,6 @@ public class HardwareRobot {
         leftPickup = hwMap.get(Servo.class, "servo_left_pickup");
         rightPickup = hwMap.get(Servo.class, "servo_right_pickup");
 
-        leftDistance = hwMap.get(DistanceSensor.class, "sensor_distance_left");
-        centerDistance = hwMap.get(DistanceSensor.class, "sensor_distance_center");
-        rightDistance = hwMap.get(DistanceSensor.class, "sensor_distance_right");
-        pole = hwMap.get(DistanceSensor.class, "sensor_distance_pole");
-
         blinkinLedDriver = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
         blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
 
@@ -82,8 +73,6 @@ public class HardwareRobot {
         rightFrontDrive.setPower(0);
         leftRearDrive.setPower(0);
         rightRearDrive.setPower(0);
-       // spinner.setPower(0);
-        //grabber.setPosition(.45);
         leftintake.setPower(0);
         rightintake.setPower(0);
         servorelease.setPosition(.5);
