@@ -22,7 +22,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import java.util.List;
 
 @Autonomous(name = "RED: Left Side EXTRA", group = "Automonous")
-class Red_Left_Extra_Cones extends LinearOpMode{
+public class Red_Left_Extra_Cones extends LinearOpMode{
 
     // private static final String TFOD_MODEL_ASSET = "PowerPlay.tflite";
     private static final String TFOD_MODEL_ASSET = "InitialModel22-23.tflite";

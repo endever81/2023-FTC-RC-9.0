@@ -19,10 +19,13 @@ import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryAcceleration
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryVelocityConstraint;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.lynx.LynxModule;
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
@@ -54,8 +57,8 @@ import static org.firstinspires.ftc.teamcode.drive.DriveConstants.kV;
  */
 @Config
 public class SampleMecanumDrive extends MecanumDrive {
-    public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(0, 0, 0);
-    public static PIDCoefficients HEADING_PID = new PIDCoefficients(0, 0, 0);
+    public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(8, 0, 0);
+    public static PIDCoefficients HEADING_PID = new PIDCoefficients(10, 0, 0);
 
     public static double LATERAL_MULTIPLIER = 1.583;
 
@@ -72,6 +75,15 @@ public class SampleMecanumDrive extends MecanumDrive {
 
     private DcMotorEx leftFront, leftRear, rightRear, rightFront;
     private List<DcMotorEx> motors;
+//******************
+    public DcMotor liftleft = null;
+    public DcMotor liftright = null;
+    public CRServo leftintake = null;
+    public CRServo rightintake = null;
+    public Servo servorelease = null;
+    public RevBlinkinLedDriver blinkinLedDriver = null;
+
+    //************************
 
     private BNO055IMU imu;
     private VoltageSensor batteryVoltageSensor;
@@ -89,7 +101,17 @@ public class SampleMecanumDrive extends MecanumDrive {
         for (LynxModule module : hardwareMap.getAll(LynxModule.class)) {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }
-
+//***********************************88888
+        liftleft = hardwareMap.get(DcMotor.class, "lift_left");
+        liftright = hardwareMap.get(DcMotor.class, "lift_right");
+        leftintake = hardwareMap.get(CRServo.class, "left_intake");
+        rightintake = hardwareMap.get(CRServo.class, "right_intake");
+        servorelease = hardwareMap.get(Servo.class, "servo_release");
+        blinkinLedDriver = hardwareMap.get(RevBlinkinLedDriver.class, "blinkin");
+        blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
+        liftleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        liftright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//****************************************
       /*  // TODO: adjust the names of the following hardware devices to match your configuration
         imu = hardwareMap.get(BNO055IMU.class, "imu");
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
