@@ -10,9 +10,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
@@ -50,15 +47,11 @@ public class RRTest extends LinearOpMode {
         initVuforia();
         initTfod();
 
-
         if (tfod != null) {
             tfod.activate();
 
             tfod.setZoom(1.5, 10.0 / 9.0);
         }
-
-
-
 
     //-----------------------------------------------------------
         //Map All Paths for RoadRunner during initialization
@@ -71,30 +64,34 @@ public class RRTest extends LinearOpMode {
         drive.setPoseEstimate(startPose);
 
         Trajectory strafeRight = drive.trajectoryBuilder(startPose)
-                .strafeRight(6)
+                .strafeRight(5)
                 .addDisplacementMarker(() -> {
                     lift(1, 28);
                 })
                 .build();
 
         Trajectory forward = drive.trajectoryBuilder(strafeRight.end())
-                .forward(12)
+                .forward(18)
                 .build();
 
         Trajectory toMidGoal1 = drive.trajectoryBuilder(forward.end())
-                .lineToLinearHeading(new Pose2d (33, -30, Math.toRadians(135)))
+                .lineToLinearHeading(new Pose2d (31, -28, Math.toRadians(135)))
                 .build();
 
         Trajectory backUp = drive.trajectoryBuilder(toMidGoal1.end())
                 .back(7)
                 .build();
 
-        Trajectory toStack1 = drive.trajectoryBuilder(backUp.end())
-                .splineTo(new Vector2d(62, -11), Math.toRadians(0))
+        Trajectory clearTerminal = drive.trajectoryBuilder(backUp.end())
+                .strafeRight(5)
+                .build();
+
+        Trajectory toStack1 = drive.trajectoryBuilder(clearTerminal.end())
+                .splineTo(new Vector2d(62, -8), Math.toRadians(0))
                 .build();
 
         Trajectory toMidGoal2 = drive.trajectoryBuilder(toStack1.end())
-                .lineToLinearHeading(new Pose2d (33, -11, Math.toRadians(225)))
+                .lineToLinearHeading(new Pose2d (33, -18, Math.toRadians(225)))
                 .build();
 
         Trajectory backUp2 = drive.trajectoryBuilder(toMidGoal2.end())
@@ -192,6 +189,7 @@ public class RRTest extends LinearOpMode {
         lift(1, -18);
         robot.rightintake.setPower(1);
         robot.leftintake.setPower(-1);
+    drive.followTrajectory(clearTerminal);
     drive.followTrajectory(toStack1);
         robot.rightintake.setPower(0);
         robot.leftintake.setPower(0);
