@@ -77,7 +77,7 @@ public class RRTest extends LinearOpMode {
                 .build();
 
         Trajectory toMidGoal1 = drive.trajectoryBuilder(forward.end())
-                .lineToLinearHeading(new Pose2d (30.5, -28, Math.toRadians(135)))
+                .lineToLinearHeading(new Pose2d (31, -28, Math.toRadians(135)))
                 .build();
 
         Trajectory backUp = drive.trajectoryBuilder(toMidGoal1.end())
@@ -96,16 +96,16 @@ public class RRTest extends LinearOpMode {
 
 
         Trajectory toStack1 = drive.trajectoryBuilder(positiontoLine1.end())
-                .lineToLinearHeading(new Pose2d(63, -8, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(61, -8, Math.toRadians(5)))
                 .build();
 
-       /* Trajectory runStack1 = drive.trajectoryBuilder(toStack1.end())
-                .forward(5)
-                .build();*/
+        Trajectory backStack1 = drive.trajectoryBuilder(toStack1.end())
+                .lineToLinearHeading(new Pose2d(47, -12, Math.toRadians(235)))
+                .build();
 
 
-        Trajectory toMidGoal2 = drive.trajectoryBuilder(toStack1.end())
-                .lineToLinearHeading(new Pose2d (34, -20, Math.toRadians(225)))
+        Trajectory toMidGoal2 = drive.trajectoryBuilder(backStack1.end())
+                .lineToLinearHeading(new Pose2d (34, -23, Math.toRadians(225)))
                 .build();
 
         Trajectory backUp2 = drive.trajectoryBuilder(toMidGoal2.end())
@@ -116,13 +116,13 @@ public class RRTest extends LinearOpMode {
         //2nd cone from stack
 
         Trajectory positiontoLine2 = drive.trajectoryBuilder(backUp2.end())
-                .lineToLinearHeading(new Pose2d(45, -8, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(48, -8, Math.toRadians(0)))
                 .build();
 
 
 
         Trajectory toStack2 = drive.trajectoryBuilder(positiontoLine2.end())
-                .lineToLinearHeading(new Pose2d(64, -8, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(61, -8, Math.toRadians(0)))
                 .build();
 
         Trajectory toMidGoal3 = drive.trajectoryBuilder(toStack2.end())
@@ -209,7 +209,7 @@ public class RRTest extends LinearOpMode {
         robot.servorelease.setPosition(.35); //release Cone
     drive.followTrajectory(backUp);
         robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -18);
+        lift(1, -19);
         robot.rightintake.setPower(1);
         robot.leftintake.setPower(-1);
     drive.followTrajectory(clearTerminal);
@@ -217,9 +217,10 @@ public class RRTest extends LinearOpMode {
     drive.followTrajectory(toStack1);
         robot.rightintake.setPower(0);
         robot.leftintake.setPower(0);
-    //drive.followTrajectory(runStack1);
-        lift(.5, 21);
+
+        lift(.5, 22);
         sleep(500);
+    drive.followTrajectory(backStack1);
     drive.followTrajectory(toMidGoal2);
         lift(.1, -3);
         sleep(1500);
