@@ -203,7 +203,7 @@ public class Blue_Right_Extra_Cones extends LinearOpMode{
             gyroDrive(.5, -31,-88); // back into end position
             gyroTurn(.5, -229); //turn to 0 degress
             lift(1, 13);
-            gyroDrive(.5, 11,-229); // back into end position
+            gyroDrive(.3, 13.5,-229); // back into end position
 // *****************************************************************************
 //Sleeve and Drop the Cone
             lift(.1, -4); // lower lift and hold position
@@ -215,7 +215,7 @@ public class Blue_Right_Extra_Cones extends LinearOpMode{
 // *****************************************************************************
 //Final Orientation and park in designated zone
             gyroTurn(.5, 0); //turn to 0 degress
-            gyroStrafe(.4,-40,0);
+            gyroStrafe(.4,-44,0);
             gyroDriveLift(.5,-15,0,1,-25);
 
 
