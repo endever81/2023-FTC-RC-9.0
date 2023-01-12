@@ -173,9 +173,9 @@ public class Blue_Left_Extra_Cones extends LinearOpMode{
             sleep(500);
 //||||||||    Take Cone to Medium Pole
             gyroStrafe(.5, 4, 0); //strafe away from low junction
-            gyroDriveLift(.4,42,0,1,29);
-            gyroTurn(.5, -47); //turn toward high junction
-            gyroDrive(.4, 11.5, -47);  //approach high junction
+            gyroDriveLift(.4,41,0,1,29);
+            gyroTurn(.5, -49); //turn toward high junction
+            gyroDrive(.4, 11.5, -49);  //approach high junction
 // *****************************************************************************
 //Sleeve and Drop the Cone
             lift(.1, -4); // lower lift and hold position
@@ -184,26 +184,26 @@ public class Blue_Left_Extra_Cones extends LinearOpMode{
 
 // *****************************************************************************
 //Go To Cone Stack
-            gyroDrive(.4, -10.5,-47); // back away from terminal
+            gyroDrive(.4, -10.5,-49); // back away from terminal
             robot.servorelease.setPosition(.5); //return intake to correct position
             gyroTurn(.5, 0);
             gyroStrafe(.5,-5,0);
 
-            gyroDriveLift(.5,25, 0, 1,-18);
+            gyroDriveLift(.5,28, 0, 1,-18);
             gyroTurn(.5, 92); //turn toward stack
             robot.rightintake.setPower(1);
             robot.leftintake.setPower(-1);
-            gyroDrive(.3, 30,92); // back into end position
+            gyroDrive(.3, 32,92); // back into end position
             sleep(500);
             robot.rightintake.setPower(0);
             robot.leftintake.setPower(0);
             lift(.8, 10);
 //*****************************************************************************
 // Return to medium terminal with cone
-            gyroDrive(.5, -32,92); // back into end position
-            gyroTurn(.5, 240); //turn to 0 degress
+            gyroDrive(.5, -33,92); // back into end position
+            gyroTurn(.5, 241); //turn to 0 degress
             lift(1, 13);
-            gyroDrive(.5, 12,240); // back into end position
+            gyroDrive(.5, 12,241); // back into end position
 // *****************************************************************************
 //Sleeve and Drop the Cone
             lift(.1, -4); // lower lift and hold position
@@ -232,9 +232,9 @@ public class Blue_Left_Extra_Cones extends LinearOpMode{
             sleep(500);
 //||||||||    Take Cone to Medium Pole
             gyroStrafe(.5, 4, 0); //strafe away from low junction
-            gyroDriveLift(.4,42,0,1,29);
-            gyroTurn(.5, -47); //turn toward high junction
-            gyroDrive(.4, 11.5, -47);  //approach high junction
+            gyroDriveLift(.4,41,0,1,29);
+            gyroTurn(.5, -49); //turn toward high junction
+            gyroDrive(.4, 12, -49);  //approach high junction
 // *****************************************************************************
 //Sleeve and Drop the Cone
             lift(.1, -4); // lower lift and hold position
@@ -243,32 +243,32 @@ public class Blue_Left_Extra_Cones extends LinearOpMode{
 
 // *****************************************************************************
 //Go To Cone Stack
-            gyroDrive(.4, -10.5,-47); // back away from terminal
+            gyroDrive(.4, -10.5,-49); // back away from terminal
             robot.servorelease.setPosition(.5); //return intake to correct position
             gyroTurn(.5, 0);
             gyroStrafe(.5,-5,0);
 
-            gyroDriveLift(.5,25, 0, 1,-18);
+            gyroDriveLift(.5,28, 0, 1,-18);
             gyroTurn(.5, 92); //turn toward stack
             robot.rightintake.setPower(1);
             robot.leftintake.setPower(-1);
-            gyroDrive(.3, 30,92); // back into end position
+            gyroDrive(.3, 32,92); // back into end position
             sleep(500);
             robot.rightintake.setPower(0);
             robot.leftintake.setPower(0);
             lift(.8, 10);
 //*****************************************************************************
 // Return to medium terminal with cone
-            gyroDrive(.5, -32,92); // back into end position
+            gyroDrive(.5, -33,92); // back into end position
             gyroTurn(.5, 240); //turn to 0 degress
             lift(1, 13);
-            gyroDrive(.5, 12,240); // back into end position
+            gyroDrive(.5, 11,241); // back into end position
 // *****************************************************************************
 //Sleeve and Drop the Cone
             lift(.1, -4); // lower lift and hold position
             robot.servorelease.setPosition(.35);
             sleep(500);
-            gyroDrive(.4, -10.5,240); // back away from terminal
+            gyroDrive(.4, -10.5,241); // back away from terminal
             robot.servorelease.setPosition(.5);
 
 // *****************************************************************************
@@ -292,8 +292,8 @@ public class Blue_Left_Extra_Cones extends LinearOpMode{
 //||||||||    Take Cone to Medium Pole
             gyroStrafe(.5, 4, 0); //strafe away from low junction
             gyroDriveLift(.4,42,0,1,29);
-            gyroTurn(.5, -47); //turn toward high junction
-            gyroDrive(.4, 11.5, -47);  //approach high junction
+            gyroTurn(.5, -49); //turn toward high junction
+            gyroDrive(.4, 12, -49);  //approach high junction
 // *****************************************************************************
 //Sleeve and Drop the Cone
             lift(.1, -4); // lower lift and hold position
@@ -307,27 +307,27 @@ public class Blue_Left_Extra_Cones extends LinearOpMode{
             gyroTurn(.5, 0);
             gyroStrafe(.5,-5,0);
 
-            gyroDriveLift(.5,25, 0, 1,-18);
+            gyroDriveLift(.5,29, 0, 1,-18);
             gyroTurn(.5, 92); //turn toward stack
             robot.rightintake.setPower(1);
             robot.leftintake.setPower(-1);
-            gyroDrive(.3, 30,92); // back into end position
+            gyroDrive(.3, 32,92); // back into end position
             sleep(500);
             robot.rightintake.setPower(0);
             robot.leftintake.setPower(0);
             lift(.8, 10);
 //*****************************************************************************
 // Return to medium terminal with cone
-            gyroDrive(.5, -32,92); // back into end position
-            gyroTurn(.5, 241); //turn to 0 degress
+            gyroDrive(.5, -33,92); // back into end position
+            gyroTurn(.5, 240); //turn to 0 degress
             lift(1, 13);
-            gyroDrive(.5, 12.5,241); // back into end position
+            gyroDrive(.5, 13,240); // back into end position
 // *****************************************************************************
 //Sleeve and Drop the Cone
             lift(.1, -4); // lower lift and hold position
             robot.servorelease.setPosition(.35);
             sleep(500);
-            gyroDrive(.4, -10.5,241); // back away from terminal
+            gyroDrive(.4, -10.5,240); // back away from terminal
             robot.servorelease.setPosition(.5);
 
 // *****************************************************************************

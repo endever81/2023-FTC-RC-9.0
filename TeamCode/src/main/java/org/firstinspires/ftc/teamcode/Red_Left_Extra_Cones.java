@@ -174,7 +174,7 @@ public class Red_Left_Extra_Cones extends LinearOpMode{
             gyroStrafe(.5, 4, 0); //strafe away from low junction
             gyroDriveLift(.4,42,0,1,29);
             gyroTurn(.5, -47); //turn toward high junction
-            gyroDrive(.4, 10, -47);  //approach high junction
+            gyroDrive(.4, 9.5, -47);  //approach high junction
 // *****************************************************************************
 //Sleeve and Drop the Cone
             lift(.1, -4); // lower lift and hold position
@@ -202,7 +202,7 @@ public class Red_Left_Extra_Cones extends LinearOpMode{
             gyroDrive(.5, -32,92); // back into end position
             gyroTurn(.5, 240); //turn to 0 degress
             lift(1, 13);
-            gyroDrive(.5, 12,240); // back into end position
+            gyroDrive(.5, 14.5,240); // back into end position
 // *****************************************************************************
 //Sleeve and Drop the Cone
             lift(.1, -4); // lower lift and hold position
@@ -247,7 +247,7 @@ public class Red_Left_Extra_Cones extends LinearOpMode{
             gyroTurn(.5, 0);
             gyroStrafe(.5,-5,0);
 
-            gyroDriveLift(.5,27, 0, 1,-18);
+            gyroDriveLift(.5,28, 0, 1,-18);
             gyroTurn(.5, 92); //turn toward stack
             robot.rightintake.setPower(1);
             robot.leftintake.setPower(-1);
@@ -261,7 +261,7 @@ public class Red_Left_Extra_Cones extends LinearOpMode{
             gyroDrive(.5, -32,92); // back into end position
             gyroTurn(.5, 240); //turn to 0 degress
             lift(1, 13);
-            gyroDrive(.5, 12,240); // back into end position
+            gyroDrive(.5, 14,240); // back into end position
 // *****************************************************************************
 //Sleeve and Drop the Cone
             lift(.1, -4); // lower lift and hold position
@@ -292,7 +292,7 @@ public class Red_Left_Extra_Cones extends LinearOpMode{
             gyroStrafe(.5, 4, 0); //strafe away from low junction
             gyroDriveLift(.4,42,0,1,29);
             gyroTurn(.5, -47); //turn toward high junction
-            gyroDrive(.4, 10, -47);  //approach high junction
+            gyroDrive(.4, 9.5, -47);  //approach high junction
 // *****************************************************************************
 //Sleeve and Drop the Cone
             lift(.1, -4); // lower lift and hold position
@@ -310,7 +310,7 @@ public class Red_Left_Extra_Cones extends LinearOpMode{
             gyroTurn(.5, 92); //turn toward stack
             robot.rightintake.setPower(1);
             robot.leftintake.setPower(-1);
-            gyroDrive(.3, 32,92); // back into end position
+            gyroDrive(.3, 31,92); // back into end position
             sleep(500);
             robot.rightintake.setPower(0);
             robot.leftintake.setPower(0);
@@ -320,7 +320,7 @@ public class Red_Left_Extra_Cones extends LinearOpMode{
             gyroDrive(.5, -32,92); // back into end position
             gyroTurn(.5, 241); //turn to 0 degress
             lift(1, 13);
-            gyroDrive(.5, 12.5,241); // back into end position
+            gyroDrive(.5, 14.5,241); // back into end position
 // *****************************************************************************
 //Sleeve and Drop the Cone
             lift(.1, -4); // lower lift and hold position

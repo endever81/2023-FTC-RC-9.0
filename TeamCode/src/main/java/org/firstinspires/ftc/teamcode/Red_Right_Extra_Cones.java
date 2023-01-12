@@ -203,7 +203,7 @@ public class Red_Right_Extra_Cones extends LinearOpMode{
             gyroDrive(.5, -31,-88); // back into end position
             gyroTurn(.5, -229); //turn to 0 degress
             lift(1, 13);
-            gyroDrive(.5, 8.5,-229); // back into end position
+            gyroDrive(.5, 14.5,-229); // back into end position
 // *****************************************************************************
 //Sleeve and Drop the Cone
             lift(.1, -4); // lower lift and hold position
@@ -262,7 +262,7 @@ public class Red_Right_Extra_Cones extends LinearOpMode{
             gyroDrive(.5, -31,-88); // back into end position
             gyroTurn(.5, -229); //turn to 0 degress
             lift(1, 13);
-            gyroDrive(.5, 5,-229); // back into end position
+            gyroDrive(.5, 17,-229); // back into end position
             gyroTurn(.5, -229);
 // *****************************************************************************
 //Sleeve and Drop the Cone
@@ -294,7 +294,7 @@ public class Red_Right_Extra_Cones extends LinearOpMode{
             gyroStrafe(.5, 4, 0); //strafe away from low junction
             gyroDriveLift(.4,42,0,1,29);
             gyroTurn(.5, 47); //turn toward high junction
-            gyroDrive(.4, 10.5, 47);  //approach high junction
+            gyroDrive(.4, 10, 47);  //approach high junction
 // *****************************************************************************
 //Sleeve and Drop the Cone
             lift(.1, -4); // lower lift and hold position
@@ -322,7 +322,7 @@ public class Red_Right_Extra_Cones extends LinearOpMode{
             gyroDrive(.5, -31,-88); // back into end position
             gyroTurn(.5, -229); //turn to 0 degress
             lift(1, 13);
-            gyroDrive(.5, .5,-229); // back into end position
+            gyroDrive(.5, 17,-229); // back into end position
 // *****************************************************************************
 //Sleeve and Drop the Cone
             lift(.1, -4); // lower lift and hold position
