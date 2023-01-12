@@ -189,7 +189,7 @@ public class Red_Right_Extra_Cones extends LinearOpMode{
             gyroTurn(.5, 0);
             gyroStrafe(.5,5,0);
 
-            gyroDriveLift(.5,33, 0, 1,-18);
+            gyroDriveLift(.5,34, 0, 1,-18);
             gyroTurn(.5, -90); //turn toward stack
             robot.rightintake.setPower(1);
             robot.leftintake.setPower(-1);
