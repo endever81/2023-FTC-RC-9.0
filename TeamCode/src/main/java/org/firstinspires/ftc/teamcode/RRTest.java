@@ -60,10 +60,12 @@ public class RRTest extends LinearOpMode {
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        //preloaded cone
+        //preloaded cone delivery
 
         Pose2d startPose = new Pose2d(36, -62, Math.toRadians(90));
         drive.setPoseEstimate(startPose);
+
+        //strafe away from junction
 
         Trajectory strafeRight = drive.trajectoryBuilder(startPose)
                 .strafeRight(4.5)
@@ -73,10 +75,12 @@ public class RRTest extends LinearOpMode {
                 .build();
 
         Trajectory forward = drive.trajectoryBuilder(strafeRight.end())
+
                 .forward(18)
                 .build();
 
         Trajectory toMidGoal1 = drive.trajectoryBuilder(forward.end())
+
                 .lineToLinearHeading(new Pose2d (31, -28, Math.toRadians(135)))
                 .build();
 
@@ -218,11 +222,13 @@ public class RRTest extends LinearOpMode {
         lift(1, -19);
         robot.rightintake.setPower(1);
         robot.leftintake.setPower(-1);
+        robot.servorelease.setPosition(.35);
     drive.followTrajectory(clearTerminal);
     drive.followTrajectory(positiontoLine1);
     drive.followTrajectory(toStack1);
         robot.rightintake.setPower(0);
         robot.leftintake.setPower(0);
+        robot.servorelease.setPosition(.5);
 
         lift(.5, 23);
         sleep(500);
@@ -236,10 +242,13 @@ public class RRTest extends LinearOpMode {
         lift(1, -18);
         robot.rightintake.setPower(1);
         robot.leftintake.setPower(-1);
+        robot.servorelease.setPosition(.35);
     drive.followTrajectory(positiontoLine2);
+    drive.turn(Math.toRadians(0));
     drive.followTrajectory(toStack2);
         robot.rightintake.setPower(0);
         robot.leftintake.setPower(0);
+        robot.servorelease.setPosition(.5);
         lift(.5, 22);
         sleep(500);
     drive.followTrajectory(backStack2);
@@ -252,9 +261,11 @@ public class RRTest extends LinearOpMode {
         lift(1, -18);
         robot.rightintake.setPower(1);
         robot.leftintake.setPower(-1);
+        robot.servorelease.setPosition(.35);
     drive.followTrajectory(toStack3);
         robot.rightintake.setPower(0);
         robot.leftintake.setPower(0);
+        robot.servorelease.setPosition(.5);
         lift(.5, 22);
         sleep(500);
     drive.followTrajectory(toMidGoal4);
