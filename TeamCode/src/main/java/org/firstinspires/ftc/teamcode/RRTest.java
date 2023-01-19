@@ -69,55 +69,88 @@ public class RRTest extends LinearOpMode {
 
         Trajectory strafeRight = drive.trajectoryBuilder(startPose)
                 .strafeRight(4.5)
-                .addDisplacementMarker(() -> {
-                    lift(1, 28);
-                })
+
                 .build();
 
-        Trajectory forward = drive.trajectoryBuilder(strafeRight.end())
+
+        //approach mid goal 1
+
+
+        Trajectory forward = drive.trajectoryBuilder(strafeRight.end())//strafeRight.end()
+
 
                 .forward(18)
                 .build();
+
+
+
+        //place cone onto mid goal 1
 
         Trajectory toMidGoal1 = drive.trajectoryBuilder(forward.end())
 
                 .lineToLinearHeading(new Pose2d (31, -28, Math.toRadians(135)))
                 .build();
 
+
+        //retreat from mid goal 1
+
         Trajectory backUp = drive.trajectoryBuilder(toMidGoal1.end())
                 .back(7)
                 .build();
+
+
+
+        //strafe away from junction 1
 
         Trajectory clearTerminal = drive.trajectoryBuilder(backUp.end())
                 .strafeRight(5)
                 .build();
 
-        //1st cone from stack
+
+
+        //approach line 1
 
         Trajectory positiontoLine1 = drive.trajectoryBuilder(clearTerminal.end())
                 .lineToLinearHeading(new Pose2d(45, -8, Math.toRadians(0)))
                 .build();
 
 
+
+        //get cone off stack 1
+
         Trajectory toStack1 = drive.trajectoryBuilder(positiontoLine1.end())
+                .addSpatialMarker(new Vector2d(60, -7), () -> {
+                    robot.servorelease.setPosition(.5);
+                })
                 .lineToLinearHeading(new Pose2d(62, -7, Math.toRadians(5)))
                 .build();
+
+
+
+        //back away from stack 1
 
         Trajectory backStack1 = drive.trajectoryBuilder(toStack1.end())
                 .lineToLinearHeading(new Pose2d(47, -12, Math.toRadians(235)))
                 .build();
 
 
+
+        //score cone 1
+
         Trajectory toMidGoal2 = drive.trajectoryBuilder(backStack1.end())
                 .lineToLinearHeading(new Pose2d (35.5, -24, Math.toRadians(225)))
                 .build();
+
+
+
+        //back away from mid goal 2
 
         Trajectory backUp2 = drive.trajectoryBuilder(toMidGoal2.end())
                 .back(7)
                 .build();
 
 
-        //2nd cone from stack
+        //approach line 2
 
         Trajectory positiontoLine2 = drive.trajectoryBuilder(backUp2.end())
                 .lineToLinearHeading(new Pose2d(45, -7, Math.toRadians(12)))
@@ -125,31 +158,58 @@ public class RRTest extends LinearOpMode {
 
 
 
+        //get cone 2
+
         Trajectory toStack2 = drive.trajectoryBuilder(positiontoLine2.end())
                 .forward(17)
                 .build();
 
+
+
+        //retreat from stack 2
 
         Trajectory backStack2 = drive.trajectoryBuilder(toStack2.end())
                 .lineToLinearHeading(new Pose2d(47, -12, Math.toRadians(235)))
                 .build();
 
 
+
+        //score cone 2
+
         Trajectory toMidGoal3 = drive.trajectoryBuilder(backStack2.end())
                 .lineToLinearHeading(new Pose2d (34, -23, Math.toRadians(225)))
                 .build();
+
+
+
+
+        // back off stack 3
 
         Trajectory backUp3 = drive.trajectoryBuilder(toMidGoal3.end())
                 .back(7)
                 .build();
 
+
+
+
+        //approach stack 3
+
         Trajectory toStack3 = drive.trajectoryBuilder(backUp3.end())
                 .lineToLinearHeading(new Pose2d(62, -8, Math.toRadians(0)))
                 .build();
 
+
+
+        //score cone 3
+
         Trajectory toMidGoal4 = drive.trajectoryBuilder(toStack3.end())
                 .lineToLinearHeading(new Pose2d (34, -20, Math.toRadians(225)))
                 .build();
+
+
+
+
+        //back off junction FINAL
 
         Trajectory backUp4 = drive.trajectoryBuilder(toMidGoal4.end())
                 .back(7)
