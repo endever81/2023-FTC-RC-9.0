@@ -69,7 +69,9 @@ public class RRTest extends LinearOpMode {
 
         Trajectory strafeRight = drive.trajectoryBuilder(startPose)
                 .strafeRight(4.5)
-
+                .addDisplacementMarker(() -> {
+                    lift(1, 28);
+                })
                 .build();
 
 
@@ -80,6 +82,7 @@ public class RRTest extends LinearOpMode {
 
 
                 .forward(18)
+
                 .build();
 
 
