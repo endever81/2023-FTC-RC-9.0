@@ -54,10 +54,10 @@ public class DriveConstants {
      * the built-in velocity PID, *these values are fine as is*. However, if you do not have drive
      * motor encoders or have elected not to use them for velocity control, these values should be
      * empirically tuned.
-     */
-    public static double kV = 0.0185;  // 1.0 / rpmToVelocity(MAX_RPM);
-    public static double kA = 0.003;    // 0.002;
-    public static double kStatic = 0.0;  //0.001;
+     */                                                                        // changes 1/26/23
+    public static double kV = 0.0182;  // 1.0 / rpmToVelocity(MAX_RPM);          .0185
+    public static double kA = 0.0042;    // 0.002;                               .003
+    public static double kStatic = 0.01;  //0.001;                               .0
 
     /*
      * These values are used to generate the trajectories for you robot. To ensure proper operation,
@@ -88,7 +88,7 @@ public class DriveConstants {
 
      */
     public static double MAX_VEL = 42;//50
-    public static double MAX_ACCEL = 42;//50
+    public static double MAX_ACCEL = 40;//50
     public static double MAX_ANG_VEL = 138.774; //Math.toRadians(180); //5.35575  306.86214
     public static double MAX_ANG_ACCEL = Math.toRadians(180);
 
