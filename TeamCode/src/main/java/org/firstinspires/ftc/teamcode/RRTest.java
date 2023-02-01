@@ -125,7 +125,7 @@ public class RRTest extends LinearOpMode {
                 .addSpatialMarker(new Vector2d(62, -11), () -> {
                     robot.servorelease.setPosition(.5);
                 })
-                .lineToLinearHeading(new Pose2d(64, -11, Math.toRadians(5)))
+                .lineToLinearHeading(new Pose2d(63, -11, Math.toRadians(5)))
                 .build();
 
 
@@ -167,7 +167,7 @@ public class RRTest extends LinearOpMode {
                 .addSpatialMarker(new Vector2d(62, -11), () -> {
                     robot.servorelease.setPosition(.5);
                 })
-                .lineToLinearHeading(new Pose2d(64, -11, Math.toRadians(5)))
+                .lineToLinearHeading(new Pose2d(63, -11, Math.toRadians(5)))
                 .build();
 
 
@@ -225,13 +225,15 @@ public class RRTest extends LinearOpMode {
 
 
 
+        //Trajectory parking1 = drive.trajectoryBuilder(backUp3.end())
         Trajectory parking1 = drive.trajectoryBuilder(backUp3.end())
+
                 .lineToLinearHeading(new Pose2d (16, -13, Math.toRadians(270)))
                 .build();
-        Trajectory parking2 = drive.trajectoryBuilder(parking1.end())
+        Trajectory parking2 = drive.trajectoryBuilder(backUp3.end())
                 .lineToLinearHeading(new Pose2d (36, -13, Math.toRadians(270)))
                 .build();
-        Trajectory parking3 = drive.trajectoryBuilder(parking2.end())
+        Trajectory parking3 = drive.trajectoryBuilder(backUp3.end())
                 .lineToLinearHeading(new Pose2d (60, -13, Math.toRadians(270)))
                 .build();
         robot.blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BREATH_RED);
@@ -284,8 +286,8 @@ public class RRTest extends LinearOpMode {
     drive.followTrajectory(strafeRight);
     drive.followTrajectory(forward);
     drive.followTrajectory(toMidGoal1);
-        lift(.1, -3);
-        sleep(1500);
+        lift(.5, -3);
+        sleep(500);
         robot.servorelease.setPosition(.35); //release Cone
     drive.followTrajectory(backUp);
         robot.servorelease.setPosition(.5); //intake release returned
@@ -344,8 +346,9 @@ public class RRTest extends LinearOpMode {
         robot.servorelease.setPosition(.35); //release Cone
     drive.followTrajectory(backUp4);
         robot.servorelease.setPosition(.5); //intake release returned
-    drive.followTrajectory(sleeve);
         */
+    drive.followTrajectory(sleeve);
+
     }
 
     public void lift(double power, double inches)
