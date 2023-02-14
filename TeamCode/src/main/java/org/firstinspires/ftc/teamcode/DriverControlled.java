@@ -190,7 +190,7 @@ public void runOpMode() {
 
 
 
-        robot.blinkinLedDriver.setPattern(pattern);
+        robot.blinkinLedDriver.setPattern(patternPrime);
 
     robot.leftFrontDrive.setPower(front_left);
     robot.rightFrontDrive.setPower(front_right);

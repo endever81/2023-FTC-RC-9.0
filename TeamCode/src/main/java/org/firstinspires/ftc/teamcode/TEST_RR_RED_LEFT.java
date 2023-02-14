@@ -17,9 +17,9 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 import java.util.List;
 
-@Autonomous(name = "RR_BLUE", group = "Automonous")
+@Autonomous(name = "TEST_RR_RED_LEFT", group = "Automonous")
 
-public class RR_BLUE extends LinearOpMode {
+public class TEST_RR_RED_LEFT extends LinearOpMode {
     //-----------------------------------------------------------
     // Vuforia Assets Called Up
 
@@ -39,11 +39,11 @@ public class RR_BLUE extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-   //-----------------------------------------------------------
+        //-----------------------------------------------------------
 
         robot.init(hardwareMap);  //initialize our hardwaremap
-    //-----------------------------------------------------------
-         // Vuforia Engine Run Commands and zoom
+        //-----------------------------------------------------------
+        // Vuforia Engine Run Commands and zoom
         initVuforia();
         initTfod();
 
@@ -53,7 +53,7 @@ public class RR_BLUE extends LinearOpMode {
             tfod.setZoom(1.5, 10.0 / 9.0);
         }
 
-    //-----------------------------------------------------------
+        //-----------------------------------------------------------
         //Map All Paths for RoadRunner during initialization
         //All wheel based motion is defined here but is executed below.
         //Make changes here to change where the robot moves to.
@@ -68,7 +68,7 @@ public class RR_BLUE extends LinearOpMode {
         //strafe away from junction
 
         Trajectory strafeRight = drive.trajectoryBuilder(startPose)
-                .strafeRight(4.5)
+                .strafeRight(1)
                 .addDisplacementMarker(() -> {
                     lift(1, 28);
                 })
@@ -91,14 +91,14 @@ public class RR_BLUE extends LinearOpMode {
 
         Trajectory toMidGoal1 = drive.trajectoryBuilder(forward.end())
 
-                .lineToLinearHeading(new Pose2d (32, -28, Math.toRadians(135)))
+                .lineToLinearHeading(new Pose2d (43, -26, Math.toRadians(45)))
                 .build();
 
 
         //retreat from mid goal 1
 
         Trajectory backUp = drive.trajectoryBuilder(toMidGoal1.end())
-                .back(7)
+                .back(3)
                 .build();
 
 
@@ -106,7 +106,7 @@ public class RR_BLUE extends LinearOpMode {
         //strafe away from junction 1
 
         Trajectory clearTerminal = drive.trajectoryBuilder(backUp.end())
-                .strafeRight(5)
+                .strafeRight(-9)
                 .build();
 
 
@@ -114,7 +114,7 @@ public class RR_BLUE extends LinearOpMode {
         //approach line 1
 
         Trajectory positiontoLine1 = drive.trajectoryBuilder(clearTerminal.end())
-                .lineToLinearHeading(new Pose2d(45, -11.5, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(35, -12, Math.toRadians(178)))
                 .build();
 
 
@@ -122,10 +122,10 @@ public class RR_BLUE extends LinearOpMode {
         //get cone off stack 1
 
         Trajectory toStack1 = drive.trajectoryBuilder(positiontoLine1.end())
-                .addSpatialMarker(new Vector2d(64, -11.5), () -> {
+                .addSpatialMarker(new Vector2d(12, -12), () -> {
                     robot.servorelease.setPosition(.5);
                 })
-                .lineToLinearHeading(new Pose2d(64, -11, Math.toRadians(5)))
+                .lineToLinearHeading(new Pose2d(12, -12, Math.toRadians(178)))
                 .build();
 
 
@@ -133,7 +133,7 @@ public class RR_BLUE extends LinearOpMode {
         //back away from stack 1
 
         Trajectory backStack1 = drive.trajectoryBuilder(toStack1.end())
-                .lineToLinearHeading(new Pose2d(47, -10, Math.toRadians(200)))
+                .lineToLinearHeading(new Pose2d(35, -10, Math.toRadians(20)))
                 .build();
 
 
@@ -141,7 +141,7 @@ public class RR_BLUE extends LinearOpMode {
         //score cone 1
 
         Trajectory toMidGoal2 = drive.trajectoryBuilder(backStack1.end())
-                .lineToLinearHeading(new Pose2d (34, -20, Math.toRadians(200)))
+                .lineToLinearHeading(new Pose2d (44, -24, Math.toRadians(20)))
                 .build();
 
 
@@ -149,14 +149,14 @@ public class RR_BLUE extends LinearOpMode {
         //back away from mid goal 2
 
         Trajectory backUp2 = drive.trajectoryBuilder(toMidGoal2.end())
-                .back(7)
+                .back(4)
                 .build();
 
 
         //approach line 2
 
         Trajectory positiontoLine2 = drive.trajectoryBuilder(backUp2.end())
-                .lineToLinearHeading(new Pose2d(45, -11, Math.toRadians(12)))
+                .lineToLinearHeading(new Pose2d(35, -11, Math.toRadians(178)))
                 .build();
 
 
@@ -164,10 +164,10 @@ public class RR_BLUE extends LinearOpMode {
         //get cone 2
 
         Trajectory toStack2 = drive.trajectoryBuilder(positiontoLine2.end())
-                .addSpatialMarker(new Vector2d(64, -11), () -> {
+                .addSpatialMarker(new Vector2d(12, -12), () -> {
                     robot.servorelease.setPosition(.5);
                 })
-                .lineToLinearHeading(new Pose2d(64, -11, Math.toRadians(5)))
+                .lineToLinearHeading(new Pose2d(12, -12, Math.toRadians(178)))
                 .build();
 
 
@@ -175,7 +175,7 @@ public class RR_BLUE extends LinearOpMode {
         //retreat from stack 2
 
         Trajectory backStack2 = drive.trajectoryBuilder(toStack2.end())
-                .lineToLinearHeading(new Pose2d(47, -10, Math.toRadians(200)))
+                .lineToLinearHeading(new Pose2d(35, -10, Math.toRadians(20)))
                 .build();
 
 
@@ -183,7 +183,7 @@ public class RR_BLUE extends LinearOpMode {
         //score cone 2
 
         Trajectory toMidGoal3 = drive.trajectoryBuilder(backStack2.end())
-                .lineToLinearHeading(new Pose2d (34.5, -20, Math.toRadians(200)))
+                .lineToLinearHeading(new Pose2d (44, -24, Math.toRadians(20)))
                 .build();
 
 
@@ -200,7 +200,7 @@ public class RR_BLUE extends LinearOpMode {
 
 
         Trajectory strafeAway = drive.trajectoryBuilder(backUp3.end())
-                .strafeRight(7)
+                .strafeRight(-15)
                 .addDisplacementMarker(() -> {
                     lift(.5, -5);
                 })
@@ -238,24 +238,24 @@ public class RR_BLUE extends LinearOpMode {
 
         //Trajectory parking1 = drive.trajectoryBuilder(backUp3.end())
         Trajectory parking1 = drive.trajectoryBuilder(strafeAway.end())
-                .lineToLinearHeading(new Pose2d (16, -13, Math.toRadians(270)))
+                .lineToLinearHeading(new Pose2d (16, -10, Math.toRadians(270)))
                 .build();
         Trajectory parking2 = drive.trajectoryBuilder(strafeAway.end())
-                .lineToLinearHeading(new Pose2d (38, -13, Math.toRadians(270)))
+                .lineToLinearHeading(new Pose2d (38, -10, Math.toRadians(270)))
                 .build();
         Trajectory parking3 = drive.trajectoryBuilder(strafeAway.end())
-                .lineToLinearHeading(new Pose2d (60, -13, Math.toRadians(270)))
+                .lineToLinearHeading(new Pose2d (60, -10, Math.toRadians(270)))
                 .build();
-        robot.blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BREATH_BLUE);
+        robot.blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BREATH_RED);
 
         telemetry.addData("Initiliazation Complete", "waiting for start");
         telemetry.update();
 
         Trajectory sleeve = parking1;
         //---------------------------------------- START COMMAND----------------------------
-    waitForStart();
+        waitForStart();
         //---------------------------------------- START COMMAND----------------------------
-    if (isStopRequested())  return;
+        if (isStopRequested())  return;
 
         //Identify which signal is being displayed.
 
@@ -290,59 +290,59 @@ public class RR_BLUE extends LinearOpMode {
                 telemetry.update();
             }
         }
-    //----------------------------------------Trajectory Execution---------------------------
+        //----------------------------------------Trajectory Execution---------------------------
         // this section executes RR paths that were built above.
         // here we can inject servo and lift commands.
-    drive.followTrajectory(strafeRight);
-    drive.followTrajectory(forward);
-    drive.followTrajectory(toMidGoal1);
+        drive.followTrajectory(strafeRight);
+        drive.followTrajectory(forward);
+        drive.followTrajectory(toMidGoal1);
         lift(.5, -3);
         sleep(500);
         robot.servorelease.setPosition(.35); //release Cone
-    drive.followTrajectory(backUp);
+        drive.followTrajectory(backUp);
         robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -19.5);
-        robot.rightintake.setPower(.25);
-        robot.leftintake.setPower(-.25);
+        lift(1, -19);
         robot.servorelease.setPosition(.35);
-    drive.followTrajectory(clearTerminal);
-    drive.followTrajectory(positiontoLine1);
-    drive.followTrajectory(toStack1);
-        robot.rightintake.setPower(0);
-        robot.leftintake.setPower(0);
+        drive.followTrajectory(clearTerminal);
+        drive.followTrajectory(positiontoLine1);
+        drive.followTrajectory(toStack1);
         robot.servorelease.setPosition(.5);
 
-        lift(.5, 24);
+        lift(.5, 23);
+        robot.rightintake.setPower(.1);
+        robot.leftintake.setPower(-.1);
         sleep(500);
-    drive.followTrajectory(backStack1);
-    drive.followTrajectory(toMidGoal2);
-        lift(.5, -4);
-        sleep(500);
-        robot.servorelease.setPosition(.35); //release Cone
-    drive.followTrajectory(backUp2);
-        robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -22.5);
-        robot.rightintake.setPower(.25);
-        robot.leftintake.setPower(-.25);
-        robot.servorelease.setPosition(.35);
-    drive.followTrajectory(positiontoLine2);
-    drive.turn(Math.toRadians(0));
-    drive.followTrajectory(toStack2);
         robot.rightintake.setPower(0);
         robot.leftintake.setPower(0);
-        robot.servorelease.setPosition(.5);
-        lift(.5, 24);
-        sleep(500);
-    drive.followTrajectory(backStack2);
-    drive.followTrajectory(toMidGoal3);
+        drive.followTrajectory(backStack1);
+        drive.followTrajectory(toMidGoal2);
         lift(.5, -4);
         sleep(500);
         robot.servorelease.setPosition(.35); //release Cone
-    drive.followTrajectory(backUp3);
+        drive.followTrajectory(backUp2);
+        robot.servorelease.setPosition(.5); //intake release returned
+        lift(1, -21);
+        robot.servorelease.setPosition(.35);
+        drive.followTrajectory(positiontoLine2);
+        drive.turn(Math.toRadians(0));
+        drive.followTrajectory(toStack2);
+        robot.servorelease.setPosition(.5);
+        lift(.5, 25);
+        robot.rightintake.setPower(.1);
+        robot.leftintake.setPower(-.1);
+        sleep(500);
+        robot.rightintake.setPower(0);
+        robot.leftintake.setPower(0);
+        drive.followTrajectory(backStack2);
+        drive.followTrajectory(toMidGoal3);
+        lift(.5, -5);
+        sleep(500);
+        robot.servorelease.setPosition(.35); //release Cone
+        drive.followTrajectory(backUp3);
         robot.servorelease.setPosition(.5); //intake release returned
         lift(1, -18);
-       // robot.rightintake.setPower(1);
-       // robot.leftintake.setPower(-1);
+        // robot.rightintake.setPower(1);
+        // robot.leftintake.setPower(-1);
         robot.servorelease.setPosition(.35);
     /*drive.followTrajectory(toStack3);
         robot.rightintake.setPower(0);
@@ -357,8 +357,8 @@ public class RR_BLUE extends LinearOpMode {
     drive.followTrajectory(backUp4);
         robot.servorelease.setPosition(.5); //intake release returned
         */
-    drive.followTrajectory(strafeAway);
-    drive.followTrajectory(sleeve);
+        drive.followTrajectory(strafeAway);
+        drive.followTrajectory(sleeve);
 
     }
 
@@ -420,3 +420,4 @@ public class RR_BLUE extends LinearOpMode {
 
     }
 }
+

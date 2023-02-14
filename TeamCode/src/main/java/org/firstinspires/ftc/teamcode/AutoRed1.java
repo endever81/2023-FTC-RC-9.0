@@ -186,43 +186,14 @@ public class AutoRed1 extends LinearOpMode{
             //duck is on left and place block on bottom
 
             //robot.grabber.setPosition(0);
-/*
-            sleep(750);
 
-            lift(.2, 5);
+            sleep(750);
 
 
             gyroDrive(.3, 13, 0);
-            sleep(1000);
-
             gyroTurn(.3, 199.5);
             sleep(1000);
-            gyroStrafe(.3, 24, 199.5);
-            sleep(1000);
-            //   robot.spinner.setPower(.3);
 
-            sleep(4500);
-
-            //   robot.spinner.setPower(0);
-
-
-            gyroStrafe(.3, -30, 180);
-
-            gyroTurn(.3, -40);
-
-            gyroDrive(.3, 18, -40);
-
-            //robot.grabber.setPosition(.35);
-
-            sleep(1000);
-
-            gyroDrive(.5, -15, -40);
-
-            gyroTurn(.3, -95);
-
-            // gyroDrive (.4, 85, -95);
-
-*/
         }
 
 
@@ -231,42 +202,7 @@ public class AutoRed1 extends LinearOpMode{
             telemetry.update();
             //duck is on middle and place block on middle
             //robot.grabber.setPosition(0);
-/*
-            sleep(750);
 
-
-            lift(.2, 3);
-
-            gyroDrive(.3, 13, 0);
-            sleep(1000);
-
-            gyroTurn(.3, 199.5);
-            sleep(1000);
-            gyroStrafe(.3, 24, 199.5);
-            sleep(1000);
-            //    robot.spinner.setPower(.3);
-
-            sleep(4500);
-
-            //     robot.spinner.setPower(0);
-
-
-            gyroStrafe(.3, -30, 180);
-
-            gyroTurn(.3, -40);
-            lift(.2, 6);
-            gyroDrive(.3, 18, -40);
-
-            //robot.grabber.setPosition(.35);
-
-            sleep(1000);
-
-            gyroDrive(.5, -15, -40);
-
-            gyroTurn(.3, -95);
-
-            // gyroDrive (.4, 85, -95);
-*/
         }
 
 
@@ -276,43 +212,6 @@ public class AutoRed1 extends LinearOpMode{
             //duck is on right and place block on top
 
             //robot.grabber.setPosition(0);
-/*
-            sleep(750);
-
-            lift(.2, 3);
-
-
-            gyroDrive(.3, 13, 0);
-            sleep(1000);
-
-            gyroTurn(.3, 199.5);
-            sleep(1000);
-            gyroStrafe(.3, 24, 199.5);
-            sleep(1000);
-            //   robot.spinner.setPower(.3);
-
-            sleep(4500);
-
-            //    robot.spinner.setPower(0);
-
-
-            gyroStrafe(.3, -30, 180);
-
-            gyroTurn(.3, -40);
-            lift(.2, 9);
-            gyroDrive(.3, 18, -40);
-
-            //robot.grabber.setPosition(.35);
-
-            sleep(1000);
-
-            gyroDrive(.5, -15, -40);
-
-            gyroTurn(.3, -95);
-
-            //  gyroDrive (.4, 85, -95);
-
-*/
         }
 
 

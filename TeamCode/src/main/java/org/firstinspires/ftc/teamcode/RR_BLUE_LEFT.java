@@ -17,9 +17,9 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 import java.util.List;
 
-@Autonomous(name = "RR_RED", group = "Automonous")
+@Autonomous(name = "RR_BLUE_LEFT", group = "Automonous")
 
-public class RR_RED extends LinearOpMode {
+public class RR_BLUE_LEFT extends LinearOpMode {
     //-----------------------------------------------------------
     // Vuforia Assets Called Up
 
@@ -183,7 +183,7 @@ public class RR_RED extends LinearOpMode {
         //score cone 2
 
         Trajectory toMidGoal3 = drive.trajectoryBuilder(backStack2.end())
-                .lineToLinearHeading(new Pose2d (43, -24, Math.toRadians(20)))
+                .lineToLinearHeading(new Pose2d (43, -23, Math.toRadians(20)))
                 .build();
 
 
@@ -246,7 +246,7 @@ public class RR_RED extends LinearOpMode {
         Trajectory parking3 = drive.trajectoryBuilder(strafeAway.end())
                 .lineToLinearHeading(new Pose2d (60, -10, Math.toRadians(270)))
                 .build();
-        robot.blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BREATH_RED);
+        robot.blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BREATH_BLUE);
 
         telemetry.addData("Initiliazation Complete", "waiting for start");
         telemetry.update();
@@ -420,4 +420,5 @@ public class RR_RED extends LinearOpMode {
 
     }
 }
+
 
