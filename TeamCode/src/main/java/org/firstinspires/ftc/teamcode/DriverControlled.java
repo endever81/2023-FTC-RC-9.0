@@ -8,6 +8,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Position;
+
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
@@ -67,7 +69,8 @@ public void runOpMode() {
     telemetry.addData("Say", "Waiting for Start");
     telemetry.update();
 
-
+    robot.liftleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    robot.liftright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     waitForStart();
 
@@ -167,6 +170,22 @@ public void runOpMode() {
 
    double liftleftPower = -gamepad2.left_stick_y;
     double liftrightPower = gamepad2.left_stick_y;
+
+    if (liftleftPower == 0) {
+
+        robot.liftleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.liftright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        int newLiftTargetLeft = robot.liftleft.getCurrentPosition();
+        int newLiftTargetRight = robot.liftright.getCurrentPosition();
+
+        robot.liftleft.setTargetPosition(newLiftTargetLeft);
+        robot.liftright.setTargetPosition(newLiftTargetRight);
+        robot.liftleft.setPower(1);
+        robot.liftright.setPower(1);
+    }
+    else {    robot.liftleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.liftright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);}
 
 //*******************************************************************
         //Robot Coloration Conditions and Controls

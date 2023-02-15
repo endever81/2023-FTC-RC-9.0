@@ -23,6 +23,21 @@ import java.util.List;
 public class TEST_RR_BLUE_LEFT extends LinearOpMode {
     //-----------------------------------------------------------
     // Vuforia Assets Called Up
+    public static double MG1X = 44; public static double MG1Y = -28; public static double MG1A = 45;
+
+    public static double BAM1 = 3;
+
+    public static double SAM1 = -9;
+
+
+
+
+
+
+
+
+
+
 
     private static final String TFOD_MODEL_ASSET = "InitialModel22-23.tflite";
     private static final String[] LABELS = {
@@ -92,14 +107,14 @@ public class TEST_RR_BLUE_LEFT extends LinearOpMode {
 
         Trajectory toMidGoal1 = drive.trajectoryBuilder(forward.end())
 
-                .lineToLinearHeading(new Pose2d (44, -28, Math.toRadians(45)))
+                .lineToLinearHeading(new Pose2d (MG1X, MG1Y, Math.toRadians(MG1A)))
                 .build();
 
 
         //retreat from mid goal 1
 
         Trajectory backUp = drive.trajectoryBuilder(toMidGoal1.end())
-                .back(3)
+                .back(BAM1)
                 .build();
 
 
@@ -107,15 +122,15 @@ public class TEST_RR_BLUE_LEFT extends LinearOpMode {
         //strafe away from junction 1
 
         Trajectory clearTerminal = drive.trajectoryBuilder(backUp.end())
-                .strafeRight(-9)
+                .strafeRight(SAM1)
                 .build();
 
 
 
         //approach line 1
-
+        //public static double AL1X = 35;
         Trajectory positiontoLine1 = drive.trajectoryBuilder(clearTerminal.end())
-                .lineToLinearHeading(new Pose2d(35, -10, Math.toRadians(177)))
+                .lineToLinearHeading(new Pose2d(AL1X, -10, Math.toRadians(177)))
                 .build();
 
 
