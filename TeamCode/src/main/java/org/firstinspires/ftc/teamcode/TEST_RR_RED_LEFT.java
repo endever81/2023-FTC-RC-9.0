@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
@@ -16,12 +17,49 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 import java.util.List;
-
+@Config
 @Autonomous(name = "TEST_RR_RED_LEFT", group = "Automonous")
 
 public class TEST_RR_RED_LEFT extends LinearOpMode {
     //-----------------------------------------------------------
     // Vuforia Assets Called Up
+
+    public static double MG1X = 44; public static double MG1Y = -28; public static double MG1A = 45;
+
+    public static double BAM1 = 3;
+
+    public static double SAM1 = -9;
+
+    public static double PL1X = 35; public static double PL1Y = -10; public static double PL1A = 177;
+
+    public static double TS1X = 13.75; public static double TS1Y = -10;
+    public static double OS1X = 13.75; public static double OS1Y = -9; public static double OS1A = 177;
+
+    public static double BS1X = 35; public static double BS1Y = -10; public static double BS1A = 20;
+
+    public static double MG2X = 43; public static double MG2Y = -24; public static double MG2A = 20;
+
+    public static double BAM2 = 4;
+
+    public static double PL2X = 35; public static double PL2Y = -10.5; public static double PL2A = 180;
+
+    public static double TS2X = 13.75; public static double TS2Y = -10.5;
+    public static double OS2X = 13.5; public static double OS2Y = -10; public static double OS2A = 180;
+
+    public static double BS2X = 35; public static double BS2Y = -10; public static double BS2A = 20;
+
+    public static double MG3X = 43; public static double MG3Y = -23; public static double MG3A = 20;
+
+    public static double BAM3 = 7;
+
+    public static double SAM3 = -15;
+
+    public static double P1X = 16; public static double P1Y = -10; public static double P1A = 270;
+    public static double P2X = 38; public static double P2Y = -10; public static double P2A = 270;
+    public static double P3X = 60; public static double P3Y = -10; public static double P3A = 270;
+
+
+
 
     private static final String TFOD_MODEL_ASSET = "InitialModel22-23.tflite";
     private static final String[] LABELS = {

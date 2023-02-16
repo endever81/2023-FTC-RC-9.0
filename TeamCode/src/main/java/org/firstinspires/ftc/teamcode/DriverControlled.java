@@ -20,10 +20,12 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 public class DriverControlled extends LinearOpMode {
 
     HardwareRobot robot = new HardwareRobot();
+
     
 @Override
 public void runOpMode() {
     robot.init(hardwareMap);
+
     RevBlinkinLedDriver.BlinkinPattern pattern;
     pattern = RevBlinkinLedDriver.BlinkinPattern.GREEN;
 
@@ -172,15 +174,15 @@ public void runOpMode() {
     double liftrightPower = gamepad2.left_stick_y;
 
     if (liftleftPower == 0) {
-
-        robot.liftleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.liftright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
         int newLiftTargetLeft = robot.liftleft.getCurrentPosition();
         int newLiftTargetRight = robot.liftright.getCurrentPosition();
 
         robot.liftleft.setTargetPosition(newLiftTargetLeft);
         robot.liftright.setTargetPosition(newLiftTargetRight);
+
+        robot.liftleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.liftright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
         robot.liftleft.setPower(1);
         robot.liftright.setPower(1);
     }
