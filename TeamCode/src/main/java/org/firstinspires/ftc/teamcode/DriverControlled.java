@@ -25,7 +25,8 @@ public class DriverControlled extends LinearOpMode {
 @Override
 public void runOpMode() {
     robot.init(hardwareMap);
-
+    int newLiftTargetLeft;
+    int newLiftTargetRight;
     RevBlinkinLedDriver.BlinkinPattern pattern;
     pattern = RevBlinkinLedDriver.BlinkinPattern.GREEN;
 
@@ -76,6 +77,10 @@ public void runOpMode() {
 
     waitForStart();
 
+    newLiftTargetLeft = robot.liftleft.getCurrentPosition();
+    newLiftTargetRight = robot.liftright.getCurrentPosition();
+    robot.liftleft.setTargetPosition(newLiftTargetLeft);
+    robot.liftright.setTargetPosition(newLiftTargetRight);
 
     while (opModeIsActive()){
 
@@ -172,23 +177,27 @@ public void runOpMode() {
 
    double liftleftPower = -gamepad2.left_stick_y;
     double liftrightPower = gamepad2.left_stick_y;
-
+/*
     if (liftleftPower == 0) {
-        int newLiftTargetLeft = robot.liftleft.getCurrentPosition();
-        int newLiftTargetRight = robot.liftright.getCurrentPosition();
 
-        robot.liftleft.setTargetPosition(newLiftTargetLeft);
-        robot.liftright.setTargetPosition(newLiftTargetRight);
+
 
         robot.liftleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.liftright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        robot.liftleft.setPower(1);
-        robot.liftright.setPower(1);
+        robot.liftleft.setPower(.4);
+        robot.liftright.setPower(.4);
     }
-    else {    robot.liftleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.liftright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);}
+    else {
+        newLiftTargetLeft = robot.liftleft.getCurrentPosition();
+        newLiftTargetRight = robot.liftright.getCurrentPosition();
 
+        robot.liftleft.setTargetPosition(newLiftTargetLeft);
+        robot.liftright.setTargetPosition(newLiftTargetRight);
+
+        robot.liftleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.liftright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);}
+*/
 //*******************************************************************
         //Robot Coloration Conditions and Controls
         //***********************************************************
