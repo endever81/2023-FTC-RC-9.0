@@ -70,7 +70,7 @@ public class RR_RED_LEFT extends LinearOpMode {
         Trajectory strafeRight = drive.trajectoryBuilder(startPose)
                 .strafeRight(1)
                 .addDisplacementMarker(() -> {
-                    lift(1, 28);
+                    lift(1, 20.5);
                 })
                 .build();
 
@@ -114,7 +114,7 @@ public class RR_RED_LEFT extends LinearOpMode {
         //approach line 1
 
         Trajectory positiontoLine1 = drive.trajectoryBuilder(clearTerminal.end())
-                .lineToLinearHeading(new Pose2d(35, -12, Math.toRadians(178)))
+                .lineToLinearHeading(new Pose2d(35, -12.5, Math.toRadians(182)))
                 .build();
 
 
@@ -122,10 +122,10 @@ public class RR_RED_LEFT extends LinearOpMode {
         //get cone off stack 1
 
         Trajectory toStack1 = drive.trajectoryBuilder(positiontoLine1.end())
-                .addSpatialMarker(new Vector2d(12, -12), () -> {
+                .addSpatialMarker(new Vector2d(10.5, -12.5), () -> {
                     robot.servorelease.setPosition(.5);
                 })
-                .lineToLinearHeading(new Pose2d(12, -12, Math.toRadians(178)))
+                .lineToLinearHeading(new Pose2d(10.5, -12.5, Math.toRadians(182)))
                 .build();
 
 
@@ -141,7 +141,7 @@ public class RR_RED_LEFT extends LinearOpMode {
         //score cone 1
 
         Trajectory toMidGoal2 = drive.trajectoryBuilder(backStack1.end())
-                .lineToLinearHeading(new Pose2d (44, -24, Math.toRadians(20)))
+                .lineToLinearHeading(new Pose2d (41, -21, Math.toRadians(20)))
                 .build();
 
 
@@ -156,7 +156,7 @@ public class RR_RED_LEFT extends LinearOpMode {
         //approach line 2
 
         Trajectory positiontoLine2 = drive.trajectoryBuilder(backUp2.end())
-                .lineToLinearHeading(new Pose2d(35, -11, Math.toRadians(178)))
+                .lineToLinearHeading(new Pose2d(35, -10, Math.toRadians(193)))
                 .build();
 
 
@@ -164,10 +164,10 @@ public class RR_RED_LEFT extends LinearOpMode {
         //get cone 2
 
         Trajectory toStack2 = drive.trajectoryBuilder(positiontoLine2.end())
-                .addSpatialMarker(new Vector2d(12, -12), () -> {
+                .addSpatialMarker(new Vector2d(11, -12), () -> {
                     robot.servorelease.setPosition(.5);
                 })
-                .lineToLinearHeading(new Pose2d(12, -12, Math.toRadians(178)))
+                .lineToLinearHeading(new Pose2d(11, -12, Math.toRadians(193)))
                 .build();
 
 
@@ -183,7 +183,7 @@ public class RR_RED_LEFT extends LinearOpMode {
         //score cone 2
 
         Trajectory toMidGoal3 = drive.trajectoryBuilder(backStack2.end())
-                .lineToLinearHeading(new Pose2d (44, -24, Math.toRadians(20)))
+                .lineToLinearHeading(new Pose2d (41, -20, Math.toRadians(20)))
                 .build();
 
 
@@ -192,7 +192,7 @@ public class RR_RED_LEFT extends LinearOpMode {
         // back off stack 3
 
         Trajectory backUp3 = drive.trajectoryBuilder(toMidGoal3.end())
-                .back(7)
+                .back(5)
                 .build();
 
 
@@ -301,14 +301,14 @@ public class RR_RED_LEFT extends LinearOpMode {
         robot.servorelease.setPosition(.35); //release Cone
         drive.followTrajectory(backUp);
         robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -19);
+        lift(1, -14);
         robot.servorelease.setPosition(.35);
         drive.followTrajectory(clearTerminal);
         drive.followTrajectory(positiontoLine1);
         drive.followTrajectory(toStack1);
         robot.servorelease.setPosition(.5);
 
-        lift(.5, 23);
+        lift(.5, 17);
         robot.rightintake.setPower(.1);
         robot.leftintake.setPower(-.1);
         sleep(500);
@@ -321,13 +321,13 @@ public class RR_RED_LEFT extends LinearOpMode {
         robot.servorelease.setPosition(.35); //release Cone
         drive.followTrajectory(backUp2);
         robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -21);
+        lift(1, -13.5);
         robot.servorelease.setPosition(.35);
         drive.followTrajectory(positiontoLine2);
         drive.turn(Math.toRadians(0));
         drive.followTrajectory(toStack2);
         robot.servorelease.setPosition(.5);
-        lift(.5, 25);
+        lift(.5, 17.5);
         robot.rightintake.setPower(.1);
         robot.leftintake.setPower(-.1);
         sleep(500);
@@ -335,12 +335,12 @@ public class RR_RED_LEFT extends LinearOpMode {
         robot.leftintake.setPower(0);
         drive.followTrajectory(backStack2);
         drive.followTrajectory(toMidGoal3);
-        lift(.5, -5);
+        lift(.5, -7);
         sleep(500);
         robot.servorelease.setPosition(.35); //release Cone
         drive.followTrajectory(backUp3);
         robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -18);
+        lift(1, -10);
         // robot.rightintake.setPower(1);
         // robot.leftintake.setPower(-1);
         robot.servorelease.setPosition(.35);
