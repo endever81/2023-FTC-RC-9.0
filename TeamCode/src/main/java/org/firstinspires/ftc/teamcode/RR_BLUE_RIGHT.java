@@ -301,7 +301,7 @@ public class RR_BLUE_RIGHT extends LinearOpMode {
         robot.servorelease.setPosition(.35); //release Cone
     drive.followTrajectory(backUp);
         robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -14.5);
+        lift(1, -14);
        // robot.rightintake.setPower(.25);
        // robot.leftintake.setPower(-.25);
         robot.servorelease.setPosition(.35);
@@ -312,7 +312,7 @@ public class RR_BLUE_RIGHT extends LinearOpMode {
       //  robot.leftintake.setPower(0);
         robot.servorelease.setPosition(.5);
 
-        lift(.5, 23);
+        lift(.5, 17);
         robot.rightintake.setPower(.1);
         robot.leftintake.setPower(-.1);
         sleep(500);
@@ -325,7 +325,7 @@ public class RR_BLUE_RIGHT extends LinearOpMode {
         robot.servorelease.setPosition(.35); //release Cone
     drive.followTrajectory(backUp2);
         robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -14.5);
+        lift(1, -13.5);
        // robot.rightintake.setPower(.25);
        // robot.leftintake.setPower(-.25);
         robot.servorelease.setPosition(.35);
@@ -348,7 +348,7 @@ public class RR_BLUE_RIGHT extends LinearOpMode {
         robot.servorelease.setPosition(.35); //release Cone
     drive.followTrajectory(backUp3);
         robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -13);
+        lift(1, -2);
        // robot.rightintake.setPower(1);
        // robot.leftintake.setPower(-1);
         robot.servorelease.setPosition(.35);
