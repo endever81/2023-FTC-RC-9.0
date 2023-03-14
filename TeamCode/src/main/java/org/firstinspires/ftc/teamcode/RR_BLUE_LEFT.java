@@ -70,7 +70,7 @@ public class RR_BLUE_LEFT extends LinearOpMode {
         Trajectory strafeRight = drive.trajectoryBuilder(startPose)
                 .strafeRight(1)
                 .addDisplacementMarker(() -> {
-                    lift(1, 28);
+                    lift(1, 20.5);
                 })
                 .build();
 
@@ -301,14 +301,14 @@ public class RR_BLUE_LEFT extends LinearOpMode {
         robot.servorelease.setPosition(.35); //release Cone
         drive.followTrajectory(backUp);
         robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -19);
+        lift(1, -14);
         robot.servorelease.setPosition(.35);
         drive.followTrajectory(clearTerminal);
         drive.followTrajectory(positiontoLine1);
         drive.followTrajectory(toStack1);
         robot.servorelease.setPosition(.5);
 
-        lift(.5, 23);
+        lift(.5, 17);
         robot.rightintake.setPower(.1);
         robot.leftintake.setPower(-.1);
         sleep(500);
@@ -321,13 +321,13 @@ public class RR_BLUE_LEFT extends LinearOpMode {
         robot.servorelease.setPosition(.35); //release Cone
         drive.followTrajectory(backUp2);
         robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -21);
+        lift(1, -13.5);
         robot.servorelease.setPosition(.35);
         drive.followTrajectory(positiontoLine2);
         drive.turn(Math.toRadians(0));
         drive.followTrajectory(toStack2);
         robot.servorelease.setPosition(.5);
-        lift(.5, 25);
+        lift(.5, 17.5);
         robot.rightintake.setPower(.1);
         robot.leftintake.setPower(-.1);
         sleep(500);
@@ -335,12 +335,12 @@ public class RR_BLUE_LEFT extends LinearOpMode {
         robot.leftintake.setPower(0);
         drive.followTrajectory(backStack2);
         drive.followTrajectory(toMidGoal3);
-        lift(.5, -5);
+        lift(.5, -7);
         sleep(500);
         robot.servorelease.setPosition(.35); //release Cone
         drive.followTrajectory(backUp3);
         robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -18);
+        lift(1, -2);
         // robot.rightintake.setPower(1);
         // robot.leftintake.setPower(-1);
         robot.servorelease.setPosition(.35);

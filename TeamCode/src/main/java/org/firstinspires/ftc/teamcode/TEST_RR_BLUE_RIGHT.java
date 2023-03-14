@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
@@ -16,12 +17,56 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 import java.util.List;
-
+@Config
 @Autonomous(name = "TEST_RR_BLUE_RIGHT", group = "Automonous")
 
 public class TEST_RR_BLUE_RIGHT extends LinearOpMode {
     //-----------------------------------------------------------
     // Vuforia Assets Called Up
+
+
+
+
+
+    public static double MG1X = 32; public static double MG1Y = -28; public static double MG1A = 135;
+
+    public static double BAM1 = 7;
+
+    public static double SAM1 = 5;
+
+    public static double PL1X = 45; public static double PL1Y = -11.5; public static double PL1A = 0;
+
+    public static double TS1X = 64; public static double TS1Y = -11.5;
+    public static double OS1X = 64; public static double OS1Y = -11; public static double OS1A = 5;
+
+    public static double BS1X = 47; public static double BS1Y = -10; public static double BS1A = 200;
+
+    public static double MG2X = 35; public static double MG2Y = -20; public static double MG2A = 200;
+
+    public static double BAM2 = 7;
+
+    public static double PL2X = 42; public static double PL2Y = -10.75; public static double PL2A = 12;
+
+    public static double TS2X = 64; public static double TS2Y = -10.75;
+    public static double OS2X = 64; public static double OS2Y = -10.75; public static double OS2A = 5;
+
+    public static double BS2X = 47; public static double BS2Y = -10; public static double BS2A = 200;
+
+    public static double MG3X = 35; public static double MG3Y = -20; public static double MG3A = 200;
+
+    public static double BAM3 = 7;
+
+    public static double SAM3 = 7;
+
+    public static double P1X = 16; public static double P1Y = -13; public static double P1A = 270;
+    public static double P2X = 38; public static double P2Y = -13; public static double P2A = 270;
+    public static double P3X = 60; public static double P3Y = -13; public static double P3A = 270;
+
+
+
+
+
+
 
     private static final String TFOD_MODEL_ASSET = "InitialModel22-23.tflite";
     private static final String[] LABELS = {
@@ -91,14 +136,14 @@ public class TEST_RR_BLUE_RIGHT extends LinearOpMode {
 
         Trajectory toMidGoal1 = drive.trajectoryBuilder(forward.end())
 
-                .lineToLinearHeading(new Pose2d (32, -28, Math.toRadians(135)))
+                .lineToLinearHeading(new Pose2d (MG1X, MG1Y, Math.toRadians(MG1A)))
                 .build();
 
 
         //retreat from mid goal 1
 
         Trajectory backUp = drive.trajectoryBuilder(toMidGoal1.end())
-                .back(7)
+                .back(BAM1)
                 .build();
 
 
@@ -106,7 +151,7 @@ public class TEST_RR_BLUE_RIGHT extends LinearOpMode {
         //strafe away from junction 1
 
         Trajectory clearTerminal = drive.trajectoryBuilder(backUp.end())
-                .strafeRight(5)
+                .strafeRight(SAM1)
                 .build();
 
 
@@ -114,7 +159,7 @@ public class TEST_RR_BLUE_RIGHT extends LinearOpMode {
         //approach line 1
 
         Trajectory positiontoLine1 = drive.trajectoryBuilder(clearTerminal.end())
-                .lineToLinearHeading(new Pose2d(45, -11.5, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(PL1X, PL1Y, Math.toRadians(PL1A)))
                 .build();
 
 
@@ -122,10 +167,10 @@ public class TEST_RR_BLUE_RIGHT extends LinearOpMode {
         //get cone off stack 1
 
         Trajectory toStack1 = drive.trajectoryBuilder(positiontoLine1.end())
-                .addSpatialMarker(new Vector2d(64, -11.5), () -> {
+                .addSpatialMarker(new Vector2d(TS1X, TS1Y), () -> {
                     robot.servorelease.setPosition(.5);
                 })
-                .lineToLinearHeading(new Pose2d(64, -11, Math.toRadians(5)))
+                .lineToLinearHeading(new Pose2d(OS1X, OS1Y, Math.toRadians(OS1A)))
                 .build();
 
 
@@ -133,7 +178,7 @@ public class TEST_RR_BLUE_RIGHT extends LinearOpMode {
         //back away from stack 1
 
         Trajectory backStack1 = drive.trajectoryBuilder(toStack1.end())
-                .lineToLinearHeading(new Pose2d(47, -10, Math.toRadians(200)))
+                .lineToLinearHeading(new Pose2d(BS1X, BS1Y, Math.toRadians(BS1A)))
                 .build();
 
 
@@ -141,7 +186,7 @@ public class TEST_RR_BLUE_RIGHT extends LinearOpMode {
         //score cone 1
 
         Trajectory toMidGoal2 = drive.trajectoryBuilder(backStack1.end())
-                .lineToLinearHeading(new Pose2d (35, -20, Math.toRadians(200)))
+                .lineToLinearHeading(new Pose2d (MG2X, MG2Y, Math.toRadians(MG2A)))
                 .build();
 
 
@@ -149,14 +194,14 @@ public class TEST_RR_BLUE_RIGHT extends LinearOpMode {
         //back away from mid goal 2
 
         Trajectory backUp2 = drive.trajectoryBuilder(toMidGoal2.end())
-                .back(7)
+                .back(BAM2)
                 .build();
 
 
         //approach line 2
 
         Trajectory positiontoLine2 = drive.trajectoryBuilder(backUp2.end())
-                .lineToLinearHeading(new Pose2d(42, -10.75, Math.toRadians(12)))
+                .lineToLinearHeading(new Pose2d(PL2X, PL2Y, Math.toRadians(PL2A)))
                 .build();
 
 
@@ -164,10 +209,10 @@ public class TEST_RR_BLUE_RIGHT extends LinearOpMode {
         //get cone 2
 
         Trajectory toStack2 = drive.trajectoryBuilder(positiontoLine2.end())
-                .addSpatialMarker(new Vector2d(64, -10.75), () -> {
+                .addSpatialMarker(new Vector2d(TS2X, TS2Y), () -> {
                     robot.servorelease.setPosition(.5);
                 })
-                .lineToLinearHeading(new Pose2d(64, -10.75, Math.toRadians(5)))
+                .lineToLinearHeading(new Pose2d(OS2X, OS2Y, Math.toRadians(OS2A)))
                 .build();
 
 
@@ -175,7 +220,7 @@ public class TEST_RR_BLUE_RIGHT extends LinearOpMode {
         //retreat from stack 2
 
         Trajectory backStack2 = drive.trajectoryBuilder(toStack2.end())
-                .lineToLinearHeading(new Pose2d(47, -10, Math.toRadians(200)))
+                .lineToLinearHeading(new Pose2d(BS2X, BS2Y, Math.toRadians(BS2A)))
                 .build();
 
 
@@ -183,7 +228,7 @@ public class TEST_RR_BLUE_RIGHT extends LinearOpMode {
         //score cone 2
 
         Trajectory toMidGoal3 = drive.trajectoryBuilder(backStack2.end())
-                .lineToLinearHeading(new Pose2d (35, -20, Math.toRadians(200)))
+                .lineToLinearHeading(new Pose2d (MG3X, MG3Y, Math.toRadians(MG3A)))
                 .build();
 
 
@@ -192,7 +237,7 @@ public class TEST_RR_BLUE_RIGHT extends LinearOpMode {
         // back off stack 3
 
         Trajectory backUp3 = drive.trajectoryBuilder(toMidGoal3.end())
-                .back(7)
+                .back(BAM3)
                 .build();
 
 
@@ -200,7 +245,7 @@ public class TEST_RR_BLUE_RIGHT extends LinearOpMode {
 
 
         Trajectory strafeAway = drive.trajectoryBuilder(backUp3.end())
-                .strafeRight(7)
+                .strafeRight(SAM3)
                 .addDisplacementMarker(() -> {
                     lift(.5, -5);
                 })
@@ -238,13 +283,13 @@ public class TEST_RR_BLUE_RIGHT extends LinearOpMode {
 
         //Trajectory parking1 = drive.trajectoryBuilder(backUp3.end())
         Trajectory parking1 = drive.trajectoryBuilder(strafeAway.end())
-                .lineToLinearHeading(new Pose2d (16, -13, Math.toRadians(270)))
+                .lineToLinearHeading(new Pose2d (P1X, P1Y, Math.toRadians(P1A)))
                 .build();
         Trajectory parking2 = drive.trajectoryBuilder(strafeAway.end())
-                .lineToLinearHeading(new Pose2d (38, -13, Math.toRadians(270)))
+                .lineToLinearHeading(new Pose2d (P2X, P2Y, Math.toRadians(P2A)))
                 .build();
         Trajectory parking3 = drive.trajectoryBuilder(strafeAway.end())
-                .lineToLinearHeading(new Pose2d (60, -13, Math.toRadians(270)))
+                .lineToLinearHeading(new Pose2d (P3X, P3Y, Math.toRadians(P3A)))
                 .build();
         robot.blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BREATH_BLUE);
 

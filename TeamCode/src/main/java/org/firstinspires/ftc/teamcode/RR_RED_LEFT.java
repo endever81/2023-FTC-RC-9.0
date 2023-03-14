@@ -26,7 +26,7 @@ public class RR_RED_LEFT extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "InitialModel22-23.tflite";
     private static final String[] LABELS = {
             "1 Bolt", // "1 Bolt"
-            "2 Bulb", // "2 Bulb"
+            "2 Bulb", // "2 Bulb"6
             "3 Panel" // "3 Panel"
     };
     private static final String VUFORIA_KEY =
@@ -91,7 +91,7 @@ public class RR_RED_LEFT extends LinearOpMode {
 
         Trajectory toMidGoal1 = drive.trajectoryBuilder(forward.end())
 
-                .lineToLinearHeading(new Pose2d (43, -26, Math.toRadians(45)))
+                .lineToLinearHeading(new Pose2d (43, -26, Math.toRadians(43)))
                 .build();
 
 
@@ -114,7 +114,7 @@ public class RR_RED_LEFT extends LinearOpMode {
         //approach line 1
 
         Trajectory positiontoLine1 = drive.trajectoryBuilder(clearTerminal.end())
-                .lineToLinearHeading(new Pose2d(35, -12.5, Math.toRadians(182)))
+                .lineToLinearHeading(new Pose2d(35, -10.5, Math.toRadians(180)))
                 .build();
 
 
@@ -122,10 +122,10 @@ public class RR_RED_LEFT extends LinearOpMode {
         //get cone off stack 1
 
         Trajectory toStack1 = drive.trajectoryBuilder(positiontoLine1.end())
-                .addSpatialMarker(new Vector2d(11, -12.5), () -> {
+                .addSpatialMarker(new Vector2d(12.5, -10.5), () -> {
                     robot.servorelease.setPosition(.5);
                 })
-                .lineToLinearHeading(new Pose2d(11, -12.5, Math.toRadians(182)))
+                .lineToLinearHeading(new Pose2d(12.5, -10.5, Math.toRadians(180)))
                 .build();
 
 
@@ -133,7 +133,7 @@ public class RR_RED_LEFT extends LinearOpMode {
         //back away from stack 1
 
         Trajectory backStack1 = drive.trajectoryBuilder(toStack1.end())
-                .lineToLinearHeading(new Pose2d(35, -10, Math.toRadians(20)))
+                .lineToLinearHeading(new Pose2d(36, -10, Math.toRadians(20)))
                 .build();
 
 
@@ -156,7 +156,7 @@ public class RR_RED_LEFT extends LinearOpMode {
         //approach line 2
 
         Trajectory positiontoLine2 = drive.trajectoryBuilder(backUp2.end())
-                .lineToLinearHeading(new Pose2d(35, -10, Math.toRadians(193)))
+                .lineToLinearHeading(new Pose2d(35, -11, Math.toRadians(193)))
                 .build();
 
 
@@ -164,10 +164,10 @@ public class RR_RED_LEFT extends LinearOpMode {
         //get cone 2
 
         Trajectory toStack2 = drive.trajectoryBuilder(positiontoLine2.end())
-                .addSpatialMarker(new Vector2d(11.2, -11.75), () -> {
+                .addSpatialMarker(new Vector2d(12.5, -10), () -> {
                     robot.servorelease.setPosition(.5);
                 })
-                .lineToLinearHeading(new Pose2d(11.2, -11.75, Math.toRadians(193)))
+                .lineToLinearHeading(new Pose2d(12.5, -10, Math.toRadians(193)))
                 .build();
 
 

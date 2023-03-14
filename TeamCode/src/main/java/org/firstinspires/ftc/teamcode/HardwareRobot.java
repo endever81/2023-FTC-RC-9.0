@@ -20,12 +20,14 @@ public class HardwareRobot {
     public DcMotor rightRearDrive = null;
     public DcMotor liftleft = null;
     public DcMotor liftright = null;
+    public DcMotor liftleft2 = null;
+    public DcMotor liftright2 = null;
     public DcMotor spinner = null;
     public CRServo leftintake = null;
     public CRServo rightintake = null;
     public Servo servorelease = null;
-    public Servo rightPickup = null;
-    public Servo leftPickup = null;
+    public CRServo rightPickup = null;
+    public CRServo leftPickup = null;
     public RevBlinkinLedDriver blinkinLedDriver = null;
 
 
@@ -48,14 +50,15 @@ public class HardwareRobot {
         rightRearDrive = hwMap.get(DcMotor.class, "motor_rear_right");
         liftleft = hwMap.get(DcMotor.class, "lift_left");
         liftright = hwMap.get(DcMotor.class, "lift_right");
-       // spinner = hwMap.get(DcMotor.class, "motor_spinner");
+        liftleft2 = hwMap.get(DcMotor.class, "lift_left_2");
+        liftright2 = hwMap.get(DcMotor.class, "lift_right_2");
        
        leftintake = hwMap.get(CRServo.class, "left_intake");
        rightintake = hwMap.get(CRServo.class, "right_intake");
         servorelease = hwMap.get(Servo.class, "servo_release");
         //grabber = hwMap.get(Servo.class, "servo_grabber");
-        leftPickup = hwMap.get(Servo.class, "servo_left_pickup");
-        rightPickup = hwMap.get(Servo.class, "servo_right_pickup");
+        leftPickup = hwMap.get(CRServo.class, "servo_left_pickup");
+        rightPickup = hwMap.get(CRServo.class, "servo_right_pickup");
 
 
         blinkinLedDriver = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
@@ -66,9 +69,12 @@ public class HardwareRobot {
         rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         leftRearDrive.setDirection(DcMotor.Direction.REVERSE);
         rightRearDrive.setDirection(DcMotor.Direction.FORWARD);
-        
+        liftleft2.setDirection(DcMotor.Direction.REVERSE);
+        liftright2.setDirection(DcMotor.Direction.REVERSE);
         liftleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         liftright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        liftleft2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        liftright2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         liftleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftright.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 

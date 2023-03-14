@@ -159,23 +159,20 @@ public void runOpMode() {
 
     
     
-       double PickUpLeftPosition = 1;
+       double PickUpLeftPosition = 0;
         double PickupRightPosition =0;
    
- if (gamepad1.a){
-            PickUpLeftPosition = .80;
-            PickupRightPosition = .20;
+        if (gamepad1.a){
+            PickUpLeftPosition = 1;
+            PickupRightPosition = -1;
         }
 
-        angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-
-        if (angles.thirdAngle >= 170){
-            PickUpLeftPosition = .75;
-            PickupRightPosition = .25;
+        if (gamepad1.b){
+            PickUpLeftPosition = -1;
+            PickupRightPosition = 1;
         }
-    
 
-   double liftleftPower = -gamepad2.left_stick_y;
+   double liftleftPower = gamepad2.left_stick_y;
     double liftrightPower = gamepad2.left_stick_y;
 /*
     if (liftleftPower == 0) {
@@ -228,12 +225,15 @@ public void runOpMode() {
     robot.rightRearDrive.setPower(rear_right);
     robot.liftleft.setPower(liftleftPower);
     robot.liftright.setPower(liftrightPower);
-    //robot.spinner.setPower(motorspinner);
+
+    robot.liftleft2.setPower(liftleftPower);
+    robot.liftright2.setPower(liftrightPower);
+
     robot.rightintake.setPower(servoRightPower);
     robot.leftintake.setPower(servoLeftPower);
     robot.servorelease.setPosition(quickrelease);
-    robot.leftPickup.setPosition(PickUpLeftPosition);
-    robot.rightPickup.setPosition(PickupRightPosition);
+    robot.leftPickup.setPower(PickUpLeftPosition);
+    robot.rightPickup.setPower(PickupRightPosition);
 
     }
 

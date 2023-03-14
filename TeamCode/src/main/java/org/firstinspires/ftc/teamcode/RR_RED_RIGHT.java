@@ -93,7 +93,7 @@ public class RR_RED_RIGHT extends LinearOpMode {
 
         Trajectory toMidGoal1 = drive.trajectoryBuilder(forward.end())
 
-                .lineToLinearHeading(new Pose2d (31, -28, Math.toRadians(147)))
+                .lineToLinearHeading(new Pose2d (31, -28, Math.toRadians(132)))
                 .build();
 
 
@@ -116,7 +116,7 @@ public class RR_RED_RIGHT extends LinearOpMode {
         //approach line 1
 
         Trajectory positiontoLine1 = drive.trajectoryBuilder(clearTerminal.end())
-                .lineToLinearHeading(new Pose2d(42, -9, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(42, -10, Math.toRadians(0)))
                 .build();
 
 
@@ -124,10 +124,10 @@ public class RR_RED_RIGHT extends LinearOpMode {
         //get cone off stack 1
 
         Trajectory toStack1 = drive.trajectoryBuilder(positiontoLine1.end())
-                .addSpatialMarker(new Vector2d(62, -9), () -> {
+                .addSpatialMarker(new Vector2d(63.5, -10), () -> {
                     robot.servorelease.setPosition(.5);
                 })
-                .lineToLinearHeading(new Pose2d(62, -9, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d(63.5, -10, Math.toRadians(0)))
                 .build();
 
 
@@ -135,7 +135,7 @@ public class RR_RED_RIGHT extends LinearOpMode {
         //back away from stack 1
 
         Trajectory backStack1 = drive.trajectoryBuilder(toStack1.end())
-                .lineToLinearHeading(new Pose2d(47, -7, Math.toRadians(200)))
+                .lineToLinearHeading(new Pose2d(47, -8.5, Math.toRadians(200)))
                 .build();
 
 
@@ -143,7 +143,7 @@ public class RR_RED_RIGHT extends LinearOpMode {
         //score cone 1
 
         Trajectory toMidGoal2 = drive.trajectoryBuilder(backStack1.end())
-                .lineToLinearHeading(new Pose2d (33.5, -21.5, Math.toRadians(200)))
+                .lineToLinearHeading(new Pose2d (34, -18, Math.toRadians(200)))
                 .build();
 
 
@@ -158,7 +158,7 @@ public class RR_RED_RIGHT extends LinearOpMode {
         //approach line 2
 
         Trajectory positiontoLine2 = drive.trajectoryBuilder(backUp2.end())
-                .lineToLinearHeading(new Pose2d(42, -9.5, Math.toRadians(12)))
+                .lineToLinearHeading(new Pose2d(42, -10.5, Math.toRadians(12)))
                 .build();
 
 
@@ -166,10 +166,10 @@ public class RR_RED_RIGHT extends LinearOpMode {
         //get cone 2
 
         Trajectory toStack2 = drive.trajectoryBuilder(positiontoLine2.end())
-                .addSpatialMarker(new Vector2d(62, -9.5), () -> {
+                .addSpatialMarker(new Vector2d(63.3, -10.5), () -> {
                     robot.servorelease.setPosition(.5);
                 })
-                .lineToLinearHeading(new Pose2d(62, -9.5, Math.toRadians(5)))
+                .lineToLinearHeading(new Pose2d(63.3, -10.5, Math.toRadians(5)))
                 .build();
 
 
@@ -177,7 +177,7 @@ public class RR_RED_RIGHT extends LinearOpMode {
         //retreat from stack 2
 
         Trajectory backStack2 = drive.trajectoryBuilder(toStack2.end())
-                .lineToLinearHeading(new Pose2d(47, -7, Math.toRadians(200)))
+                .lineToLinearHeading(new Pose2d(47, -8.5, Math.toRadians(200)))
                 .build();
 
 
@@ -185,7 +185,7 @@ public class RR_RED_RIGHT extends LinearOpMode {
         //score cone 2
 
         Trajectory toMidGoal3 = drive.trajectoryBuilder(backStack2.end())
-                .lineToLinearHeading(new Pose2d (33, -22, Math.toRadians(200)))
+                .lineToLinearHeading(new Pose2d (34, -18, Math.toRadians(200)))
                 .build();
 
 

@@ -17,7 +17,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 import java.util.List;
-@Config
+
 @Autonomous(name = "TEST_RR_RED_LEFT", group = "Automonous")
 
 public class TEST_RR_RED_LEFT extends LinearOpMode {

@@ -17,9 +17,10 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 import java.util.List;
 
-@Autonomous(name = "RR_BLUE_RIGHT", group = "Automonous")
+@Autonomous(name = "RR_Park_RED", group = "Automonous")
 
-public class RR_BLUE_RIGHT extends LinearOpMode {
+public class RR_Park_RED extends LinearOpMode {
+
     //-----------------------------------------------------------
     // Vuforia Assets Called Up
 
@@ -68,7 +69,7 @@ public class RR_BLUE_RIGHT extends LinearOpMode {
         //strafe away from junction
 
         Trajectory strafeRight = drive.trajectoryBuilder(startPose)
-                .strafeRight(4.5)
+                .strafeRight(4)
                 .addDisplacementMarker(() -> {
                     lift(1, 20.5);
                 })
@@ -81,7 +82,7 @@ public class RR_BLUE_RIGHT extends LinearOpMode {
         Trajectory forward = drive.trajectoryBuilder(strafeRight.end())//strafeRight.end()
 
 
-                .forward(18)
+                .forward(19)
 
                 .build();
 
@@ -91,14 +92,14 @@ public class RR_BLUE_RIGHT extends LinearOpMode {
 
         Trajectory toMidGoal1 = drive.trajectoryBuilder(forward.end())
 
-                .lineToLinearHeading(new Pose2d (32, -28, Math.toRadians(140)))
+                .lineToLinearHeading(new Pose2d (42, -27, Math.toRadians(37)))
                 .build();
 
 
         //retreat from mid goal 1
 
         Trajectory backUp = drive.trajectoryBuilder(toMidGoal1.end())
-                .back(7)
+                .back(6)
                 .build();
 
 
@@ -106,7 +107,7 @@ public class RR_BLUE_RIGHT extends LinearOpMode {
         //strafe away from junction 1
 
         Trajectory clearTerminal = drive.trajectoryBuilder(backUp.end())
-                .strafeRight(5)
+                .strafeRight(-6)
                 .build();
 
 
@@ -114,139 +115,24 @@ public class RR_BLUE_RIGHT extends LinearOpMode {
         //approach line 1
 
         Trajectory positiontoLine1 = drive.trajectoryBuilder(clearTerminal.end())
-                .lineToLinearHeading(new Pose2d(45, -11, Math.toRadians(0)))
-                .build();
-
-
-
-        //get cone off stack 1
-
-        Trajectory toStack1 = drive.trajectoryBuilder(positiontoLine1.end())
-                .addSpatialMarker(new Vector2d(63, -11), () -> {
-                    robot.servorelease.setPosition(.5);
-                })
-                .lineToLinearHeading(new Pose2d(63, -11, Math.toRadians(5)))
-                .build();
-
-
-
-        //back away from stack 1
-
-        Trajectory backStack1 = drive.trajectoryBuilder(toStack1.end())
-                .lineToLinearHeading(new Pose2d(47, -8.5, Math.toRadians(200)))
-                .build();
-
-
-
-        //score cone 1
-
-        Trajectory toMidGoal2 = drive.trajectoryBuilder(backStack1.end())
-                .lineToLinearHeading(new Pose2d (35, -20, Math.toRadians(200)))
-                .build();
-
-
-
-        //back away from mid goal 2
-
-        Trajectory backUp2 = drive.trajectoryBuilder(toMidGoal2.end())
-                .back(7)
-                .build();
-
-
-        //approach line 2
-
-        Trajectory positiontoLine2 = drive.trajectoryBuilder(backUp2.end())
-                .lineToLinearHeading(new Pose2d(42, -11., Math.toRadians(12)))
-                .build();
-
-
-
-        //get cone 2
-
-        Trajectory toStack2 = drive.trajectoryBuilder(positiontoLine2.end())
-                .addSpatialMarker(new Vector2d(62.75, -11.), () -> {
-                    robot.servorelease.setPosition(.5);
-                })
-                .lineToLinearHeading(new Pose2d(62.75, -11., Math.toRadians(5)))
-                .build();
-
-
-
-        //retreat from stack 2
-
-        Trajectory backStack2 = drive.trajectoryBuilder(toStack2.end())
-                .lineToLinearHeading(new Pose2d(47, -9, Math.toRadians(200)))
-                .build();
-
-
-
-        //score cone 2
-
-        Trajectory toMidGoal3 = drive.trajectoryBuilder(backStack2.end())
-                .lineToLinearHeading(new Pose2d (35, -20, Math.toRadians(200)))
+                .lineToLinearHeading(new Pose2d(42, -8, Math.toRadians(0)))
                 .build();
 
 
 
 
-        // back off stack 3
-
-        Trajectory backUp3 = drive.trajectoryBuilder(toMidGoal3.end())
-                .back(7)
-                .build();
 
 
-        //strafe away from junctions
-
-
-        Trajectory strafeAway = drive.trajectoryBuilder(backUp3.end())
-                .strafeRight(7)
-                .addDisplacementMarker(() -> {
-                    lift(.5, -5);
-                })
-                .build();
-
-
-
-        /*
-        //approach stack 3
-
-        Trajectory toStack3 = drive.trajectoryBuilder(backUp3.end())
-                .lineToLinearHeading(new Pose2d(62, -8, Math.toRadians(0)))
-                .build();
-
-
-
-        //score cone 3
-
-        Trajectory toMidGoal4 = drive.trajectoryBuilder(toStack3.end())
-                .lineToLinearHeading(new Pose2d (34, -20, Math.toRadians(225)))
-                .build();
-
-
-
-
-        //back off junction FINAL
-
-        Trajectory backUp4 = drive.trajectoryBuilder(toMidGoal4.end())
-                .back(7)
-                .build();
-        */
-
-
-
-
-        //Trajectory parking1 = drive.trajectoryBuilder(backUp3.end())
-        Trajectory parking1 = drive.trajectoryBuilder(strafeAway.end())
+        Trajectory parking1 = drive.trajectoryBuilder(positiontoLine1.end())
                 .lineToLinearHeading(new Pose2d (16, -13, Math.toRadians(270)))
                 .build();
-        Trajectory parking2 = drive.trajectoryBuilder(strafeAway.end())
+        Trajectory parking2 = drive.trajectoryBuilder(positiontoLine1.end())
                 .lineToLinearHeading(new Pose2d (38, -13, Math.toRadians(270)))
                 .build();
-        Trajectory parking3 = drive.trajectoryBuilder(strafeAway.end())
+        Trajectory parking3 = drive.trajectoryBuilder(positiontoLine1.end())
                 .lineToLinearHeading(new Pose2d (60, -13, Math.toRadians(270)))
                 .build();
-        robot.blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BREATH_BLUE);
+        robot.blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BREATH_RED);
 
         telemetry.addData("Initiliazation Complete", "waiting for start");
         telemetry.update();
@@ -301,71 +187,11 @@ public class RR_BLUE_RIGHT extends LinearOpMode {
         robot.servorelease.setPosition(.35); //release Cone
     drive.followTrajectory(backUp);
         robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -14);
-       // robot.rightintake.setPower(.25);
-       // robot.leftintake.setPower(-.25);
+        lift(1, -7);
         robot.servorelease.setPosition(.35);
     drive.followTrajectory(clearTerminal);
     drive.followTrajectory(positiontoLine1);
-    drive.followTrajectory(toStack1);
-       // robot.rightintake.setPower(0);
-      //  robot.leftintake.setPower(0);
-        robot.servorelease.setPosition(.5);
 
-        lift(.5, 17);
-        robot.rightintake.setPower(.1);
-        robot.leftintake.setPower(-.1);
-        sleep(500);
-        robot.rightintake.setPower(0);
-        robot.leftintake.setPower(0);
-    drive.followTrajectory(backStack1);
-    drive.followTrajectory(toMidGoal2);
-        lift(.5, -4);
-        sleep(500);
-        robot.servorelease.setPosition(.35); //release Cone
-    drive.followTrajectory(backUp2);
-        robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -13.5);
-       // robot.rightintake.setPower(.25);
-       // robot.leftintake.setPower(-.25);
-        robot.servorelease.setPosition(.35);
-    drive.followTrajectory(positiontoLine2);
-    drive.turn(Math.toRadians(0));
-    drive.followTrajectory(toStack2);
-       // robot.rightintake.setPower(0);
-        //robot.leftintake.setPower(0);
-        robot.servorelease.setPosition(.5);
-        lift(.5, 17.5);
-        robot.rightintake.setPower(.1);
-        robot.leftintake.setPower(-.1);
-        sleep(500);
-        robot.rightintake.setPower(0);
-        robot.leftintake.setPower(0);
-    drive.followTrajectory(backStack2);
-    drive.followTrajectory(toMidGoal3);
-        lift(.5, -7);
-        sleep(500);
-        robot.servorelease.setPosition(.35); //release Cone
-    drive.followTrajectory(backUp3);
-        robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -2);
-       // robot.rightintake.setPower(1);
-       // robot.leftintake.setPower(-1);
-        robot.servorelease.setPosition(.35);
-    /*drive.followTrajectory(toStack3);
-        robot.rightintake.setPower(0);
-        robot.leftintake.setPower(0);
-        robot.servorelease.setPosition(.5);
-        lift(.5, 22);
-        sleep(500);
-    drive.followTrajectory(toMidGoal4);
-        lift(.1, -4);
-        sleep(1500);
-        robot.servorelease.setPosition(.35); //release Cone
-    drive.followTrajectory(backUp4);
-        robot.servorelease.setPosition(.5); //intake release returned
-        */
-    drive.followTrajectory(strafeAway);
     drive.followTrajectory(sleeve);
 
     }
