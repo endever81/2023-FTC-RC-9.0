@@ -50,8 +50,8 @@ public class HardwareRobot {
         rightRearDrive = hwMap.get(DcMotor.class, "motor_rear_right");
         liftleft = hwMap.get(DcMotor.class, "lift_left");
         liftright = hwMap.get(DcMotor.class, "lift_right");
-        liftleft2 = hwMap.get(DcMotor.class, "lift_left_2");
-        liftright2 = hwMap.get(DcMotor.class, "lift_right_2");
+       // liftleft2 = hwMap.get(DcMotor.class, "lift_left_2");
+       // liftright2 = hwMap.get(DcMotor.class, "lift_right_2");
        
        leftintake = hwMap.get(CRServo.class, "left_intake");
        rightintake = hwMap.get(CRServo.class, "right_intake");
@@ -69,12 +69,12 @@ public class HardwareRobot {
         rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         leftRearDrive.setDirection(DcMotor.Direction.REVERSE);
         rightRearDrive.setDirection(DcMotor.Direction.FORWARD);
-        liftleft2.setDirection(DcMotor.Direction.REVERSE);
-        liftright2.setDirection(DcMotor.Direction.REVERSE);
+        //liftleft2.setDirection(DcMotor.Direction.REVERSE);
+      //  liftright2.setDirection(DcMotor.Direction.REVERSE);
         liftleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         liftright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        liftleft2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        liftright2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+       // liftleft2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+       // liftright2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         liftleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftright.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 

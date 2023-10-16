@@ -226,8 +226,8 @@ public void runOpMode() {
     robot.liftleft.setPower(liftleftPower);
     robot.liftright.setPower(liftrightPower);
 
-    robot.liftleft2.setPower(liftleftPower);
-    robot.liftright2.setPower(liftrightPower);
+  //  robot.liftleft2.setPower(liftleftPower);
+  //  robot.liftright2.setPower(liftrightPower);
 
     robot.rightintake.setPower(servoRightPower);
     robot.leftintake.setPower(servoLeftPower);
