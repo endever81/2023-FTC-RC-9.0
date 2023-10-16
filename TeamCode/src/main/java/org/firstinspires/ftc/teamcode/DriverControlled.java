@@ -153,19 +153,21 @@ public void runOpMode() {
     }
     
     if (gamepad2.x){
-    servoRightPower = 1;
-    servoLeftPower = -1;
+    servoRightPower = .25;
+    servoLeftPower = -.25;
     servoLeft2Power = -1;
     servoRight2Power = 1;
     }
 
 
-        double quickrelease = .5;
-    double intakeAngle = .5;
+    double quickrelease = .5;
+    double intakeAngleRight = 0.45;
+    double intakeAngleLeft = 0.55;
 
         if (gamepad2.b){
             quickrelease = .35;
-            intakeAngle = .25;
+            intakeAngleRight = .85;
+            intakeAngleLeft = .15;
         }
 
     
@@ -237,21 +239,15 @@ public void runOpMode() {
     robot.liftleft.setPower(liftleftPower);
     robot.liftright.setPower(liftrightPower);
 
-    robot.liftleft2.setPower(liftleftPower);
-    robot.liftright2.setPower(liftrightPower);
 
-    robot.rightintake.setPower(servoRightPower);
-    robot.leftintake.setPower(servoLeftPower);
     robot.servorelease.setPosition(quickrelease);
-    robot.leftPickup.setPower(PickUpLeftPosition);
-    robot.rightPickup.setPower(PickupRightPosition);
 
-    robot.leftintake1.setPower(servoLeftPower);
-    robot.rightintake1.setPower(servoRightPower);
-    robot.leftintake2.setPower(servoLeft2Power);
-    robot.rightintake2.setPower(servoRight2Power);
-    robot.leftintake3.setPosition(intakeAngle);
-    robot.rightintake3.setPosition(-intakeAngle);
+    robot.leftIntakeFront.setPower(servoLeftPower);
+    robot.rightIntakeFront.setPower(servoRightPower);
+    robot.leftIntakeRear.setPower(servoLeft2Power);
+    robot.rightIntakeRear.setPower(servoRight2Power);
+    robot.leftRotate.setPosition(intakeAngleLeft);
+    robot.rightRotate.setPosition(intakeAngleRight);
 
 
     }

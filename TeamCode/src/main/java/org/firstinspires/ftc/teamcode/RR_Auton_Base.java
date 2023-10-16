@@ -302,11 +302,11 @@ public class RR_Auton_Base extends LinearOpMode {
         robot.servorelease.setPosition(.5);
 
         lift(.5, 17);
-        robot.rightintake.setPower(.1);
-        robot.leftintake.setPower(-.1);
+        //robot.rightintake.setPower(.1);
+        //robot.leftintake.setPower(-.1);
         sleep(500);
-        robot.rightintake.setPower(0);
-        robot.leftintake.setPower(0);
+        //robot.rightintake.setPower(0);
+        //robot.leftintake.setPower(0);
         drive.followTrajectory(backStack1);
         drive.followTrajectory(toMidGoal2);
         lift(.5, -4);
@@ -321,11 +321,11 @@ public class RR_Auton_Base extends LinearOpMode {
         drive.followTrajectory(toStack2);
         robot.servorelease.setPosition(.5);
         lift(.5, 17.5);
-        robot.rightintake.setPower(.1);
-        robot.leftintake.setPower(-.1);
+        //robot.rightintake.setPower(.1);
+        //robot.leftintake.setPower(-.1);
         sleep(500);
-        robot.rightintake.setPower(0);
-        robot.leftintake.setPower(0);
+        //robot.rightintake.setPower(0);
+        //robot.leftintake.setPower(0);
         drive.followTrajectory(backStack2);
         drive.followTrajectory(toMidGoal3);
         lift(.5, -7);
