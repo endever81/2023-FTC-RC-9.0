@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
@@ -9,56 +8,20 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.robotcore.external.ClassFactory;
+import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
-import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.vision.VisionPortal;
+import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
 
-@Autonomous(name = "TEST_RR_RED_LEFT", group = "Automonous")
+@Autonomous(name = "RR_BLUE_LEFT", group = "Automonous")
 
-public class TEST_RR_RED_LEFT extends LinearOpMode {
+public class RR_Auton_Base extends LinearOpMode {
     //-----------------------------------------------------------
-    // Vuforia Assets Called Up
-
-    public static double MG1X = 44; public static double MG1Y = -28; public static double MG1A = 45;
-
-    public static double BAM1 = 3;
-
-    public static double SAM1 = -9;
-
-    public static double PL1X = 35; public static double PL1Y = -10; public static double PL1A = 177;
-
-    public static double TS1X = 13.75; public static double TS1Y = -10;
-    public static double OS1X = 13.75; public static double OS1Y = -9; public static double OS1A = 177;
-
-    public static double BS1X = 35; public static double BS1Y = -10; public static double BS1A = 20;
-
-    public static double MG2X = 43; public static double MG2Y = -24; public static double MG2A = 20;
-
-    public static double BAM2 = 4;
-
-    public static double PL2X = 35; public static double PL2Y = -10.5; public static double PL2A = 180;
-
-    public static double TS2X = 13.75; public static double TS2Y = -10.5;
-    public static double OS2X = 13.5; public static double OS2Y = -10; public static double OS2A = 180;
-
-    public static double BS2X = 35; public static double BS2Y = -10; public static double BS2A = 20;
-
-    public static double MG3X = 43; public static double MG3Y = -23; public static double MG3A = 20;
-
-    public static double BAM3 = 7;
-
-    public static double SAM3 = -15;
-
-    public static double P1X = 16; public static double P1Y = -10; public static double P1A = 270;
-    public static double P2X = 38; public static double P2Y = -10; public static double P2A = 270;
-    public static double P3X = 60; public static double P3Y = -10; public static double P3A = 270;
-
-
+    private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
 
     private static final String TFOD_MODEL_ASSET = "InitialModel22-23.tflite";
@@ -67,10 +30,9 @@ public class TEST_RR_RED_LEFT extends LinearOpMode {
             "2 Bulb", // "2 Bulb"
             "3 Panel" // "3 Panel"
     };
-    private static final String VUFORIA_KEY =
-            "AcSWQyT/////AAABmXXMracDmUH2jST1AK/jjlB9bLitWfl+EeHaTDyQwcEVZ0/pIKzSLLnKb++x6kKcTYJnrBSWXcbq43Pa/x7v0cEfSLljqPHAntPUwrcTa7Ag5MR/KnSvxThO52HlzZ1T9S5JJtViLz5JLvrm8siLeJIK9uPiqKkYG3IkLBtXnHMLjB/4kfn5zfjnDzpwjgl+2bNzztz/dM91B1u6kroe/QCHWSWBeEgG8vJnVG/ko1aVkiroqaR/al9iui+lPRzAMMcSMKgxxW5sV5DcVdKWVXJq309wm2lUDXKT/4V3C8w48/KkI1J/B7YdB5um6TPCo6Jt8eaczYV3cuX3HmStOvTH1S5ixph1K/9TmyPoKhas";
-    private VuforiaLocalizer vuforia;
-    private TFObjectDetector tfod;
+
+    private TfodProcessor tfod;
+    private VisionPortal visionPortal;
     HardwareRobot robot = new HardwareRobot(); //initialize RR hardware and software
 
 //________________________________________________________
@@ -81,15 +43,8 @@ public class TEST_RR_RED_LEFT extends LinearOpMode {
 
         robot.init(hardwareMap);  //initialize our hardwaremap
         //-----------------------------------------------------------
-        // Vuforia Engine Run Commands and zoom
-        initVuforia();
         initTfod();
 
-        if (tfod != null) {
-            tfod.activate();
-
-            tfod.setZoom(1.5, 10.0 / 9.0);
-        }
 
         //-----------------------------------------------------------
         //Map All Paths for RoadRunner during initialization
@@ -108,7 +63,7 @@ public class TEST_RR_RED_LEFT extends LinearOpMode {
         Trajectory strafeRight = drive.trajectoryBuilder(startPose)
                 .strafeRight(1)
                 .addDisplacementMarker(() -> {
-                    lift(1, 28);
+                    lift(1, 20.5);
                 })
                 .build();
 
@@ -129,7 +84,7 @@ public class TEST_RR_RED_LEFT extends LinearOpMode {
 
         Trajectory toMidGoal1 = drive.trajectoryBuilder(forward.end())
 
-                .lineToLinearHeading(new Pose2d (43, -26, Math.toRadians(45)))
+                .lineToLinearHeading(new Pose2d (44, -28, Math.toRadians(45)))
                 .build();
 
 
@@ -152,7 +107,7 @@ public class TEST_RR_RED_LEFT extends LinearOpMode {
         //approach line 1
 
         Trajectory positiontoLine1 = drive.trajectoryBuilder(clearTerminal.end())
-                .lineToLinearHeading(new Pose2d(35, -12, Math.toRadians(178)))
+                .lineToLinearHeading(new Pose2d(35, -10, Math.toRadians(177)))
                 .build();
 
 
@@ -160,10 +115,10 @@ public class TEST_RR_RED_LEFT extends LinearOpMode {
         //get cone off stack 1
 
         Trajectory toStack1 = drive.trajectoryBuilder(positiontoLine1.end())
-                .addSpatialMarker(new Vector2d(12, -12), () -> {
+                .addSpatialMarker(new Vector2d(13.75, -10), () -> {
                     robot.servorelease.setPosition(.5);
                 })
-                .lineToLinearHeading(new Pose2d(12, -12, Math.toRadians(178)))
+                .lineToLinearHeading(new Pose2d(13.75, -9, Math.toRadians(177)))
                 .build();
 
 
@@ -179,7 +134,7 @@ public class TEST_RR_RED_LEFT extends LinearOpMode {
         //score cone 1
 
         Trajectory toMidGoal2 = drive.trajectoryBuilder(backStack1.end())
-                .lineToLinearHeading(new Pose2d (44, -24, Math.toRadians(20)))
+                .lineToLinearHeading(new Pose2d (43, -24, Math.toRadians(20)))
                 .build();
 
 
@@ -194,7 +149,7 @@ public class TEST_RR_RED_LEFT extends LinearOpMode {
         //approach line 2
 
         Trajectory positiontoLine2 = drive.trajectoryBuilder(backUp2.end())
-                .lineToLinearHeading(new Pose2d(35, -11, Math.toRadians(178)))
+                .lineToLinearHeading(new Pose2d(35, -10.5, Math.toRadians(180)))
                 .build();
 
 
@@ -202,10 +157,10 @@ public class TEST_RR_RED_LEFT extends LinearOpMode {
         //get cone 2
 
         Trajectory toStack2 = drive.trajectoryBuilder(positiontoLine2.end())
-                .addSpatialMarker(new Vector2d(12, -12), () -> {
+                .addSpatialMarker(new Vector2d(13.5, -10.5), () -> {
                     robot.servorelease.setPosition(.5);
                 })
-                .lineToLinearHeading(new Pose2d(12, -12, Math.toRadians(178)))
+                .lineToLinearHeading(new Pose2d(13.5, -10, Math.toRadians(180)))
                 .build();
 
 
@@ -221,7 +176,7 @@ public class TEST_RR_RED_LEFT extends LinearOpMode {
         //score cone 2
 
         Trajectory toMidGoal3 = drive.trajectoryBuilder(backStack2.end())
-                .lineToLinearHeading(new Pose2d (44, -24, Math.toRadians(20)))
+                .lineToLinearHeading(new Pose2d (43, -23, Math.toRadians(20)))
                 .build();
 
 
@@ -284,7 +239,7 @@ public class TEST_RR_RED_LEFT extends LinearOpMode {
         Trajectory parking3 = drive.trajectoryBuilder(strafeAway.end())
                 .lineToLinearHeading(new Pose2d (60, -10, Math.toRadians(270)))
                 .build();
-        robot.blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BREATH_RED);
+        robot.blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BREATH_BLUE);
 
         telemetry.addData("Initiliazation Complete", "waiting for start");
         telemetry.update();
@@ -302,7 +257,7 @@ public class TEST_RR_RED_LEFT extends LinearOpMode {
             //  while (opModeIsActive()) {
             if (tfod != null) {
 
-                List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+                List<Recognition> updatedRecognitions = tfod.getRecognitions();
                 if (updatedRecognitions != null) {
                     telemetry.addData("# Object Detected", updatedRecognitions.size());
                     // step through the list of recognitions and display boundary info.
@@ -339,14 +294,14 @@ public class TEST_RR_RED_LEFT extends LinearOpMode {
         robot.servorelease.setPosition(.35); //release Cone
         drive.followTrajectory(backUp);
         robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -19);
+        lift(1, -14);
         robot.servorelease.setPosition(.35);
         drive.followTrajectory(clearTerminal);
         drive.followTrajectory(positiontoLine1);
         drive.followTrajectory(toStack1);
         robot.servorelease.setPosition(.5);
 
-        lift(.5, 23);
+        lift(.5, 17);
         robot.rightintake.setPower(.1);
         robot.leftintake.setPower(-.1);
         sleep(500);
@@ -359,13 +314,13 @@ public class TEST_RR_RED_LEFT extends LinearOpMode {
         robot.servorelease.setPosition(.35); //release Cone
         drive.followTrajectory(backUp2);
         robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -21);
+        lift(1, -13.5);
         robot.servorelease.setPosition(.35);
         drive.followTrajectory(positiontoLine2);
         drive.turn(Math.toRadians(0));
         drive.followTrajectory(toStack2);
         robot.servorelease.setPosition(.5);
-        lift(.5, 25);
+        lift(.5, 17.5);
         robot.rightintake.setPower(.1);
         robot.leftintake.setPower(-.1);
         sleep(500);
@@ -373,12 +328,12 @@ public class TEST_RR_RED_LEFT extends LinearOpMode {
         robot.leftintake.setPower(0);
         drive.followTrajectory(backStack2);
         drive.followTrajectory(toMidGoal3);
-        lift(.5, -5);
+        lift(.5, -7);
         sleep(500);
         robot.servorelease.setPosition(.35); //release Cone
         drive.followTrajectory(backUp3);
         robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -18);
+        lift(1, -2);
         // robot.rightintake.setPower(1);
         // robot.leftintake.setPower(-1);
         robot.servorelease.setPosition(.35);
@@ -428,34 +383,89 @@ public class TEST_RR_RED_LEFT extends LinearOpMode {
     }
 
     /**
-     * Initialize the Vuforia localization engine.
+     * Initialize the TensorFlow Object Detection processor.
      */
-    private void initVuforia() {
-        /*
-         * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
-         */
-        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
-
-        parameters.vuforiaLicenseKey = VUFORIA_KEY;
-        parameters.cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
-
-        //  Instantiate the Vuforia engine
-        vuforia = ClassFactory.getInstance().createVuforia(parameters);
-
-        // Loading trackables is not necessary for the TensorFlow Object Detection engine.
-    }
-
-
     private void initTfod() {
-        int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
-                "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
-        tfodParameters.minResultConfidence = 0.60f;
-        tfodParameters.isModelTensorFlow2 = true;
-        tfodParameters.inputSize = 320;
-        tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
-        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABELS);
 
-    }
+        // Create the TensorFlow processor by using a builder.
+        tfod = new TfodProcessor.Builder()
+
+                // With the following lines commented out, the default TfodProcessor Builder
+                // will load the default model for the season. To define a custom model to load,
+                // choose one of the following:
+                //   Use setModelAssetName() if the custom TF Model is built in as an asset (AS only).
+                //   Use setModelFileName() if you have downloaded a custom team model to the Robot Controller.
+                //.setModelAssetName(TFOD_MODEL_ASSET)
+                //.setModelFileName(TFOD_MODEL_FILE)
+
+                // The following default settings are available to un-comment and edit as needed to
+                // set parameters for custom models.
+                //.setModelLabels(LABELS)
+                //.setIsModelTensorFlow2(true)
+                //.setIsModelQuantized(true)
+                //.setModelInputSize(300)
+                //.setModelAspectRatio(16.0 / 9.0)
+
+                .build();
+
+        // Create the vision portal by using a builder.
+        VisionPortal.Builder builder = new VisionPortal.Builder();
+
+        // Set the camera (webcam vs. built-in RC phone camera).
+        if (USE_WEBCAM) {
+            builder.setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"));
+        } else {
+            builder.setCamera(BuiltinCameraDirection.BACK);
+        }
+
+        // Choose a camera resolution. Not all cameras support all resolutions.
+        //builder.setCameraResolution(new Size(640, 480));
+
+        // Enable the RC preview (LiveView).  Set "false" to omit camera monitoring.
+        //builder.enableLiveView(true);
+
+        // Set the stream format; MJPEG uses less bandwidth than default YUY2.
+        //builder.setStreamFormat(VisionPortal.StreamFormat.YUY2);
+
+        // Choose whether or not LiveView stops if no processors are enabled.
+        // If set "true", monitor shows solid orange screen if no processors enabled.
+        // If set "false", monitor shows camera view without annotations.
+        //builder.setAutoStopLiveView(false);
+
+        // Set and enable the processor.
+        builder.addProcessor(tfod);
+
+        // Build the Vision Portal, using the above settings.
+        visionPortal = builder.build();
+
+        // Set confidence threshold for TFOD recognitions, at any time.
+        //tfod.setMinResultConfidence(0.75f);
+
+        // Disable or re-enable the TFOD processor at any time.
+        //visionPortal.setProcessorEnabled(tfod, true);
+
+    }   // end method initTfod()
+
+    /**
+     * Add telemetry about TensorFlow Object Detection (TFOD) recognitions.
+     */
+    private void telemetryTfod() {
+
+        List<Recognition> currentRecognitions = tfod.getRecognitions();
+        telemetry.addData("# Objects Detected", currentRecognitions.size());
+
+        // Step through the list of recognitions and display info for each one.
+        for (Recognition recognition : currentRecognitions) {
+            double x = (recognition.getLeft() + recognition.getRight()) / 2 ;
+            double y = (recognition.getTop()  + recognition.getBottom()) / 2 ;
+
+            telemetry.addData(""," ");
+            telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
+            telemetry.addData("- Position", "%.0f / %.0f", x, y);
+            telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
+        }   // end for() loop
+
+    }   // end method telemetryTfod()
 }
+
 
