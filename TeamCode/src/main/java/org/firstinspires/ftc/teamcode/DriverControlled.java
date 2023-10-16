@@ -72,8 +72,8 @@ public void runOpMode() {
     telemetry.addData("Say", "Waiting for Start");
     telemetry.update();
 
-    robot.liftleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-    robot.liftright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    robot.liftleft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    robot.liftright.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
     waitForStart();
 
@@ -89,11 +89,28 @@ public void runOpMode() {
         telemetry.addData("range", String.format("%.01f in", robot.pole.getDistance(DistanceUnit.INCH)));
 
         telemetry.addData("Heading1", angles.firstAngle);
-        telemetry.addData("Heading2", angles.secondAngle);
-        telemetry.addData("Heading3", angles.thirdAngle);
+        telemetry.addData("Heading2", angles.secondAngle);l
+        l
 
-        telemetry.update();
+        l
+
+
+
+
+
+
+
+
+
+
+
+
+        telemetry.addData("Heading3", angles.thirdAngle);
 */
+
+        telemetry.addData("Lift Encoder", robot.liftleft.getCurrentPosition());
+        telemetry.update();
+
 
     double Turn = gamepad1.left_stick_x;  //speed
     double Speed = -gamepad1.left_stick_y; //turn
@@ -172,9 +189,20 @@ public void runOpMode() {
             PickupRightPosition = 1;
         }
 
-   double liftleftPower = gamepad2.left_stick_y;
+   double liftleftPower = -gamepad2.left_stick_y;
     double liftrightPower = gamepad2.left_stick_y;
 /*
+//----------------
+    if (robot.liftleft.getCurrentPosition() >= 3000 && liftleftPower <= 0) {
+        liftleftPower = 0;
+        liftrightPower = 0;
+    }
+    if (robot.liftleft.getCurrentPosition() <= 0 && liftleftPower >= 0) {
+            liftleftPower = 0;
+            liftrightPower = 0;
+        }
+    //-----------------
+
     if (liftleftPower == 0) {
 
 
@@ -226,8 +254,8 @@ public void runOpMode() {
     robot.liftleft.setPower(liftleftPower);
     robot.liftright.setPower(liftrightPower);
 
-    robot.liftleft2.setPower(liftleftPower);
-    robot.liftright2.setPower(liftrightPower);
+    //robot.liftleft2.setPower(liftleftPower);
+    //robot.liftright2.setPower(liftrightPower);
 
     robot.rightintake.setPower(servoRightPower);
     robot.leftintake.setPower(servoLeftPower);
