@@ -140,21 +140,32 @@ public void runOpMode() {
    
    double servoLeftPower = 0;
    double servoRightPower = 0;
-   
+   double servoRight2Power = 0;
+   double servoLeft2Power = 0;
+
+
+
    if (gamepad2.a){
     servoRightPower = -1;
     servoLeftPower = 1;
+    servoLeft2Power = 1;
+    servoRight2Power = -1;
     }
     
     if (gamepad2.x){
     servoRightPower = 1;
     servoLeftPower = -1;
+    servoLeft2Power = -1;
+    servoRight2Power = 1;
     }
 
 
         double quickrelease = .5;
+    double intakeAngle = .5;
+
         if (gamepad2.b){
             quickrelease = .35;
+            intakeAngle = .25;
         }
 
     
@@ -234,6 +245,14 @@ public void runOpMode() {
     robot.servorelease.setPosition(quickrelease);
     robot.leftPickup.setPower(PickUpLeftPosition);
     robot.rightPickup.setPower(PickupRightPosition);
+
+    robot.leftintake1.setPower(servoLeftPower);
+    robot.rightintake1.setPower(servoRightPower);
+    robot.leftintake2.setPower(servoLeft2Power);
+    robot.rightintake2.setPower(servoRight2Power);
+    robot.leftintake3.setPosition(intakeAngle);
+    robot.rightintake3.setPosition(-intakeAngle);
+
 
     }
 
