@@ -22,15 +22,16 @@ public class HardwareRobot {
     public DcMotor liftright = null;
     public DcMotor liftleft2 = null;
     public DcMotor liftright2 = null;
-    public DcMotor spinner = null;
+    public DcMotor intake = null;
     public CRServo leftintake = null;
     public CRServo rightintake = null;
     public Servo servorelease = null;
     public CRServo rightPickup = null;
     public CRServo leftPickup = null;
     public RevBlinkinLedDriver blinkinLedDriver = null;
-
-
+public Servo Pincher = null;
+public Servo Artic = null;
+public Servo Rotate = null;
 
     //public Servo grabber = null;
 
@@ -59,7 +60,9 @@ public class HardwareRobot {
         //grabber = hwMap.get(Servo.class, "servo_grabber");
         leftPickup = hwMap.get(CRServo.class, "servo_left_pickup");
         rightPickup = hwMap.get(CRServo.class, "servo_right_pickup");
-
+Pincher = hwMap.get(Servo.class, "Pincher");
+Artic = hwMap.get(Servo.class, "Artic");
+Rotate = hwMap.get(Servo.class, "Rotate");
 
         blinkinLedDriver = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
         blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
@@ -86,6 +89,9 @@ public class HardwareRobot {
         leftintake.setPower(0);
         rightintake.setPower(0);
         servorelease.setPosition(.5);
+        Pincher.setPosition(.5);
+        Artic.setPosition(.5);
+        Rotate.setPosition(.5);
     }
 
 }
