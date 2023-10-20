@@ -138,17 +138,14 @@ public void runOpMode() {
     }
    
    
-   double servoLeftPower = 0;
-   double servoRightPower = 0;
-   
+   double intakePower = 0;
+
    if (gamepad2.a){
-    servoRightPower = -1;
-    servoLeftPower = 1;
+    intakePower = -1;
     }
     
     if (gamepad2.x){
-    servoRightPower = 1;
-    servoLeftPower = -1;
+    intakePower = 1;
     }
 
 
@@ -226,11 +223,8 @@ public void runOpMode() {
     robot.liftleft.setPower(liftleftPower);
     robot.liftright.setPower(liftrightPower);
 
-    robot.liftleft2.setPower(liftleftPower);
-    robot.liftright2.setPower(liftrightPower);
 
-    robot.rightintake.setPower(servoRightPower);
-    robot.leftintake.setPower(servoLeftPower);
+    robot.intake.setPower(intakePower);
     robot.servorelease.setPosition(quickrelease);
     robot.leftPickup.setPower(PickUpLeftPosition);
     robot.rightPickup.setPower(PickupRightPosition);
