@@ -69,6 +69,9 @@ public class HardwareRobot {
         rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         leftRearDrive.setDirection(DcMotor.Direction.REVERSE);
         rightRearDrive.setDirection(DcMotor.Direction.FORWARD);
+
+        liftleft.setDirection(DcMotor.Direction.REVERSE);
+
         liftleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         liftright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         liftleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
