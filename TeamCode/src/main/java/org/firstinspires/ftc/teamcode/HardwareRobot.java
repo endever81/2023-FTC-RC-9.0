@@ -4,6 +4,7 @@ import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.CRServo;
 //import com.qualcomm.robotcore.util.Hardware;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -18,6 +19,7 @@ public class HardwareRobot {
     public DcMotor rightFrontDrive = null;
     public DcMotor leftRearDrive = null;
     public DcMotor rightRearDrive = null;
+    public DcMotor dronelauncher = null;
     public DcMotor liftleft = null;
     public DcMotor liftright = null;
     public DcMotor spinner = null;
@@ -61,6 +63,8 @@ public class HardwareRobot {
         rightIntakeRear = hwMap.get(CRServo.class, "servo_right_rear");
         rightRotate = hwMap.get(Servo.class, "servo_right_rotate");
 
+        dronelauncher = hwMap.get(DcMotor.class, "drone_launcher");
+
         blinkinLedDriver = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
         blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
 
@@ -77,6 +81,7 @@ public class HardwareRobot {
         liftleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftright.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        dronelauncher.setDirection(DcMotor.Direction.REVERSE);
 
         leftFrontDrive.setPower(0);
         rightFrontDrive.setPower(0);

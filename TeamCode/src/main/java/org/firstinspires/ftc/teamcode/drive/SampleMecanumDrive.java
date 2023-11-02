@@ -57,8 +57,8 @@ import static org.firstinspires.ftc.teamcode.drive.DriveConstants.kV;
  */
 @Config
 public class SampleMecanumDrive extends MecanumDrive {
-    public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(8, 0, 0);  //kP formerly 8
-    public static PIDCoefficients HEADING_PID = new PIDCoefficients(8, 0, 0);
+    public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(18.25, 0, 0);  //kP formerly 8
+    public static PIDCoefficients HEADING_PID = new PIDCoefficients(9.5, 0, 0); //kP formerly 8
 
     public static double LATERAL_MULTIPLIER = 1.583;
 
@@ -104,11 +104,11 @@ public class SampleMecanumDrive extends MecanumDrive {
 //***********************************88888
         liftleft = hardwareMap.get(DcMotor.class, "lift_left");
         liftright = hardwareMap.get(DcMotor.class, "lift_right");
-        leftintake = hardwareMap.get(CRServo.class, "left_intake");
-        rightintake = hardwareMap.get(CRServo.class, "right_intake");
-        servorelease = hardwareMap.get(Servo.class, "servo_release");
-        blinkinLedDriver = hardwareMap.get(RevBlinkinLedDriver.class, "blinkin");
-        blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
+       // leftintake = hardwareMap.get(CRServo.class, "left_intake");
+     //   rightintake = hardwareMap.get(CRServo.class, "right_intake");
+    //    servorelease = hardwareMap.get(Servo.class, "servo_release");
+    //    blinkinLedDriver = hardwareMap.get(RevBlinkinLedDriver.class, "blinkin");
+     //   blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
         liftleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         liftright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 //****************************************
