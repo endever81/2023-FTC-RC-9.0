@@ -17,9 +17,9 @@ import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
 
-@Autonomous(name = "RR_BLUE_LEFT", group = "Automonous")
+@Autonomous(name = "RR_Red_Right", group = "Automonous")
 
-public class RR_Auton_Base extends LinearOpMode {
+public class RR_Auton_CS extends LinearOpMode {
     //-----------------------------------------------------------
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
@@ -201,31 +201,6 @@ public class RR_Auton_Base extends LinearOpMode {
 
 
 
-        /*
-        //approach stack 3
-
-        Trajectory toStack3 = drive.trajectoryBuilder(backUp3.end())
-                .lineToLinearHeading(new Pose2d(62, -8, Math.toRadians(0)))
-                .build();
-
-
-
-        //score cone 3
-
-        Trajectory toMidGoal4 = drive.trajectoryBuilder(toStack3.end())
-                .lineToLinearHeading(new Pose2d (34, -20, Math.toRadians(225)))
-                .build();
-
-
-
-
-        //back off junction FINAL
-
-        Trajectory backUp4 = drive.trajectoryBuilder(toMidGoal4.end())
-                .back(7)
-                .build();
-        */
-
 
 
 
@@ -244,7 +219,6 @@ public class RR_Auton_Base extends LinearOpMode {
         telemetry.addData("Initiliazation Complete", "waiting for start");
         telemetry.update();
 
-        Trajectory sleeve = parking1;
         //---------------------------------------- START COMMAND----------------------------
         waitForStart();
         //---------------------------------------- START COMMAND----------------------------
@@ -261,23 +235,18 @@ public class RR_Auton_Base extends LinearOpMode {
                 if (updatedRecognitions != null) {
                     telemetry.addData("# Object Detected", updatedRecognitions.size());
                     // step through the list of recognitions and display boundary info.
-                    int i = 0;
-                    x = 0;
-                    for (Recognition recognition : updatedRecognitions) {
-                        telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
+                    x = 0; //TSE on Right Spike Tape
 
-                        if (recognition.getLabel() == "1 Bolt") {
-                            x = 1;
-                            sleeve = parking1;
+                    for (Recognition recognition : updatedRecognitions) {
+                        double xPos = recognition.getLeft();
+
+                        if (xPos <= 25) {
+                            x = 1; // TSE on Left Spike Tape
                         }
-                        if (recognition.getLabel() == "2 Bulb") {
-                            x = 2;
-                            sleeve = parking2;
+                        if (xPos > 25) {
+                            x = 2; // TSE on Center Spike Tape
                         }
-                        if (recognition.getLabel() == "3 Panel") {
-                            x = 3;
-                            sleeve = parking3;
-                        }
+
                     }
                 }
                 telemetry.update();
@@ -286,73 +255,61 @@ public class RR_Auton_Base extends LinearOpMode {
         //----------------------------------------Trajectory Execution---------------------------
         // this section executes RR paths that were built above.
         // here we can inject servo and lift commands.
-        drive.followTrajectory(strafeRight);
-        drive.followTrajectory(forward);
-        drive.followTrajectory(toMidGoal1);
-        lift(.5, -3);
-        sleep(500);
-        robot.servorelease.setPosition(.35); //release Cone
-        drive.followTrajectory(backUp);
-        robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -14);
-        robot.servorelease.setPosition(.35);
-        drive.followTrajectory(clearTerminal);
-        drive.followTrajectory(positiontoLine1);
-        drive.followTrajectory(toStack1);
-        robot.servorelease.setPosition(.5);
 
-        lift(.5, 17);
-        robot.rightintake.setPower(.1);
-        robot.leftintake.setPower(-.1);
-        sleep(500);
-        robot.rightintake.setPower(0);
-        robot.leftintake.setPower(0);
-        drive.followTrajectory(backStack1);
-        drive.followTrajectory(toMidGoal2);
-        lift(.5, -4);
-        sleep(500);
-        robot.servorelease.setPosition(.35); //release Cone
-        drive.followTrajectory(backUp2);
-        robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -13.5);
-        robot.servorelease.setPosition(.35);
-        drive.followTrajectory(positiontoLine2);
-        drive.turn(Math.toRadians(0));
-        drive.followTrajectory(toStack2);
-        robot.servorelease.setPosition(.5);
-        lift(.5, 17.5);
-        robot.rightintake.setPower(.1);
-        robot.leftintake.setPower(-.1);
-        sleep(500);
-        robot.rightintake.setPower(0);
-        robot.leftintake.setPower(0);
-        drive.followTrajectory(backStack2);
-        drive.followTrajectory(toMidGoal3);
-        lift(.5, -7);
-        sleep(500);
-        robot.servorelease.setPosition(.35); //release Cone
-        drive.followTrajectory(backUp3);
-        robot.servorelease.setPosition(.5); //intake release returned
-        lift(1, -2);
-        // robot.rightintake.setPower(1);
-        // robot.leftintake.setPower(-1);
-        robot.servorelease.setPosition(.35);
-    /*drive.followTrajectory(toStack3);
-        robot.rightintake.setPower(0);
-        robot.leftintake.setPower(0);
-        robot.servorelease.setPosition(.5);
-        lift(.5, 22);
-        sleep(500);
-    drive.followTrajectory(toMidGoal4);
-        lift(.1, -4);
-        sleep(1500);
-        robot.servorelease.setPosition(.35); //release Cone
-    drive.followTrajectory(backUp4);
-        robot.servorelease.setPosition(.5); //intake release returned
-        */
-        drive.followTrajectory(strafeAway);
-        drive.followTrajectory(sleeve);
-
+        // Right Spike Tape Trajectory Path
+        if (x == 0) {
+            drive.followTrajectory(strafeRight);
+            drive.followTrajectory(forward);
+            drive.followTrajectory(toMidGoal1);
+            lift(.5, -3);
+            sleep(500);
+            robot.servorelease.setPosition(.35); //release Cone
+            drive.followTrajectory(backUp);
+            robot.servorelease.setPosition(.5); //intake release returned
+            lift(1, -14);
+            robot.servorelease.setPosition(.35);
+            drive.followTrajectory(clearTerminal);
+            drive.followTrajectory(positiontoLine1);
+            drive.followTrajectory(toStack1);
+            robot.servorelease.setPosition(.5);
+            lift(.5, 17);
+            robot.rightintake.setPower(.1);
+            robot.leftintake.setPower(-.1);
+            sleep(500);
+            robot.rightintake.setPower(0);
+            robot.leftintake.setPower(0);
+            drive.followTrajectory(backStack1);
+            drive.followTrajectory(toMidGoal2);
+            lift(.5, -4);
+            sleep(500);
+            robot.servorelease.setPosition(.35); //release Cone
+            drive.followTrajectory(backUp2);
+            robot.servorelease.setPosition(.5); //intake release returned
+            lift(1, -13.5);
+            robot.servorelease.setPosition(.35);
+            drive.followTrajectory(positiontoLine2);
+            drive.turn(Math.toRadians(0));
+            drive.followTrajectory(toStack2);
+            robot.servorelease.setPosition(.5);
+            lift(.5, 17.5);
+            robot.rightintake.setPower(.1);
+            robot.leftintake.setPower(-.1);
+            sleep(500);
+            robot.rightintake.setPower(0);
+            robot.leftintake.setPower(0);
+            drive.followTrajectory(backStack2);
+            drive.followTrajectory(toMidGoal3);
+            lift(.5, -7);
+            sleep(500);
+            robot.servorelease.setPosition(.35); //release Cone
+            drive.followTrajectory(backUp3);
+            robot.servorelease.setPosition(.5); //intake release returned
+            lift(1, -2);
+            // robot.rightintake.setPower(1);
+            // robot.leftintake.setPower(-1);
+            robot.servorelease.setPosition(.35);
+            drive.followTrajectory(strafeAway);
+        }
     }
 
     public void lift(double power, double inches)
