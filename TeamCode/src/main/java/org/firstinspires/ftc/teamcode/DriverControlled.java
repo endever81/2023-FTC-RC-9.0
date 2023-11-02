@@ -140,7 +140,7 @@ public void runOpMode() {
    
    double servoLeftPower = 0;
    double servoRightPower = 0;
-   double PincherAngle = .5;
+   double plane = .5;
    double ArticAngle = .5;
    double RotateAngle = .5;
 
@@ -152,16 +152,16 @@ public void runOpMode() {
     }
     
     if (gamepad2.x){
-        PincherAngle = .25;
+        plane = .25;
     servoRightPower = 1;
     servoLeftPower = -1;
     }
 
 
-        double quickrelease = .5;
+        double servoflap = .5;
         if (gamepad2.b){
             RotateAngle = .25;
-            quickrelease = .35;
+            servoflap = .35;
         }
 
     
@@ -238,10 +238,10 @@ public void runOpMode() {
 
     robot.rightintake.setPower(servoRightPower);
     robot.leftintake.setPower(servoLeftPower);
-    robot.servorelease.setPosition(quickrelease);
+    robot.servorelease.setPosition(servoflap);
     robot.leftPickup.setPower(PickUpLeftPosition);
     robot.rightPickup.setPower(PickupRightPosition);
-    robot.Pincher.setPosition(PincherAngle);
+    robot.Pincher.setPosition(plane);
     robot.Artic.setPosition(ArticAngle);
     robot.Rotate.setPosition(RotateAngle);
 
