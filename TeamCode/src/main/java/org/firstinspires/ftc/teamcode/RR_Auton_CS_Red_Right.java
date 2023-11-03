@@ -52,7 +52,7 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
         //Red Right starting position - Same for all paths
-        Pose2d startPose = new Pose2d(36, -62, Math.toRadians(0));
+        Pose2d startPose = new Pose2d(36, -62, Math.toRadians(90));
         drive.setPoseEstimate(startPose);
 
         //Approach Spike Line
@@ -60,7 +60,7 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d (36, -44, Math.toRadians(-45)))
                 .build();
         Trajectory spikeCenter = drive.trajectoryBuilder(startPose)
-                .lineToLinearHeading(new Pose2d (36, -44, Math.toRadians(5)))
+                .lineToLinearHeading(new Pose2d (36, -44, Math.toRadians(95)))
                 .build();
         Trajectory spikeLeft = drive.trajectoryBuilder(startPose)
                 .lineToLinearHeading(new Pose2d (36, -44, Math.toRadians(45)))
@@ -71,7 +71,7 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d (36, -55, Math.toRadians(-45)))
                 .build();
         Trajectory backFromPixelCenter = drive.trajectoryBuilder(spikeCenter.end())
-                .lineToLinearHeading(new Pose2d (36, -55, Math.toRadians(-45)))
+                .lineToLinearHeading(new Pose2d (36, -55, Math.toRadians(45)))
                 .build();
         Trajectory backFromPixelLeft = drive.trajectoryBuilder(spikeLeft.end())
                 .lineToLinearHeading(new Pose2d (36, -55, Math.toRadians(-45)))
@@ -82,7 +82,7 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d (52, -55, Math.toRadians(-90)))
                 .build();
         Trajectory backDropCenter = drive.trajectoryBuilder(backFromPixelCenter.end())
-                .lineToLinearHeading(new Pose2d (52, -50, Math.toRadians(-90)))
+                .lineToLinearHeading(new Pose2d (52, -50, Math.toRadians(0)))
                 .build();
         Trajectory backDropLeft = drive.trajectoryBuilder(backFromPixelLeft.end())
                 .lineToLinearHeading(new Pose2d (52, -40, Math.toRadians(-90)))
@@ -93,7 +93,7 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d (50, -55, Math.toRadians(90)))
                 .build();
         Trajectory backUpCenter = drive.trajectoryBuilder(backDropCenter.end())
-                .lineToLinearHeading(new Pose2d (50, -50, Math.toRadians(90)))
+                .lineToLinearHeading(new Pose2d (50, -50, Math.toRadians(180)))
                 .build();
         Trajectory backUpLeft = drive.trajectoryBuilder(backDropLeft.end())
                 .lineToLinearHeading(new Pose2d (50, -40, Math.toRadians(90)))
@@ -104,7 +104,7 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d (50, -60, Math.toRadians(90)))
                 .build();
         Trajectory toCornerCenter = drive.trajectoryBuilder(backUpCenter.end())
-                .lineToLinearHeading(new Pose2d (50, -60, Math.toRadians(90)))
+                .lineToLinearHeading(new Pose2d (50, -60, Math.toRadians(180)))
                 .build();
         Trajectory toCornerLeft = drive.trajectoryBuilder(backUpLeft.end())
                 .lineToLinearHeading(new Pose2d (50, -60, Math.toRadians(90)))
@@ -153,10 +153,10 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
                     for (Recognition recognition : updatedRecognitions) {
                         double xPos = recognition.getLeft();
 
-                        if (xPos <= 25) {
+                        if (xPos <= 200) {
                             x = 1; // TSE on Left Spike Tape
                         }
-                        if (xPos > 25) {
+                        if (xPos > 200) {
                             x = 2; // TSE on Center Spike Tape
                         }
 
@@ -298,11 +298,11 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
 
                 // The following default settings are available to un-comment and edit as needed to
                 // set parameters for custom models.
-                .setModelLabels(LABELS)
+                //.setModelLabels(LABELS)
                 //.setIsModelTensorFlow2(true)
                 //.setIsModelQuantized(true)
                 //.setModelInputSize(300)
-                .setModelAspectRatio(16.0 / 9.0)
+                //.setModelAspectRatio(16.0 / 9.0)
 
                 .build();
 
@@ -337,7 +337,7 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
         visionPortal = builder.build();
 
         // Set confidence threshold for TFOD recognitions, at any time.
-        tfod.setMinResultConfidence(0.75f);
+        //tfod.setMinResultConfidence(0.75f);
 
         // Disable or re-enable the TFOD processor at any time.
         //visionPortal.setProcessorEnabled(tfod, true);

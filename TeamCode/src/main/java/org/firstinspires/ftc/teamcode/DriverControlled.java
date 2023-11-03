@@ -176,8 +176,8 @@ public void runOpMode() {
             intakeAngleLeft = .15;
         }
         if (gamepad2.b){
-         intakeAngleRight = 0.45;
-         intakeAngleLeft = 0.55;}
+         intakeAngleRight = .10;
+         intakeAngleLeft = .90;}
     
        double PickUpLeftPosition = 0;
         double PickupRightPosition =0;
