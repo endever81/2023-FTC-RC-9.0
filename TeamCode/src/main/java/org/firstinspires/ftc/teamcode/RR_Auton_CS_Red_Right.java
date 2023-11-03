@@ -23,7 +23,7 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
     //-----------------------------------------------------------
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
-    private static final String TFOD_MODEL_ASSET = "23-24ModelV1.tflite";  //TeamCode\build\intermediates\assets\debug  in program view
+    private static final String TFOD_MODEL_ASSET = "model_23-24.tflite";  //TeamCode\build\intermediates\assets\debug  in program view
     private static final String[] LABELS = {
             "TSE"
     };
