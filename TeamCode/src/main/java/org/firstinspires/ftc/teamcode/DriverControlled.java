@@ -141,17 +141,17 @@ public void runOpMode() {
    double intakePower = 0;
 
    if (gamepad2.a){
-    intakePower = -1;
+    intakePower = -.8;
     }
     
     if (gamepad2.x){
-    intakePower = 1;
+    intakePower = .8;
     }
 
 
-        double quickrelease = .5;
+        double dropperPosition = .5;
         if (gamepad2.b){
-            quickrelease = .35;
+            dropperPosition = 0;
         }
 
     
@@ -225,7 +225,7 @@ public void runOpMode() {
 
 
     robot.intake.setPower(intakePower);
-    robot.servorelease.setPosition(quickrelease);
+    robot.servoDropper.setPosition(dropperPosition);
     robot.leftPickup.setPower(PickUpLeftPosition);
     robot.rightPickup.setPower(PickupRightPosition);
 

@@ -26,6 +26,8 @@ public class HardwareRobot {
     public CRServo leftintake = null;
     public CRServo rightintake = null;
     public Servo servorelease = null;
+
+    public Servo servoDropper = null;
     public CRServo rightPickup = null;
     public CRServo leftPickup = null;
     public RevBlinkinLedDriver blinkinLedDriver = null;
@@ -56,7 +58,7 @@ public class HardwareRobot {
        leftintake = hwMap.get(CRServo.class, "left_intake");
        rightintake = hwMap.get(CRServo.class, "right_intake");
         servorelease = hwMap.get(Servo.class, "servo_release");
-        //grabber = hwMap.get(Servo.class, "servo_grabber");
+        servoDropper = hwMap.get(Servo.class, "servo_dropper");
         leftPickup = hwMap.get(CRServo.class, "servo_left_pickup");
         rightPickup = hwMap.get(CRServo.class, "servo_right_pickup");
 
@@ -69,6 +71,7 @@ public class HardwareRobot {
         rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         leftRearDrive.setDirection(DcMotor.Direction.REVERSE);
         rightRearDrive.setDirection(DcMotor.Direction.FORWARD);
+        liftleft.setDirection(DcMotor.Direction.REVERSE);
         liftleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         liftright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         liftleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -82,6 +85,7 @@ public class HardwareRobot {
         leftintake.setPower(0);
         rightintake.setPower(0);
         servorelease.setPosition(.5);
+        servoDropper.setPosition(.5);
     }
 
 }
