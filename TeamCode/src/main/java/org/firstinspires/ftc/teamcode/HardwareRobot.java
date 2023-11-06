@@ -33,7 +33,7 @@ public class HardwareRobot {
     public CRServo rightIntakeRear = null;
     public Servo leftRotate = null;
     public Servo rightRotate = null;
-
+    public Servo droneClamp = null;
 
     //public Servo grabber = null;
 
@@ -64,6 +64,7 @@ public class HardwareRobot {
         rightRotate = hwMap.get(Servo.class, "servo_right_rotate");
 
         dronelauncher = hwMap.get(DcMotor.class, "drone_launcher");
+        droneClamp = hwMap.get(Servo.class, "drone_Clamp");
 
         blinkinLedDriver = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
         blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
@@ -89,7 +90,7 @@ public class HardwareRobot {
         rightRearDrive.setPower(0);
 
         servorelease.setPosition(.5);
-
+        droneClamp.setPosition(0);
         leftRotate.setPosition(0.1);
         rightRotate.setPosition(.9);
 

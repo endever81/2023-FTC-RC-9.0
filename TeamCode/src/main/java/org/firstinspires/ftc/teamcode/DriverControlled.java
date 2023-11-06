@@ -138,29 +138,25 @@ public void runOpMode() {
     rear_left /=2.5;
     rear_right /=2.5;
     }
-    double droneMotor = 0;
-        droneMotor = Range.clip(droneMotor, -1, 1);
-    droneMotor = (float)scaleInput(droneMotor);
-   if (gamepad1.a){
-       droneMotor = 100;
-   }
+
    
    double servoLeftPower = 0;
    double servoRightPower = 0;
    double servoRight2Power = 0;
    double servoLeft2Power = 0;
 
+   double dronePower = 0;
+   double droneClampPosition = 0;
 
-
-   if (gamepad2.a){
-    servoRightPower = -1;
+   if (gamepad2.x){
+    servoRightPower = -1;//output
     servoLeftPower = 1;
     servoLeft2Power = 1;
     servoRight2Power = -1;
     }
     
-    if (gamepad2.x){
-    servoRightPower = .25;
+    if (gamepad2.a){
+    servoRightPower = .25;//intake
     servoLeftPower = -.25;
     servoLeft2Power = -1;
     servoRight2Power = 1;
@@ -181,10 +177,14 @@ public void runOpMode() {
     
        double PickUpLeftPosition = 0;
         double PickupRightPosition =0;
-   
+
+        if (gamepad1.x) {
+            droneClampPosition = .25;
+        }
         if (gamepad1.a){
-            PickUpLeftPosition = 1;
-            PickupRightPosition = -1;
+
+            dronePower = 1;
+
         }
 
         if (gamepad1.b){
@@ -255,7 +255,8 @@ public void runOpMode() {
     robot.rightIntakeRear.setPower(servoRight2Power);
     robot.leftRotate.setPosition(intakeAngleLeft);
     robot.rightRotate.setPosition(intakeAngleRight);
-
+    robot.dronelauncher.setPower(dronePower);
+    robot.droneClamp.setPosition(droneClampPosition);
 
     }
 
