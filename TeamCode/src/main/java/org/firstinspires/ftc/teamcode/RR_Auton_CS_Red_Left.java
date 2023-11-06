@@ -70,7 +70,7 @@ public class RR_Auton_CS_Red_Left extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d (1, -55, Math.toRadians(50)))
                 .build();
         Trajectory backFromPixelCenter = drive.trajectoryBuilder(spikeCenter.end())
-                .lineToLinearHeading(new Pose2d (1, -55, Math.toRadians(95)))
+                .lineToLinearHeading(new Pose2d (-5, -50, Math.toRadians(95)))
                 .build();
         Trajectory backFromPixelLeft = drive.trajectoryBuilder(spikeLeft.end())
                 .lineToLinearHeading(new Pose2d (1, -55, Math.toRadians(135)))
@@ -101,24 +101,24 @@ public class RR_Auton_CS_Red_Left extends LinearOpMode {
 
         //Approach Backdrop
         Trajectory backDropRight = drive.trajectoryBuilder(runUpMiddleRight.end())
-                .lineToLinearHeading(new Pose2d (87, -31, Math.toRadians(-1)))
+                .lineToLinearHeading(new Pose2d (86, -29, Math.toRadians(-1)))
                 .build();
         Trajectory backDropCenter = drive.trajectoryBuilder(runUpMiddleCenter.end())
-                .lineToLinearHeading(new Pose2d (87, -26, Math.toRadians(-1)))
+                .lineToLinearHeading(new Pose2d (86, -24, Math.toRadians(-1)))
                 .build();
         Trajectory backDropLeft = drive.trajectoryBuilder(runUpMiddleLeft.end())
-                .lineToLinearHeading(new Pose2d (87, -19, Math.toRadians(-1)))
+                .lineToLinearHeading(new Pose2d (86, -17, Math.toRadians(-1)))
                 .build();
 
         //Back from Backdrop
         Trajectory backUpRight = drive.trajectoryBuilder(backDropRight.end())
-                .lineToLinearHeading(new Pose2d (50, -43, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (65, -43, Math.toRadians(0)))
                 .build();
         Trajectory backUpCenter = drive.trajectoryBuilder(backDropCenter.end())
-                .lineToLinearHeading(new Pose2d (50, -39, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (65, -39, Math.toRadians(0)))
                 .build();
         Trajectory backUpLeft = drive.trajectoryBuilder(backDropLeft.end())
-                .lineToLinearHeading(new Pose2d (50, -34, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (65, -34, Math.toRadians(0)))
                 .build();
 
         //Move to corner and park
