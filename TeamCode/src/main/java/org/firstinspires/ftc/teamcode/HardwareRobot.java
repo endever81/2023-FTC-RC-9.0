@@ -90,8 +90,8 @@ public class HardwareRobot {
 
         servorelease.setPosition(.5);
 
-        leftRotate.setPosition(0);
-        rightRotate.setPosition(1);
+        leftRotate.setPosition(0.1);
+        rightRotate.setPosition(.9);
 
 
     }

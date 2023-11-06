@@ -172,12 +172,12 @@ public void runOpMode() {
 
         if (gamepad2.y){
             quickrelease = .35;
-            intakeAngleRight = .85;
-            intakeAngleLeft = .15;
+            intakeAngleRight = .47; //backdrop angle
+            intakeAngleLeft = .53;
         }
         if (gamepad2.b){
-         intakeAngleRight = .10;
-         intakeAngleLeft = .90;}
+         intakeAngleRight = .02; //floor angle
+         intakeAngleLeft = .98;}
     
        double PickUpLeftPosition = 0;
         double PickupRightPosition =0;

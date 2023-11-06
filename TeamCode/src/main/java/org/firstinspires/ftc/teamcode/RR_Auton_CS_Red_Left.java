@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -17,9 +16,9 @@ import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
 
-@Autonomous(name = "Red Right", group = "Automonous")
+@Autonomous(name = "Red Left", group = "Automonous")
 
-public class RR_Auton_CS_Red_Right extends LinearOpMode {
+public class RR_Auton_CS_Red_Left extends LinearOpMode {
     //-----------------------------------------------------------
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
@@ -52,40 +51,63 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
         //Red Right starting position - Same for all paths
-        Pose2d startPose = new Pose2d(36, -62, Math.toRadians(90));
+        Pose2d startPose = new Pose2d(2, -62, Math.toRadians(90));
         drive.setPoseEstimate(startPose);
 
         //Approach Spike Line
         Trajectory spikeRight = drive.trajectoryBuilder(startPose)
-                .lineToLinearHeading(new Pose2d (36, -44, Math.toRadians(50)))
+                .lineToLinearHeading(new Pose2d (-0.5, -44, Math.toRadians(50)))
                 .build();
         Trajectory spikeCenter = drive.trajectoryBuilder(startPose)
-                .lineToLinearHeading(new Pose2d (39, -38, Math.toRadians(90)))
+                .lineToLinearHeading(new Pose2d (2.5, -38, Math.toRadians(90)))
                 .build();
         Trajectory spikeLeft = drive.trajectoryBuilder(startPose)
-                .lineToLinearHeading(new Pose2d (36, -42, Math.toRadians(145)))
+                .lineToLinearHeading(new Pose2d (-0.5, -42, Math.toRadians(145)))
                 .build();
 
         //back away from dropped pixel and spike lines
         Trajectory backFromPixelRight = drive.trajectoryBuilder(spikeRight.end())
-                .lineToLinearHeading(new Pose2d (36, -55, Math.toRadians(50)))
+                .lineToLinearHeading(new Pose2d (1, -55, Math.toRadians(50)))
                 .build();
         Trajectory backFromPixelCenter = drive.trajectoryBuilder(spikeCenter.end())
-                .lineToLinearHeading(new Pose2d (36, -55, Math.toRadians(95)))
+                .lineToLinearHeading(new Pose2d (1, -55, Math.toRadians(95)))
                 .build();
         Trajectory backFromPixelLeft = drive.trajectoryBuilder(spikeLeft.end())
-                .lineToLinearHeading(new Pose2d (36, -55, Math.toRadians(135)))
+                .lineToLinearHeading(new Pose2d (1, -55, Math.toRadians(135)))
                 .build();
 
+        //Swing Out to Center
+        Trajectory swingOutToMiddleRight = drive.trajectoryBuilder(backFromPixelRight.end())
+                .lineToLinearHeading(new Pose2d (-5, -9, Math.toRadians(0)))
+                .build();
+        Trajectory swingOutToMiddleCenter = drive.trajectoryBuilder(backFromPixelCenter.end())
+                .lineToLinearHeading(new Pose2d (14, -9, Math.toRadians(0)))
+                .build();
+        Trajectory swingOutToMiddleLeft = drive.trajectoryBuilder(backFromPixelLeft.end())
+                .lineToLinearHeading(new Pose2d (14, -9, Math.toRadians(0)))
+                .build();
+
+        //Run up Center
+        Trajectory runUpMiddleRight = drive.trajectoryBuilder(swingOutToMiddleRight.end())
+                .lineToLinearHeading(new Pose2d (64, -9, Math.toRadians(0)))
+                .build();
+        Trajectory runUpMiddleCenter = drive.trajectoryBuilder(swingOutToMiddleCenter.end())
+                .lineToLinearHeading(new Pose2d (64, -9, Math.toRadians(0)))
+                .build();
+        Trajectory runUpMiddleLeft = drive.trajectoryBuilder(swingOutToMiddleLeft.end())
+                .lineToLinearHeading(new Pose2d (64, -9, Math.toRadians(0)))
+                .build();
+
+
         //Approach Backdrop
-        Trajectory backDropRight = drive.trajectoryBuilder(backFromPixelRight.end())
-                .lineToLinearHeading(new Pose2d (72, -38.5, Math.toRadians(0)))
+        Trajectory backDropRight = drive.trajectoryBuilder(runUpMiddleRight.end())
+                .lineToLinearHeading(new Pose2d (87, -31, Math.toRadians(-1)))
                 .build();
-        Trajectory backDropCenter = drive.trajectoryBuilder(backFromPixelCenter.end())
-                .lineToLinearHeading(new Pose2d (72, -33.5, Math.toRadians(0)))
+        Trajectory backDropCenter = drive.trajectoryBuilder(runUpMiddleCenter.end())
+                .lineToLinearHeading(new Pose2d (87, -26, Math.toRadians(-1)))
                 .build();
-        Trajectory backDropLeft = drive.trajectoryBuilder(backFromPixelLeft.end())
-                .lineToLinearHeading(new Pose2d (72, -26, Math.toRadians(0)))
+        Trajectory backDropLeft = drive.trajectoryBuilder(runUpMiddleLeft.end())
+                .lineToLinearHeading(new Pose2d (87, -19, Math.toRadians(-1)))
                 .build();
 
         //Back from Backdrop
@@ -185,6 +207,8 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
             robot.leftRotate.setPosition(0.53); //raise intake
             robot.rightRotate.setPosition(0.57);
             drive.followTrajectory(backFromPixelRight);
+            drive.followTrajectory(swingOutToMiddleRight);
+            drive.followTrajectory(runUpMiddleRight);
             lift(1, 5);
             drive.followTrajectory(backDropRight);
             robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
@@ -217,6 +241,8 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
             robot.leftRotate.setPosition(0.53); //raise intake
             robot.rightRotate.setPosition(0.57);
             drive.followTrajectory(backFromPixelLeft);
+            drive.followTrajectory(swingOutToMiddleLeft);
+            drive.followTrajectory(runUpMiddleLeft);
             lift(.5, 5);
             drive.followTrajectory(backDropLeft);
             robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
@@ -249,6 +275,8 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
             robot.leftRotate.setPosition(0.53); //raise intake
             robot.rightRotate.setPosition(0.57);
             drive.followTrajectory(backFromPixelCenter);
+            drive.followTrajectory(swingOutToMiddleCenter);
+            drive.followTrajectory(runUpMiddleCenter);
             lift(.5, 5);
             drive.followTrajectory(backDropCenter);
             robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
