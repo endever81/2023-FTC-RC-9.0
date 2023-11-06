@@ -149,7 +149,7 @@ public void runOpMode() {
     }
 
 
-        double dropperPosition = .5;
+        double dropperPosition = .53;//.5
         if (gamepad2.b){
             dropperPosition = 0;
         }
