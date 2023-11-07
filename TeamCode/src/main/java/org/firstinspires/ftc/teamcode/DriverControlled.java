@@ -83,7 +83,7 @@ public void runOpMode() {
     robot.liftright.setTargetPosition(newLiftTargetRight);
     double intakeAngleRight = 0.45;
     double intakeAngleLeft = 0.55;
-
+    double droneClampPosition = 0;
     while (opModeIsActive()){
 
 /*
@@ -146,7 +146,7 @@ public void runOpMode() {
    double servoLeft2Power = 0;
 
    double dronePower = 0;
-   double droneClampPosition = 0;
+
 
    if (gamepad2.x){
     servoRightPower = -1;//output
@@ -163,11 +163,11 @@ public void runOpMode() {
     }
 
 
-    double quickrelease = .5;
+    //double quickrelease = .5;
 
 
         if (gamepad2.y){
-            quickrelease = .35;
+            //quickrelease = .35;
             intakeAngleRight = .47; //backdrop angle
             intakeAngleLeft = .53;
         }
@@ -247,7 +247,7 @@ public void runOpMode() {
     robot.liftright.setPower(liftrightPower);
 
 
-    robot.servorelease.setPosition(quickrelease);
+    //robot.servorelease.setPosition(quickrelease);
 
     robot.leftIntakeFront.setPower(servoLeftPower);
     robot.rightIntakeFront.setPower(servoRightPower);
