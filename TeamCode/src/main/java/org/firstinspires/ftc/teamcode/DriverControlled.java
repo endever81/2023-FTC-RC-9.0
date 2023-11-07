@@ -83,7 +83,7 @@ public void runOpMode() {
     robot.liftright.setTargetPosition(newLiftTargetRight);
     double intakeAngleRight = 0.45;
     double intakeAngleLeft = 0.55;
-    double droneClampPosition = 0;
+    double droneClampPosition = 0.25;
     while (opModeIsActive()){
 
 /*
@@ -179,7 +179,7 @@ public void runOpMode() {
         double PickupRightPosition =0;
 
         if (gamepad1.x) {
-            droneClampPosition = .25;
+            droneClampPosition = 0;
         }
         if (gamepad1.a){
 
