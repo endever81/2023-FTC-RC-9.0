@@ -191,6 +191,10 @@ public void runOpMode() {
             PickUpLeftPosition = -1;
             PickupRightPosition = 1;
         }
+        if (gamepad2.dpad_up){
+         intakeAngleRight = 0.5;
+         intakeAngleLeft = 0.5;
+         }
 
    double liftleftPower = gamepad2.left_stick_y;
     double liftrightPower = gamepad2.left_stick_y;
