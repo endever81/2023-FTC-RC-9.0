@@ -140,43 +140,47 @@ public void runOpMode() {
    
    double servoLeftPower = 0;
    double servoRightPower = 0;
-   double plane = .5;
+   //double plane = .5;
    double ArticAngle = .5;
-   double RotateAngle = .5;
 
-   
-   if (gamepad2.a){
-       ArticAngle = .25;
-    servoRightPower = -1;
-    servoLeftPower = 1;
+
+        double Pincher = .65;
+
+        if (gamepad2.a){
+            Pincher = .72;
+
     }
     
     if (gamepad2.x){
-        plane = .25;
-    servoRightPower = 1;
-    servoLeftPower = -1;
+        //plane = .25;
+
     }
 
+        double RotateAngle = .5;
 
-        double servoflap = .5;
         if (gamepad2.b){
             RotateAngle = .25;
-            servoflap = .35;
         }
 
-    
-    
-       double PickUpLeftPosition = 0;
-        double PickupRightPosition =0;
-   
-        if (gamepad1.a){
-            PickUpLeftPosition = 1;
-            PickupRightPosition = -1;
+        double articAngle = .5;
+
+        if (gamepad2.x){
+            articAngle = .25;
         }
+
+
+        double plane = 0;
+
+        if (gamepad1.a){
+            plane = 1;
+
+        }
+        double servoflapLeft = .5;
+        double servoflapRight = 0.5;
 
         if (gamepad1.b){
-            PickUpLeftPosition = -1;
-            PickupRightPosition = 1;
+            servoflapLeft = .9;
+            servoflapRight = .1;
         }
 
    double liftleftPower = gamepad2.left_stick_y;
@@ -232,18 +236,13 @@ public void runOpMode() {
     robot.rightRearDrive.setPower(rear_right);
     robot.liftleft.setPower(liftleftPower);
     robot.liftright.setPower(liftrightPower);
-
-  //  robot.liftleft2.setPower(liftleftPower);
-  //  robot.liftright2.setPower(liftrightPower);
-
-    robot.rightintake.setPower(servoRightPower);
-    robot.leftintake.setPower(servoLeftPower);
-    robot.servorelease.setPosition(servoflap);
-    robot.leftPickup.setPower(PickUpLeftPosition);
-    robot.rightPickup.setPower(PickupRightPosition);
-    robot.Pincher.setPosition(plane);
+    robot.Pincher.setPosition(Pincher);
     robot.Artic.setPosition(ArticAngle);
     robot.Rotate.setPosition(RotateAngle);
+    robot.plane.setPower(plane);
+    robot.servoflapleft.setPosition(servoflapLeft);
+    robot.servoflapright.setPosition(servoflapRight);
+    robot.Artic.setPosition(articAngle);
 
     }
 
