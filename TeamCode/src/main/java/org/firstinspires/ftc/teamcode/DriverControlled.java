@@ -141,7 +141,6 @@ public void runOpMode() {
    double servoLeftPower = 0;
    double servoRightPower = 0;
    //double plane = .5;
-   double ArticAngle = .5;
 
 
         double Pincher = .65;
@@ -156,16 +155,16 @@ public void runOpMode() {
 
     }
 
-        double RotateAngle = .5;
+        double RotateAngle = .25;
 
         if (gamepad2.b){
-            RotateAngle = .25;
+            RotateAngle = .9;
         }
 
-        double articAngle = .5;
+        double articAngle = .39;
 
         if (gamepad2.x){
-            articAngle = .25;
+            articAngle = 0;
         }
 
 
@@ -175,8 +174,8 @@ public void runOpMode() {
             plane = 1;
 
         }
-        double servoflapLeft = .5;
-        double servoflapRight = 0.5;
+        double servoflapLeft = .6;
+        double servoflapRight = 0.4;
 
         if (gamepad1.b){
             servoflapLeft = .9;
@@ -237,7 +236,6 @@ public void runOpMode() {
     robot.liftleft.setPower(liftleftPower);
     robot.liftright.setPower(liftrightPower);
     robot.Pincher.setPosition(Pincher);
-    robot.Artic.setPosition(ArticAngle);
     robot.Rotate.setPosition(RotateAngle);
     robot.plane.setPower(plane);
     robot.servoflapleft.setPosition(servoflapLeft);
