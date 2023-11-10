@@ -155,13 +155,13 @@ public void runOpMode() {
 
     }
 
-        double RotateAngle = .25;
+        double RotateAngle = .293;
 
         if (gamepad2.b){
             RotateAngle = .9;
         }
 
-        double articAngle = .39;
+        double articAngle = .42;
 
         if (gamepad2.x){
             articAngle = 0;
@@ -174,8 +174,8 @@ public void runOpMode() {
             plane = 1;
 
         }
-        double servoflapLeft = .6;
-        double servoflapRight = 0.4;
+        double servoflapLeft = .8;
+        double servoflapRight = 0.2;
 
         if (gamepad1.b){
             servoflapLeft = .9;

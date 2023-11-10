@@ -92,10 +92,10 @@ Rotate = hwMap.get(Servo.class, "Rotate");
         //rightintake.setPower(0);
         //servorelease.setPosition(.5);
         Pincher.setPosition(.65);
-        Artic.setPosition(.25);
-        Rotate.setPosition(.35);
-        servoflapleft.setPosition(.5);
-        servoflapright.setPosition(.5);
+        Artic.setPosition(.42);
+        Rotate.setPosition(.293);
+        servoflapleft.setPosition(.8);
+        servoflapright.setPosition(.2);
 
 
     }
