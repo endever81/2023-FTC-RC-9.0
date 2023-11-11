@@ -163,7 +163,7 @@ public void runOpMode() {
 
         double articAngle = .39;
 
-        if (gamepad2.x){
+        if (gamepad2.y){
             articAngle = 0;
         }
 
