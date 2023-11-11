@@ -104,8 +104,6 @@ public class SampleMecanumDrive extends MecanumDrive {
 //***********************************88888
         liftleft = hardwareMap.get(DcMotor.class, "lift_left");
         liftright = hardwareMap.get(DcMotor.class, "lift_right");
-        leftintake = hardwareMap.get(CRServo.class, "left_intake");
-        rightintake = hardwareMap.get(CRServo.class, "right_intake");
         servorelease = hardwareMap.get(Servo.class, "servo_release");
         blinkinLedDriver = hardwareMap.get(RevBlinkinLedDriver.class, "blinkin");
         blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);

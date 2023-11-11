@@ -4,7 +4,6 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -18,6 +17,7 @@ import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 import java.util.List;
 
 @Autonomous(name = "Red Left", group = "Automonous")
+
 public class RR_Auton_CS_Red_Left extends LinearOpMode {
     //-----------------------------------------------------------
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
@@ -51,101 +51,100 @@ public class RR_Auton_CS_Red_Left extends LinearOpMode {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
         //Red Right starting position - Same for all paths
-        Pose2d startPose = new Pose2d(2, -62, Math.toRadians(90));
+        Pose2d startPose = new Pose2d(-36, -62, Math.toRadians(90));
         drive.setPoseEstimate(startPose);
 
         //Approach Spike Line
         Trajectory spikeRight = drive.trajectoryBuilder(startPose)
-                .lineToLinearHeading(new Pose2d (-0.5, -44, Math.toRadians(50)))
+                .lineToLinearHeading(new Pose2d (-34, -34, Math.toRadians(0)))
                 .build();
         Trajectory spikeCenter = drive.trajectoryBuilder(startPose)
-                .lineToLinearHeading(new Pose2d (2.5, -38, Math.toRadians(90)))
+                .lineToLinearHeading(new Pose2d (-38, -33, Math.toRadians(90)))
                 .build();
         Trajectory spikeLeft = drive.trajectoryBuilder(startPose)
-                .lineToLinearHeading(new Pose2d (-0.5, -42, Math.toRadians(145)))
+                .lineToLinearHeading(new Pose2d (-38, -41, Math.toRadians(135)))
                 .build();
 
         //back away from dropped pixel and spike lines
         Trajectory backFromPixelRight = drive.trajectoryBuilder(spikeRight.end())
-                .lineToLinearHeading(new Pose2d (1, -55, Math.toRadians(50)))
+                .lineToLinearHeading(new Pose2d (-36, -55, Math.toRadians(50)))
                 .build();
         Trajectory backFromPixelCenter = drive.trajectoryBuilder(spikeCenter.end())
-                .lineToLinearHeading(new Pose2d (1, -55, Math.toRadians(95)))
+                .lineToLinearHeading(new Pose2d (-36, -55, Math.toRadians(95)))
                 .build();
         Trajectory backFromPixelLeft = drive.trajectoryBuilder(spikeLeft.end())
-                .lineToLinearHeading(new Pose2d (1, -55, Math.toRadians(135)))
+                .lineToLinearHeading(new Pose2d (-36, -55, Math.toRadians(135)))
                 .build();
-
-        //Swing Out to Center
-        Trajectory swingOutToMiddleRight = drive.trajectoryBuilder(backFromPixelRight.end())
-                .lineToLinearHeading(new Pose2d (-5, -9, Math.toRadians(0)))
-                .build();
-        Trajectory swingOutToMiddleCenter = drive.trajectoryBuilder(backFromPixelCenter.end())
-                .lineToLinearHeading(new Pose2d (14, -9, Math.toRadians(0)))
-                .build();
-        Trajectory swingOutToMiddleLeft = drive.trajectoryBuilder(backFromPixelLeft.end())
-                .lineToLinearHeading(new Pose2d (14, -9, Math.toRadians(0)))
-                .build();
-
-        //Run up Center
-        Trajectory runUpMiddleRight = drive.trajectoryBuilder(swingOutToMiddleRight.end())
-                .lineToLinearHeading(new Pose2d (64, -9, Math.toRadians(0)))
-                .build();
-        Trajectory runUpMiddleCenter = drive.trajectoryBuilder(swingOutToMiddleCenter.end())
-                .lineToLinearHeading(new Pose2d (64, -9, Math.toRadians(0)))
-                .build();
-        Trajectory runUpMiddleLeft = drive.trajectoryBuilder(swingOutToMiddleLeft.end())
-                .lineToLinearHeading(new Pose2d (64, -9, Math.toRadians(0)))
-                .build();
-
 
         //Approach Backdrop
-        Trajectory backDropRight = drive.trajectoryBuilder(runUpMiddleRight.end())
-                .lineToLinearHeading(new Pose2d (87, -31, Math.toRadians(-1)))
+        Trajectory backDropRight = drive.trajectoryBuilder(backFromPixelRight.end())
+                .lineToLinearHeading(new Pose2d (-73, -26, Math.toRadians(180)))
                 .build();
-        Trajectory backDropCenter = drive.trajectoryBuilder(runUpMiddleCenter.end())
-                .lineToLinearHeading(new Pose2d (87, -26, Math.toRadians(-1)))
+        Trajectory backDropCenter = drive.trajectoryBuilder(backFromPixelCenter.end())
+                .lineToLinearHeading(new Pose2d (-73, -33.5, Math.toRadians(180)))
                 .build();
-        Trajectory backDropLeft = drive.trajectoryBuilder(runUpMiddleLeft.end())
-                .lineToLinearHeading(new Pose2d (87, -19, Math.toRadians(-1)))
+        Trajectory backDropLeft = drive.trajectoryBuilder(backFromPixelLeft.end())
+                .lineToLinearHeading(new Pose2d (-73, -38.5, Math.toRadians(180)))
                 .build();
 
         //Back from Backdrop
         Trajectory backUpRight = drive.trajectoryBuilder(backDropRight.end())
-                .lineToLinearHeading(new Pose2d (50, -43, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (-72, -26, Math.toRadians(180)))
                 .build();
         Trajectory backUpCenter = drive.trajectoryBuilder(backDropCenter.end())
-                .lineToLinearHeading(new Pose2d (50, -39, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (-72, -33.5, Math.toRadians(180)))
                 .build();
         Trajectory backUpLeft = drive.trajectoryBuilder(backDropLeft.end())
-                .lineToLinearHeading(new Pose2d (50, -34, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (-72, -38.5, Math.toRadians(180)))
+                .build();
+
+        //Approach Backdrop2
+        Trajectory backDropRight2 = drive.trajectoryBuilder(backUpRight.end())
+                .lineToLinearHeading(new Pose2d (-72.5, -26, Math.toRadians(180)))
+                .build();
+        Trajectory backDropCenter2 = drive.trajectoryBuilder(backUpCenter.end())
+                .lineToLinearHeading(new Pose2d (-72.5, -33.5, Math.toRadians(180)))
+                .build();
+        Trajectory backDropLeft2 = drive.trajectoryBuilder(backUpLeft.end())
+                .lineToLinearHeading(new Pose2d (-72.5, -38.5, Math.toRadians(180)))
+                .build();
+
+        //Back from Backdrop 2
+        Trajectory backUpRight2 = drive.trajectoryBuilder(backDropRight2.end())
+                .lineToLinearHeading(new Pose2d (-60, -26, Math.toRadians(180)))
+                .build();
+        Trajectory backUpCenter2 = drive.trajectoryBuilder(backDropCenter2.end())
+                .lineToLinearHeading(new Pose2d (-60, -33.5, Math.toRadians(180)))
+                .build();
+        Trajectory backUpLeft2 = drive.trajectoryBuilder(backDropLeft2.end())
+                .lineToLinearHeading(new Pose2d (-60, -38.5, Math.toRadians(180)))
                 .build();
 
         //Move to corner and park
-        Trajectory toCornerRight = drive.trajectoryBuilder(backUpRight.end())
-                .lineToLinearHeading(new Pose2d (80, -10, Math.toRadians(180))) //Alternate end point center field x75 y-10
+        Trajectory toCornerRight = drive.trajectoryBuilder(backUpRight2.end())
+                .lineToLinearHeading(new Pose2d (-75, -58, Math.toRadians(0))) //Alternate end point center field x-75 y-10
                 .build();
-        Trajectory toCornerCenter = drive.trajectoryBuilder(backUpCenter.end())
-                .lineToLinearHeading(new Pose2d (80, -58, Math.toRadians(180)))
+        Trajectory toCornerCenter = drive.trajectoryBuilder(backUpCenter2.end())
+                .lineToLinearHeading(new Pose2d (-75, -58, Math.toRadians(0)))
                 .build();
-        Trajectory toCornerLeft = drive.trajectoryBuilder(backUpLeft.end())
-                .lineToLinearHeading(new Pose2d (80, -58, Math.toRadians(180)))
+        Trajectory toCornerLeft = drive.trajectoryBuilder(backUpLeft2.end())
+                .lineToLinearHeading(new Pose2d (-75, -58, Math.toRadians(0)))
                 .build();
 
-                //.strafeRight(1)
-                //.forward(18)
-                //.back(4)
-                //.addDisplacementMarker(() -> {
-                //     lift(1, 20.5);
-                //       })
-                //.build();
+        //.strafeRight(1)
+        //.forward(18)
+        //.back(4)
+        //.addDisplacementMarker(() -> {
+        //     lift(1, 20.5);
+        //       })
+        //.build();
 
-       // Trajectory toStack1 = drive.trajectoryBuilder(positiontoLine1.end())
-              //  .addSpatialMarker(new Vector2d(13.75, -10), () -> {
-             //       robot.servorelease.setPosition(.5);
-            //         })
-              //  .lineToLinearHeading(new Pose2d(13.75, -9, Math.toRadians(177)))
-               // .build();
+        // Trajectory toStack1 = drive.trajectoryBuilder(positiontoLine1.end())
+        //  .addSpatialMarker(new Vector2d(13.75, -10), () -> {
+        //       robot.servorelease.setPosition(.5);
+        //         })
+        //  .lineToLinearHeading(new Pose2d(13.75, -9, Math.toRadians(177)))
+        // .build();
 
 
 
@@ -196,31 +195,28 @@ public class RR_Auton_CS_Red_Left extends LinearOpMode {
             telemetry.addData("Right Spike", 10);
             telemetry.update();
             sleep(2000);
-            // robot.leftRotate.setPosition(0.98); //lower intake
-            // robot.rightRotate.setPosition(0.02);
             drive.followTrajectory(spikeRight);
-            // robot.rightIntakeFront.setPower(-.1); //deposit purple pixel from the front intake
-            // robot.leftIntakeFront.setPower(.1);
-            sleep(2000);
-            // robot.rightIntakeFront.setPower(0); //shut off intake
-            // robot.leftIntakeFront.setPower(0);
-            // robot.leftRotate.setPosition(0.53); //raise intake
-            // robot.rightRotate.setPosition(0.57);
+
+            robot.servoDropper.setPosition(.0); // open
+            sleep(1000);
+            robot.servoDropper.setPosition(.5); // close
+            robot.intake.setPower(.5);
+
             drive.followTrajectory(backFromPixelRight);
-            drive.followTrajectory(swingOutToMiddleRight);
-            drive.followTrajectory(runUpMiddleRight);
-            lift(1, 5);
-            drive.followTrajectory(backDropRight);
-            // robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
-            //  robot.leftIntakeRear.setPower(-.1);
-            sleep(3000);
-            //  robot.leftRotate.setPosition(0.1); //tuck intake
-            //  robot.rightRotate.setPosition(0.9);
-            // robot.rightIntakeFront.setPower(0); //shut off intake
-            // robot.leftIntakeFront.setPower(0);
-            drive.followTrajectory(backUpRight);
-            lift(1, -5);
-            drive.followTrajectory(toCornerRight);
+
+           // lift(1, 7);
+            //drive.followTrajectory(backDropRight);
+            //robot.intake.setPower(0);                      ////NEW LINE
+            //robot.servoDropper.setPosition(.0); // open
+            //sleep(1000);
+
+            //drive.followTrajectory(backUpRight);
+            //drive.followTrajectory(backDropRight2);
+            //drive.followTrajectory(backUpRight2);
+            //lift(1, -7);
+            //robot.servoDropper.setPosition(.5); // close
+
+            //drive.followTrajectory(toCornerRight);
 
 //            drive.turn(Math.toRadians(0));
         }
@@ -230,31 +226,25 @@ public class RR_Auton_CS_Red_Left extends LinearOpMode {
             telemetry.addData("Left Spike", 10);
             telemetry.update();
             sleep(3000);
-            // robot.leftRotate.setPosition(0.98); //lower intake
-            // robot.rightRotate.setPosition(0.02);
+
             drive.followTrajectory(spikeLeft);
-            // robot.rightIntakeFront.setPower(-.1); //deposit purple pixel from the front intake
-            // robot.leftIntakeFront.setPower(.1);
-            sleep(2000);
-            // robot.rightIntakeFront.setPower(0); //shut off intake
-            // robot.leftIntakeFront.setPower(0);
-            // robot.leftRotate.setPosition(0.53); //raise intake
-            // robot.rightRotate.setPosition(0.57);
+            robot.servoDropper.setPosition(.0); // open
+            sleep(1000);
+            robot.servoDropper.setPosition(.5); // close
+            robot.intake.setPower(.5);
             drive.followTrajectory(backFromPixelLeft);
-            drive.followTrajectory(swingOutToMiddleLeft);
-            drive.followTrajectory(runUpMiddleLeft);
-            lift(.5, 5);
-            drive.followTrajectory(backDropLeft);
-            //  robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
-            //  robot.leftIntakeRear.setPower(-.1);
-            sleep(3000);
-            //  robot.leftRotate.setPosition(0.1); //tuck intake
-            //  robot.rightRotate.setPosition(0.9);
-            //  robot.rightIntakeFront.setPower(0); //shut off intake
-            //  robot.leftIntakeFront.setPower(0);
-            drive.followTrajectory(backUpLeft);
-            lift(1, -5);
-            drive.followTrajectory(toCornerLeft);
+            //lift(.5, 7);
+            //drive.followTrajectory(backDropLeft);
+            //robot.servoDropper.setPosition(.0); // open
+            //sleep(1000);
+            //robot.intake.setPower(0);                      ////NEW LINE
+            //drive.followTrajectory(backUpLeft);
+            //drive.followTrajectory(backDropLeft2);
+            //drive.followTrajectory(backUpLeft2);
+            //lift(1, -7);
+            //robot.servoDropper.setPosition(.5); // close
+
+            //drive.followTrajectory(toCornerRight);
 
 //            drive.turn(Math.toRadians(0));
         }
@@ -264,31 +254,25 @@ public class RR_Auton_CS_Red_Left extends LinearOpMode {
             telemetry.addData("Center Spike", 10);
             telemetry.update();
             sleep(3000);
-            //  robot.leftRotate.setPosition(0.98); //lower intake
-            //  robot.rightRotate.setPosition(0.02);
             drive.followTrajectory(spikeCenter);
-            //  robot.rightIntakeFront.setPower(-.1); //deposit purple pixel from the front intake
-            //  robot.leftIntakeFront.setPower(.1);
-            sleep(2000);
-            //  robot.rightIntakeFront.setPower(0); //shut off intake
-            //  robot.leftIntakeFront.setPower(0);
-            //  robot.leftRotate.setPosition(0.53); //raise intake
-            //  robot.rightRotate.setPosition(0.57);
+            robot.servoDropper.setPosition(.0); // open
+            sleep(1000);
+            robot.servoDropper.setPosition(.5); // close
+            robot.intake.setPower(.5);
             drive.followTrajectory(backFromPixelCenter);
-            drive.followTrajectory(swingOutToMiddleCenter);
-            drive.followTrajectory(runUpMiddleCenter);
-            lift(.5, 5);
-            drive.followTrajectory(backDropCenter);
-            //  robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
-            //  robot.leftIntakeRear.setPower(-.1);
-            sleep(3000);
-            //  robot.leftRotate.setPosition(0.1); //tuck intake
-            //  robot.rightRotate.setPosition(0.9);
-            //  robot.rightIntakeFront.setPower(0); //shut off intake
-            //  robot.leftIntakeFront.setPower(0);
-            drive.followTrajectory(backUpCenter);
-            lift(1, -5);
-            drive.followTrajectory(toCornerCenter);
+            //lift(.5, 7);
+            //drive.followTrajectory(backDropCenter);
+            //robot.servoDropper.setPosition(.0); // open
+            //robot.intake.setPower(0);                      ////NEW LINE
+            //sleep(1000);
+            //drive.followTrajectory(backUpCenter);
+            //drive.followTrajectory(backDropCenter2);
+            //drive.followTrajectory(backUpCenter2);
+            //lift(1, -7);
+            //robot.servoDropper.setPosition(.5); // close
+
+           // drive.followTrajectory(toCornerRight);
+
 
 //            drive.turn(Math.toRadians(0));
         }
@@ -305,8 +289,8 @@ public class RR_Auton_CS_Red_Left extends LinearOpMode {
         if (opModeIsActive()) {
 
 
-            newLiftTargetLeft = robot.liftleft.getCurrentPosition() + (int) (inches * (1140 / (3.5 * 3.1415)));
-            newLiftTargetRight = robot.liftright.getCurrentPosition() + (int) (inches * (1140 / (3.5 * 3.1415)));
+            newLiftTargetLeft = robot.liftleft.getCurrentPosition() - (int) (inches * (1140 / (3.5 * 3.1415)));
+            newLiftTargetRight = robot.liftright.getCurrentPosition() - (int) (inches * (1140 / (3.5 * 3.1415)));
 
             robot.liftleft.setTargetPosition(newLiftTargetLeft);
             robot.liftright.setTargetPosition(newLiftTargetRight);

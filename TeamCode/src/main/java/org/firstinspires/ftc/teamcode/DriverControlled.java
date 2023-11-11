@@ -81,6 +81,7 @@ public void runOpMode() {
     newLiftTargetRight = robot.liftright.getCurrentPosition();
     robot.liftleft.setTargetPosition(newLiftTargetLeft);
     robot.liftright.setTargetPosition(newLiftTargetRight);
+    double dropperPosition = .53;//.5
 
     while (opModeIsActive()){
 
@@ -149,24 +150,31 @@ public void runOpMode() {
     }
 
 
-        double dropperPosition = .53;//.5
+
+        if (gamepad1.dpad_up){dropperPosition = dropperPosition + 0.00001;}
+        if (gamepad1.dpad_down){dropperPosition = dropperPosition - 0.00001;}
+        telemetry.addData("Dropper Value", dropperPosition);
+        telemetry.update();
+        dropperPosition = .54;
         if (gamepad2.b){
             dropperPosition = 0;
         }
 
+      //  if (gamepad2.x){
+      //      dropperPosition = .53;
+      //  }
     
-    
-       double PickUpLeftPosition = 0;
-        double PickupRightPosition =0;
+
+        double servoReleasePosition = 0.5;
    
-        if (gamepad1.a){
-            PickUpLeftPosition = 1;
-            PickupRightPosition = -1;
+        if (gamepad1.a && gamepad1.left_bumper){
+
+            servoReleasePosition = 0;
         }
 
         if (gamepad1.b){
-            PickUpLeftPosition = -1;
-            PickupRightPosition = 1;
+            servoReleasePosition = 0.5;
+
         }
 
    double liftleftPower = gamepad2.left_stick_y;
@@ -226,8 +234,7 @@ public void runOpMode() {
 
     robot.intake.setPower(intakePower);
     robot.servoDropper.setPosition(dropperPosition);
-    robot.leftPickup.setPower(PickUpLeftPosition);
-    robot.rightPickup.setPower(PickupRightPosition);
+    robot.servorelease.setPosition(servoReleasePosition);
 
     }
 
