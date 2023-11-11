@@ -143,10 +143,10 @@ public void runOpMode() {
    //double plane = .5;
 
 
-        double Pincher = .65;
+        double Pincher = .63;
 
         if (gamepad2.a){
-            Pincher = .72;
+            Pincher = .73;
 
     }
     
