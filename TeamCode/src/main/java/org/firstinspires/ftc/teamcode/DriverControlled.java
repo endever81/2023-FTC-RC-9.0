@@ -155,13 +155,13 @@ public void runOpMode() {
 
     }
 
-        double RotateAngle = .293;
+        double RotateAngle = .28;
 
         if (gamepad2.b){
             RotateAngle = .9;
         }
 
-        double articAngle = .42;
+        double articAngle = .39;
 
         if (gamepad2.x){
             articAngle = 0;
