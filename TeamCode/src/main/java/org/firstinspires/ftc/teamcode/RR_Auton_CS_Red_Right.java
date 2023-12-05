@@ -45,6 +45,7 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
 
 
         //-----------------------------------------------------------
+
         //Map All Paths for RoadRunner during initialization
         //All wheel based motion is defined here but is executed below.
         //Make changes here to change where the robot moves to.
@@ -101,13 +102,13 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
 
         //Move to corner and park
         Trajectory toCornerRight = drive.trajectoryBuilder(backUpRight.end())
-                .lineToLinearHeading(new Pose2d (80, -10, Math.toRadians(180))) //Alternate end point center field x75 y-10
-                .build();
+                .lineToLinearHeading(new Pose2d (80, -10, Math.toRadians(180))) //Alternate end point center field x75 y-58
+                        .build();
         Trajectory toCornerCenter = drive.trajectoryBuilder(backUpCenter.end())
-                .lineToLinearHeading(new Pose2d (80, -58, Math.toRadians(180)))
+                .lineToLinearHeading(new Pose2d (80, -10, Math.toRadians(180)))
                 .build();
         Trajectory toCornerLeft = drive.trajectoryBuilder(backUpLeft.end())
-                .lineToLinearHeading(new Pose2d (80, -58, Math.toRadians(180)))
+                .lineToLinearHeading(new Pose2d (80, -10, Math.toRadians(180)))
                 .build();
 
                 //.strafeRight(1)
@@ -173,27 +174,27 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
         if (x == 0) {
             telemetry.addData("Right Spike", 10);
             telemetry.update();
-            sleep(2000);
-            robot.leftRotate.setPosition(0.98); //lower intake
-            robot.rightRotate.setPosition(0.02);
+           // sleep(2000);
+            robot.leftRotate.setPosition(-0.98); //lower intake
+            robot.rightRotate.setPosition(-0.02);
             drive.followTrajectory(spikeRight);
-            robot.rightIntakeFront.setPower(-.1); //deposit purple pixel from the front intake
-            robot.leftIntakeFront.setPower(.1);
+            //robot.rightIntakeFront.setPower(-.1); //deposit purple pixel from the front intake
+            //robot.leftIntakeFront.setPower(.1);
             sleep(2000);
-            robot.rightIntakeFront.setPower(0); //shut off intake
-            robot.leftIntakeFront.setPower(0);
-            robot.leftRotate.setPosition(0.53); //raise intake
-            robot.rightRotate.setPosition(0.57);
+            //robot.rightIntakeFront.setPower(0); //shut off intake
+            //robot.leftIntakeFront.setPower(0);
+            robot.leftRotate.setPosition(-0.53); //raise intake
+            robot.rightRotate.setPosition(-0.47);
             drive.followTrajectory(backFromPixelRight);
             lift(1, 5);
             drive.followTrajectory(backDropRight);
-            robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
-            robot.leftIntakeRear.setPower(-.1);
+            //robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
+            //robot.leftIntakeRear.setPower(-.1);
             sleep(3000);
-            robot.leftRotate.setPosition(0.1); //tuck intake
-            robot.rightRotate.setPosition(0.9);
-            robot.rightIntakeFront.setPower(0); //shut off intake
-            robot.leftIntakeFront.setPower(0);
+            robot.leftRotate.setPosition(-0.1); //tuck intake
+            robot.rightRotate.setPosition(-0.9);
+            //robot.rightIntakeFront.setPower(0); //shut off intake
+            //robot.leftIntakeFront.setPower(0);
             drive.followTrajectory(backUpRight);
             lift(1, -5);
             drive.followTrajectory(toCornerRight);
@@ -205,27 +206,27 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
         if (x == 1) {
             telemetry.addData("Left Spike", 10);
             telemetry.update();
-            sleep(3000);
+            //sleep(3000);
             robot.leftRotate.setPosition(0.98); //lower intake
             robot.rightRotate.setPosition(0.02);
             drive.followTrajectory(spikeLeft);
-            robot.rightIntakeFront.setPower(-.1); //deposit purple pixel from the front intake
-            robot.leftIntakeFront.setPower(.1);
+           // robot.rightIntakeFront.setPower(-.1); //deposit purple pixel from the front intake
+           // robot.leftIntakeFront.setPower(.1);
             sleep(2000);
-            robot.rightIntakeFront.setPower(0); //shut off intake
-            robot.leftIntakeFront.setPower(0);
+           // robot.rightIntakeFront.setPower(0); //shut off intake
+           // robot.leftIntakeFront.setPower(0);
             robot.leftRotate.setPosition(0.53); //raise intake
-            robot.rightRotate.setPosition(0.57);
+            robot.rightRotate.setPosition(0.47);
             drive.followTrajectory(backFromPixelLeft);
             lift(.5, 5);
             drive.followTrajectory(backDropLeft);
-            robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
-            robot.leftIntakeRear.setPower(-.1);
+            //robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
+            //robot.leftIntakeRear.setPower(-.1);
             sleep(3000);
             robot.leftRotate.setPosition(0.1); //tuck intake
             robot.rightRotate.setPosition(0.9);
-            robot.rightIntakeFront.setPower(0); //shut off intake
-            robot.leftIntakeFront.setPower(0);
+            //robot.rightIntakeFront.setPower(0); //shut off intake
+            //robot.leftIntakeFront.setPower(0);
             drive.followTrajectory(backUpLeft);
             lift(1, -5);
             drive.followTrajectory(toCornerLeft);
@@ -237,27 +238,27 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
         if (x == 2) {
             telemetry.addData("Center Spike", 10);
             telemetry.update();
-            sleep(3000);
+            //sleep(3000);
             robot.leftRotate.setPosition(0.98); //lower intake
             robot.rightRotate.setPosition(0.02);
             drive.followTrajectory(spikeCenter);
-            robot.rightIntakeFront.setPower(-.1); //deposit purple pixel from the front intake
-            robot.leftIntakeFront.setPower(.1);
+            //robot.rightIntakeFront.setPower(-.1); //deposit purple pixel from the front intake
+            //robot.leftIntakeFront.setPower(.1);
             sleep(2000);
-            robot.rightIntakeFront.setPower(0); //shut off intake
-            robot.leftIntakeFront.setPower(0);
+            //robot.rightIntakeFront.setPower(0); //shut off intake
+            //robot.leftIntakeFront.setPower(0);
             robot.leftRotate.setPosition(0.53); //raise intake
-            robot.rightRotate.setPosition(0.57);
+            robot.rightRotate.setPosition(0.47);
             drive.followTrajectory(backFromPixelCenter);
             lift(.5, 5);
             drive.followTrajectory(backDropCenter);
-            robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
-            robot.leftIntakeRear.setPower(-.1);
+            //robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
+            //robot.leftIntakeRear.setPower(-.1);
             sleep(3000);
             robot.leftRotate.setPosition(0.1); //tuck intake
             robot.rightRotate.setPosition(0.9);
-            robot.rightIntakeFront.setPower(0); //shut off intake
-            robot.leftIntakeFront.setPower(0);
+            //robot.rightIntakeFront.setPower(0); //shut off intake
+            //robot.leftIntakeFront.setPower(0);
             drive.followTrajectory(backUpCenter);
             lift(1, -5);
             drive.followTrajectory(toCornerCenter);

@@ -127,25 +127,25 @@ public void runOpMode() {
     }
 
    
-   double servoLeftPower = 0;
-   double servoRightPower = 0;
-   double servoRight2Power = 0;
-   double servoLeft2Power = 0;
+   double servoLeftPosition = 0;
+   double servoRightPosition = 0;
+   //double servoRight2Power = 0;
+   //double servoLeft2Power = 0;
 
 
 
    if (gamepad2.x){
-    servoRightPower = -1;//output
-    servoLeftPower = 1;
-    servoLeft2Power = 1;
-    servoRight2Power = -1;
+  //  servoRightPower = -1;//left
+    servoLeftPosition = 0.45;
+   // servoLeft2Power = 1;
+    //servoRight2Power = -1;
     }
     
     if (gamepad2.a){
-    servoRightPower = .25;//intake
-    servoLeftPower = -.25;
-    servoLeft2Power = -1;
-    servoRight2Power = 1;
+    servoRightPosition = 0.55;//right
+   // servoLeftPower = -.25;
+   // servoLeft2Power = -1;
+   // servoRight2Power = 1;
     }
 
 
@@ -159,16 +159,16 @@ public void runOpMode() {
             intakeAngleLeft =  (iaaLeftFloor + intakeAngleAdjuster ); //.98;
         }
 
-        if (gamepad2.a){
+        if (gamepad2.left_bumper){
             intakeAngleRight = (iaaRightTuck + intakeAngleAdjuster ); //Tucked angle   0.1;
             intakeAngleLeft =  (iaaLeftTuck + intakeAngleAdjuster ); //0.9;
         }
         if (gamepad2.dpad_up){
-            intakeAngleAdjuster = intakeAngleAdjuster + .00001;
+            intakeAngleAdjuster = intakeAngleAdjuster + .001;
         }
 
         if (gamepad2.dpad_down){
-            intakeAngleAdjuster= intakeAngleAdjuster - .00001;
+            intakeAngleAdjuster= intakeAngleAdjuster - .001;
         }
 
 
@@ -217,10 +217,10 @@ public void runOpMode() {
     robot.liftleft.setPower(liftleftPower);
     robot.liftright.setPower(liftrightPower);
 //Intake
-    robot.leftIntakeFront.setPower(servoLeftPower);
-    robot.rightIntakeFront.setPower(servoRightPower);
-    robot.leftIntakeRear.setPower(servoLeft2Power);
-    robot.rightIntakeRear.setPower(servoRight2Power);
+    robot.leftGrab.setPosition(servoLeftPosition);
+    robot.rightGrab.setPosition(servoRightPosition);
+   // robot.leftIntakeRear.setPower(servoLeft2Power);
+   // robot.rightIntakeRear.setPower(servoRight2Power);
     //Intake Angle
     robot.leftRotate.setPosition(intakeAngleLeft);
     robot.rightRotate.setPosition(intakeAngleRight);
