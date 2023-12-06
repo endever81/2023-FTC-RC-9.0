@@ -127,8 +127,8 @@ public void runOpMode() {
     }
 
    
-   double servoLeftPosition = 0;
-   double servoRightPosition = 0;
+   double servoLeftPosition = 0.5;
+   double servoRightPosition = 0.5;
    //double servoRight2Power = 0;
    //double servoLeft2Power = 0;
 
@@ -136,7 +136,7 @@ public void runOpMode() {
 
    if (gamepad2.x){
   //  servoRightPower = -1;//left
-    servoLeftPosition = 0.45;
+    servoLeftPosition = 0.43;
    // servoLeft2Power = 1;
     //servoRight2Power = -1;
     }
