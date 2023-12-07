@@ -117,6 +117,11 @@ public void runOpMode() {
     front_right = (float)scaleInput(front_right);
     rear_left = (float)scaleInput(rear_left);
     rear_right = (float)scaleInput(rear_right);
+
+        //front_left = .5;
+        //front_right = -.5;
+        //rear_left = -.5;
+        //rear_right = .5;
     
     front_left /=2;
     front_right /=2;
@@ -143,10 +148,10 @@ public void runOpMode() {
    //double plane = .5;
 
 
-        double Pincher = .63;
+        double closeleft = .63;
 
         if (gamepad2.a){
-            Pincher = .73;
+            closeleft = .73;
 
     }
     
@@ -174,12 +179,12 @@ public void runOpMode() {
             plane = 1;
 
         }
-        double servoflapLeft = .8;
-        double servoflapRight = 0.2;
+        double closeright = .8;
+        //double servoflapRight = 0.2;
 
         if (gamepad1.b){
-            servoflapLeft = .9;
-            servoflapRight = .1;
+            closeright = .9;
+            //servoflapRight = .1;
         }
 
    double liftleftPower = gamepad2.left_stick_y;
@@ -235,11 +240,12 @@ public void runOpMode() {
     robot.rightRearDrive.setPower(rear_right);
     robot.liftleft.setPower(liftleftPower);
     robot.liftright.setPower(liftrightPower);
-    robot.Pincher.setPosition(Pincher);
+    robot.closeleft.setPosition(closeleft);
     robot.Rotate.setPosition(RotateAngle);
     robot.plane.setPower(plane);
-    robot.servoflapleft.setPosition(servoflapLeft);
-    robot.servoflapright.setPosition(servoflapRight);
+
+    robot.closeright.setPosition(closeright);
+    //robot.servoflapright.setPosition(servoflapRight);
     robot.Artic.setPosition(articAngle);
 
     }

@@ -28,10 +28,10 @@ public class HardwareRobot {
     public Servo servorelease = null;
     public CRServo rightPickup = null;
     public CRServo leftPickup = null;
-    public Servo servoflapleft = null;
-    public Servo servoflapright = null;
+    public Servo closeright = null;
+   // public Servo servoflapright = null;
     public RevBlinkinLedDriver blinkinLedDriver = null;
-public Servo Pincher = null;
+public Servo closeleft = null;
 public Servo Artic = null;
 public Servo Rotate = null;
 
@@ -57,12 +57,12 @@ public Servo Rotate = null;
        //leftintake = hwMap.get(CRServo.class, "left_intake");
        //rightintake = hwMap.get(CRServo.class, "right_intake");
        // servorelease = hwMap.get(Servo.class, "servo_release");
-        servoflapleft = hwMap.get(Servo.class, "servo_flap_left");
-        servoflapright = hwMap.get(Servo.class, "servo_flap_right");
+        closeright = hwMap.get(Servo.class, "closeright");
+        //servoflapright = hwMap.get(Servo.class, "servo_flap_right");
 
         //leftPickup = hwMap.get(CRServo.class, "servo_left_pickup");
         //rightPickup = hwMap.get(CRServo.class, "servo_right_pickup");
-Pincher = hwMap.get(Servo.class, "Pincher");
+closeleft = hwMap.get(Servo.class, "closeright");
 Artic = hwMap.get(Servo.class, "Artic");
 Rotate = hwMap.get(Servo.class, "Rotate");
 
@@ -91,11 +91,11 @@ Rotate = hwMap.get(Servo.class, "Rotate");
         //leftintake.setPower(0);
         //rightintake.setPower(0);
         //servorelease.setPosition(.5);
-        Pincher.setPosition(.65);
+        closeleft.setPosition(.65);
         Artic.setPosition(.42);
         Rotate.setPosition(.28);
-        servoflapleft.setPosition(.8);
-        servoflapright.setPosition(.2);
+        closeright.setPosition(.8);
+        //servoflapright.setPosition(.2);
 
 
     }

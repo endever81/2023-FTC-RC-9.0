@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.util.Range;
 
@@ -21,9 +22,9 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
-@Disabled
+@Autonomous(name = "Park", group = "Automonous")
 
-//@Autonomous(name = "AutoRed1", group = "Automonous")
+
 
 public class StandardAutonBase extends LinearOpMode{
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
@@ -117,10 +118,6 @@ public class StandardAutonBase extends LinearOpMode{
 
         waitForStart();
 
-
-//release pressure on the wheel
-//servoWobble.setPosition(.7);
-
         int x = 0;
         if (opModeIsActive()) {
             //  while (opModeIsActive()) {
@@ -130,66 +127,52 @@ public class StandardAutonBase extends LinearOpMode{
                 if (updatedRecognitions != null) {
                     telemetry.addData("# Object Detected", updatedRecognitions.size());
                     // step through the list of recognitions and display boundary info.
-                    int i = 0;
-                    x = 0;
+                    x = 0; //TSE on Right Spike Tape
+
                     for (Recognition recognition : updatedRecognitions) {
-                        telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
+                        double xPos = recognition.getLeft();
 
-
-                        if (recognition.getLabel() == "1 Bolt") {
-                            x = 1;
+                        if (xPos <= 25) {
+                            x = 1; // TSE on Left Spike Tape
                         }
-                        if (recognition.getLabel() == "2 Bulb") {
-                            x = 2;
-                        }
-                        if (recognition.getLabel() == "3 Panel") {
-                            x = 3;
+                        if (xPos > 25) {
+                            x = 2; // TSE on Center Spike Tape
                         }
 
                     }
-
-
                 }
                 telemetry.update();
             }
+        }
+        //----------------------------------------Trajectory Execution---------------------------
+        // this section executes RR paths that were built above.
+        // here we can inject servo and lift commands.
 
+        // Right Spike Tape Trajectory Path
+        if (x == 0) {
+
+            gyroStrafe(0, 0, 0);
+            gyroDrive(.5, 27, 0);
+            gyroTurn(.5, -90);
+            gyroDrive(.5, 38, -90);
         }
 
-
-        if (x == 1) {
-            telemetry.addData(">", "Left");
-            telemetry.update();
-            //duck is on left and place block on bottom
-
-            //robot.grabber.setPosition(0);
-
-            sleep(750);
-
-
-            gyroDrive(.3, 13, 0);
-            gyroTurn(.3, 199.5);
-            sleep(1000);
-
+        //Left Spike Tape
+        if (x==1) {
+            gyroStrafe(0, 0, 0);
+            gyroDrive(.5, 27, 0);
+            gyroTurn(.5, -90);
+            gyroDrive(.5, 56, -90);
         }
 
-
-        if (x == 2) {
-            telemetry.addData(">", "Center");
-            telemetry.update();
-            //duck is on middle and place block on middle
-            //robot.grabber.setPosition(0);
+        //Center Spike Tape
+        if (x==2) {
+            gyroStrafe(0, 0, 0);
+            gyroDrive(.5, 27, 0);
+            gyroTurn(.5, -90);
+            gyroDrive(.5, 29, -90);
 
         }
-
-
-        if (x == 3) {
-            telemetry.addData(">", "Right");
-            telemetry.update();
-            //duck is on right and place block on top
-
-            //robot.grabber.setPosition(0);
-        }
-
 
     }
 
