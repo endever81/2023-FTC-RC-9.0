@@ -180,7 +180,9 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
             drive.followTrajectory(spikeRight);
             //robot.rightIntakeFront.setPower(-.1); //deposit purple pixel from the front intake
             //robot.leftIntakeFront.setPower(.1);
+            robot.rightGrab.setPosition(0.55);//release pixel
             sleep(2000);
+            robot.rightGrab.setPosition(0.5);//relax grab right
             //robot.rightIntakeFront.setPower(0); //shut off intake
             //robot.leftIntakeFront.setPower(0);
             robot.leftRotate.setPosition(-0.53); //raise intake
@@ -190,7 +192,9 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
             drive.followTrajectory(backDropRight);
             //robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
             //robot.leftIntakeRear.setPower(-.1);
+            robot.leftGrab.setPosition(0.45);//release pixel
             sleep(3000);
+            robot.leftGrab.setPosition(0.5);//relax grab left
             robot.leftRotate.setPosition(-0.1); //tuck intake
             robot.rightRotate.setPosition(-0.9);
             //robot.rightIntakeFront.setPower(0); //shut off intake
@@ -212,7 +216,9 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
             drive.followTrajectory(spikeLeft);
            // robot.rightIntakeFront.setPower(-.1); //deposit purple pixel from the front intake
            // robot.leftIntakeFront.setPower(.1);
+            robot.rightGrab.setPosition(0.55);//release pixel
             sleep(2000);
+            robot.rightGrab.setPosition(0.5);//relax grab right
            // robot.rightIntakeFront.setPower(0); //shut off intake
            // robot.leftIntakeFront.setPower(0);
             robot.leftRotate.setPosition(0.53); //raise intake
@@ -222,7 +228,9 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
             drive.followTrajectory(backDropLeft);
             //robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
             //robot.leftIntakeRear.setPower(-.1);
+            robot.rightGrab.setPosition(0.45);//release pixel
             sleep(3000);
+            robot.leftGrab.setPosition(0.5);//relax grab left
             robot.leftRotate.setPosition(0.1); //tuck intake
             robot.rightRotate.setPosition(0.9);
             //robot.rightIntakeFront.setPower(0); //shut off intake
@@ -244,7 +252,9 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
             drive.followTrajectory(spikeCenter);
             //robot.rightIntakeFront.setPower(-.1); //deposit purple pixel from the front intake
             //robot.leftIntakeFront.setPower(.1);
+            robot.rightGrab.setPosition(0.55);//release pixel
             sleep(2000);
+            robot.rightGrab.setPosition(0.5);//relax grab right
             //robot.rightIntakeFront.setPower(0); //shut off intake
             //robot.leftIntakeFront.setPower(0);
             robot.leftRotate.setPosition(0.53); //raise intake
@@ -254,7 +264,9 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
             drive.followTrajectory(backDropCenter);
             //robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
             //robot.leftIntakeRear.setPower(-.1);
+            robot.leftGrab.setPosition(0.45);//release pixel
             sleep(3000);
+            robot.leftGrab.setPosition(0.5);//relax grab left
             robot.leftRotate.setPosition(0.1); //tuck intake
             robot.rightRotate.setPosition(0.9);
             //robot.rightIntakeFront.setPower(0); //shut off intake
