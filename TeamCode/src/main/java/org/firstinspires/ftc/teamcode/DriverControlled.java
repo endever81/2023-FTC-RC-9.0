@@ -74,8 +74,8 @@ public void runOpMode() {
     double intakeAngleLeft = 0;
     double droneClampPosition = 0.25;
     double intakeAngleAdjuster = 0.0;
-    double iaaRightFloor = .88;//.12
-    double iaaLeftFloor = .12;//.88
+    double iaaRightFloor = .89;//.12
+    double iaaLeftFloor = .11;//.88
     double iaaRightBackdrop = .43;//57
     double iaaLeftBackdrop = .57;//43
     double iaaRightTuck = 0;//1
