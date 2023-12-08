@@ -155,7 +155,7 @@ public void runOpMode() {
         if (gamepad1.dpad_down){dropperPosition = dropperPosition - 0.00001;}
         telemetry.addData("Dropper Value", dropperPosition);
         telemetry.update();
-        dropperPosition = .54;
+        dropperPosition = .6;
         if (gamepad2.b){
             dropperPosition = 0;
         }

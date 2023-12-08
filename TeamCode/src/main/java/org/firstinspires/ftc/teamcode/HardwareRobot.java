@@ -77,7 +77,7 @@ public class HardwareRobot {
         rightRearDrive.setPower(0);
 
         servorelease.setPosition(.5);
-        servoDropper.setPosition(.5);
+        servoDropper.setPosition(.6);
     }
 
 }
