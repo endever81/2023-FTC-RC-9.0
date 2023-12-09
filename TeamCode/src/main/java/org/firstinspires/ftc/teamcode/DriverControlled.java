@@ -70,16 +70,16 @@ public void runOpMode() {
     waitForStart();
 
 
-    double intakeAngleRight = 1;
-    double intakeAngleLeft = 0;
+    double intakeAngleRight = 0;
+    double intakeAngleLeft = 0.8;
     double droneClampPosition = 0.25;
     double intakeAngleAdjuster = 0.0;
-    double iaaRightFloor = .89;//.12
-    double iaaLeftFloor = .11;//.88
+    double iaaRightFloor = .87;//.12
+    double iaaLeftFloor = .13;//.88
     double iaaRightBackdrop = .43;//57
     double iaaLeftBackdrop = .57;//43
     double iaaRightTuck = 0;//1
-    double iaaLeftTuck = 1;//0
+    double iaaLeftTuck = 0.8;//0
 
     while (opModeIsActive()){
 
@@ -160,8 +160,8 @@ public void runOpMode() {
         }
 
         if (gamepad2.left_bumper){
-            intakeAngleRight = (iaaRightTuck + intakeAngleAdjuster ); //Tucked angle   0.1;
-            intakeAngleLeft =  (iaaLeftTuck + intakeAngleAdjuster ); //0.9;
+            intakeAngleRight = (iaaRightTuck + intakeAngleAdjuster ); //Tucked angle   0;
+            intakeAngleLeft =  (iaaLeftTuck + intakeAngleAdjuster ); //0.8;
         }
         if (gamepad2.dpad_up){
             intakeAngleAdjuster = intakeAngleAdjuster + .001;

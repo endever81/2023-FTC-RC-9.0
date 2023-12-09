@@ -28,9 +28,9 @@ public class HardwareRobot {
 
     //new code:
     public Servo leftGrab = null;
-    //public CRServo leftIntakeRear = null;
+    public CRServo leftIntakeRear = null;
     public Servo rightGrab = null;
-    //public CRServo rightIntakeRear = null;
+    public CRServo rightIntakeRear = null;
     public Servo leftRotate = null;
     public Servo rightRotate = null;
     public Servo droneClamp = null;
@@ -57,10 +57,10 @@ public class HardwareRobot {
         //servorelease = hwMap.get(Servo.class, "servo_release");
 
         leftGrab = hwMap.get(Servo.class, "servo_left_grab");
-        //leftIntakeRear = hwMap.get(CRServo.class, "servo_left_rear");
+        leftIntakeRear = hwMap.get(CRServo.class, "servo_left_rear");
         leftRotate = hwMap.get(Servo.class, "servo_left_rotate");
         rightGrab = hwMap.get(Servo.class, "servo_right_grab");
-        //rightIntakeRear = hwMap.get(CRServo.class, "servo_right_rear");
+        rightIntakeRear = hwMap.get(CRServo.class, "servo_right_rear");
         rightRotate = hwMap.get(Servo.class, "servo_right_rotate");
 
         dronelauncher = hwMap.get(DcMotor.class, "drone_launcher");
@@ -92,8 +92,8 @@ public class HardwareRobot {
         leftGrab.setPosition(.5);
         //servorelease.setPosition(.5);
         droneClamp.setPosition(0.25);
-        leftRotate.setPosition(0.1);
-        rightRotate.setPosition(.9);
+        leftRotate.setPosition(0.8);
+        rightRotate.setPosition(0);
 
 
     }
