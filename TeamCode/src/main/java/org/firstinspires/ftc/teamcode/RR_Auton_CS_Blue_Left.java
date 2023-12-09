@@ -270,7 +270,6 @@ public class RR_Auton_CS_Blue_Left extends LinearOpMode {
             drive.followTrajectory(backUpCenter2);
             lift(1, -7);
             robot.servoDropper.setPosition(.5); // close
-
             drive.followTrajectory(toCornerRight);
 
 
