@@ -193,7 +193,7 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
             //robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
             //robot.leftIntakeRear.setPower(-.1);
             robot.leftGrab.setPosition(0.40);//release pixel
-            sleep(3000);
+            sleep(2000);
             robot.leftRotate.setPosition(0.8); //tuck intake
             robot.rightRotate.setPosition(0);
             //robot.rightIntakeFront.setPower(0); //shut off intake
@@ -230,7 +230,7 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
             //robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
            // robot.leftIntakeRear.setPower(-.1);
             robot.leftGrab.setPosition(0.40);//release pixel
-            sleep(3000);
+            sleep(2000);
             robot.leftRotate.setPosition(0.8); //tuck intake
             robot.rightRotate.setPosition(0);
             //robot.rightIntakeFront.setPower(0); //shut off intake
@@ -267,7 +267,7 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
             //robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
             //robot.leftIntakeRear.setPower(-.1);
             robot.leftGrab.setPosition(0.40);//release pixel
-            sleep(3000);
+            sleep(2000);
             robot.leftRotate.setPosition(0.8); //tuck intake
             robot.rightRotate.setPosition(0);
             //robot.rightIntakeFront.setPower(0); //shut off intake

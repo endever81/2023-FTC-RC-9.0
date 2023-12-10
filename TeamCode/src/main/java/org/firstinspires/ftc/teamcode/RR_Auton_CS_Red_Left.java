@@ -56,13 +56,13 @@ public class RR_Auton_CS_Red_Left extends LinearOpMode {
 
         //Approach Spike Line
         Trajectory spikeRight = drive.trajectoryBuilder(startPose)
-                .lineToLinearHeading(new Pose2d (-0.5, -44, Math.toRadians(50)))
+                .lineToLinearHeading(new Pose2d (3, -42, Math.toRadians(50)))
                 .build();
         Trajectory spikeCenter = drive.trajectoryBuilder(startPose)
-                .lineToLinearHeading(new Pose2d (2.5, -38, Math.toRadians(90)))
+                .lineToLinearHeading(new Pose2d (5, -35, Math.toRadians(90)))
                 .build();
         Trajectory spikeLeft = drive.trajectoryBuilder(startPose)
-                .lineToLinearHeading(new Pose2d (-0.5, -42, Math.toRadians(145)))
+                .lineToLinearHeading(new Pose2d (-2, -35, Math.toRadians(145)))
                 .build();
 
         //back away from dropped pixel and spike lines
@@ -73,7 +73,7 @@ public class RR_Auton_CS_Red_Left extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d (-5, -50, Math.toRadians(95)))
                 .build();
         Trajectory backFromPixelLeft = drive.trajectoryBuilder(spikeLeft.end())
-                .lineToLinearHeading(new Pose2d (1, -55, Math.toRadians(135)))
+                .lineToLinearHeading(new Pose2d (-5, -55, Math.toRadians(135)))
                 .build();
 
         //Swing Out to Center
@@ -196,33 +196,26 @@ public class RR_Auton_CS_Red_Left extends LinearOpMode {
             telemetry.addData("Right Spike", 10);
             telemetry.update();
             sleep(2000);
-            robot.leftRotate.setPosition(0.02); //0.98//lower intake
-            robot.rightRotate.setPosition(0.98);//0.02
+            robot.leftRotate.setPosition(0.13); //lower intake
+            robot.rightRotate.setPosition(0.87);
             drive.followTrajectory(spikeRight);
-            robot.rightGrab.setPosition(0.55); //deposit pixel from right grab
-//            robot.rightIntakeFront.setPower(-.1); //deposit purple pixel from the front intake
-  //          robot.leftIntakeFront.setPower(.1);
+            robot.rightGrab.setPosition(0.6); //deposit pixel from right grab
             sleep(2000);
-    //        robot.rightIntakeFront.setPower(0); //shut off intake
-      //      robot.leftIntakeFront.setPower(0);
-            robot.rightGrab.setPosition(0.5);//relax intake right
-            robot.leftRotate.setPosition(0.47); //0.53//raise intake
-            robot.rightRotate.setPosition(0.53);//0.47
+            robot.leftRotate.setPosition(0.57); //raise intake
+            robot.rightRotate.setPosition(0.43);
             drive.followTrajectory(backFromPixelRight);
+            robot.rightGrab.setPosition(0.5);//relax intake right
             drive.followTrajectory(swingOutToMiddleRight);
             drive.followTrajectory(runUpMiddleRight);
             lift(1, 5);
             drive.followTrajectory(backDropRight);
-            robot.leftGrab.setPosition(0.45);//release pixel from left grab
-        //    robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
-          //  robot.leftIntakeRear.setPower(-.1);
-            sleep(3000);
-            robot.leftGrab.setPosition(0.5);//relax intake left
-            robot.leftRotate.setPosition(0.9); //0.1//tuck intake
-            robot.rightRotate.setPosition(0.1);//0.9
-            //robot.rightIntakeFront.setPower(0); //shut off intake
-            //robot.leftIntakeFront.setPower(0);
+            robot.leftGrab.setPosition(0.4);//release pixel from left grab
+            sleep(2000);
+            robot.leftRotate.setPosition(0.8); //tuck intake
+            robot.rightRotate.setPosition(0);
             drive.followTrajectory(backUpRight);
+            robot.leftGrab.setPosition(0.5);//relax intake left
+
             lift(1, -5);
             drive.followTrajectory(toCornerRight);
 
@@ -234,33 +227,25 @@ public class RR_Auton_CS_Red_Left extends LinearOpMode {
             telemetry.addData("Left Spike", 10);
             telemetry.update();
             sleep(3000);
-            robot.leftRotate.setPosition(0.02); //lower intake
-            robot.rightRotate.setPosition(0.98);
+            robot.leftRotate.setPosition(0.13); //lower intake
+            robot.rightRotate.setPosition(0.87);
             drive.followTrajectory(spikeLeft);
-            robot.rightGrab.setPosition(0.55);//release pixel
-//            robot.rightIntakeFront.setPower(-.1); //deposit purple pixel from the front intake
-  //          robot.leftIntakeFront.setPower(.1);
+            robot.rightGrab.setPosition(0.6);//release pixel
             sleep(2000);
-    //        robot.rightIntakeFront.setPower(0); //shut off intake
-      //      robot.leftIntakeFront.setPower(0);
-            robot.rightGrab.setPosition(0.5);//relax grab right
-            robot.leftRotate.setPosition(0.47); //raise intake
-            robot.rightRotate.setPosition(0.53);
+            robot.leftRotate.setPosition(0.57); //raise intake
+            robot.rightRotate.setPosition(0.43);
             drive.followTrajectory(backFromPixelLeft);
+            robot.rightGrab.setPosition(0.5);//relax grab right
             drive.followTrajectory(swingOutToMiddleLeft);
             drive.followTrajectory(runUpMiddleLeft);
             lift(.5, 5);
             drive.followTrajectory(backDropLeft);
-        //    robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
-          //  robot.leftIntakeRear.setPower(-.1);
-            robot.leftGrab.setPosition(0.45);//release pixel
-            sleep(3000);
-            robot.leftGrab.setPosition(0.5);//relax grab left
-            robot.leftRotate.setPosition(0.9); //tuck intake
-            robot.rightRotate.setPosition(0.1);
-            //robot.rightIntakeFront.setPower(0); //shut off intake
-            //robot.leftIntakeFront.setPower(0);
+            robot.leftGrab.setPosition(0.4);//release pixel
+            sleep(2000);
+            robot.leftRotate.setPosition(0.8); //tuck intake
+            robot.rightRotate.setPosition(0);
             drive.followTrajectory(backUpLeft);
+            robot.leftGrab.setPosition(0.5);//relax grab left
             lift(1, -5);
             drive.followTrajectory(toCornerLeft);
 
@@ -272,33 +257,26 @@ public class RR_Auton_CS_Red_Left extends LinearOpMode {
             telemetry.addData("Center Spike", 10);
             telemetry.update();
             sleep(3000);
-            robot.leftRotate.setPosition(0.02); //lower intake
-            robot.rightRotate.setPosition(0.98);
+            robot.leftRotate.setPosition(0.13); //lower intake
+            robot.rightRotate.setPosition(0.87);
             drive.followTrajectory(spikeCenter);
-//            robot.rightIntakeFront.setPower(-.1); //deposit purple pixel from the front intake
-  //          robot.leftIntakeFront.setPower(.1);
-            robot.rightGrab.setPosition(0.55);//release pixel
+            robot.rightGrab.setPosition(0.6);//release pixel
             sleep(2000);
-    //        robot.rightIntakeFront.setPower(0); //shut off intake
-      //      robot.leftIntakeFront.setPower(0);
-            robot.rightGrab.setPosition(0.5); //relax grab right
-            robot.leftRotate.setPosition(0.47); //raise intake
-            robot.rightRotate.setPosition(0.53);
+            robot.leftRotate.setPosition(0.57); //raise intake
+            robot.rightRotate.setPosition(0.43);
             drive.followTrajectory(backFromPixelCenter);
+            robot.rightGrab.setPosition(0.5); //relax grab right
             drive.followTrajectory(swingOutToMiddleCenter);
             drive.followTrajectory(runUpMiddleCenter);
             lift(.5, 5);
             drive.followTrajectory(backDropCenter);
-        //    robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
-          //  robot.leftIntakeRear.setPower(-.1);
-            robot.leftGrab.setPosition(0.45);//release pixel
-            sleep(3000);
-            robot.leftGrab.setPosition(0.5);//relax grab left
-            robot.leftRotate.setPosition(0.9); //tuck intake
-            robot.rightRotate.setPosition(0.1);
-            //robot.rightIntakeFront.setPower(0); //shut off intake
-            //robot.leftIntakeFront.setPower(0);
+            robot.leftGrab.setPosition(0.4);//release pixel
+            sleep(2000);
+            robot.leftRotate.setPosition(0.8); //tuck intake
+            robot.rightRotate.setPosition(0);
             drive.followTrajectory(backUpCenter);
+            robot.leftGrab.setPosition(0.5);//relax grab left
+
             lift(1, -5);
             drive.followTrajectory(toCornerCenter);
 
