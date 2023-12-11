@@ -103,9 +103,9 @@ public void runOpMode() {
     Turn = Turn*.9;
 
     double front_left = Speed + Turn - Strafe;
-    double front_right = Speed - Turn + Strafe;
+    double front_right = Speed - Turn - Strafe;
     double rear_left = Speed + Turn + Strafe;
-    double rear_right = Speed - Turn - Strafe;
+    double rear_right = Speed - Turn + Strafe;
     
     front_left = Range.clip(front_left, -1, 1);
     front_right = Range.clip(front_right, -1, 1);
@@ -148,28 +148,31 @@ public void runOpMode() {
    //double plane = .5;
 
 
-        double closeleft = .63;
+        double closeleft = .25;
+
+        double closeright = .65;
 
         if (gamepad2.a){
-            closeleft = .73;
-
+            closeleft = .5;
+            closeright = .4;
     }
-    
+
+
     if (gamepad2.x){
         //plane = .25;
 
     }
 
-        double RotateAngle = .28;
+        double RotateAngle = .12;
 
         if (gamepad2.b){
-            RotateAngle = .9;
+            RotateAngle = .8;
         }
 
-        double articAngle = .39;
+        double articAngle = .1;
 
         if (gamepad2.y){
-            articAngle = 0;
+            articAngle = .4;
         }
 
 
@@ -179,11 +182,11 @@ public void runOpMode() {
             plane = 1;
 
         }
-        double closeright = .8;
+        //double closeright = .8;
         //double servoflapRight = 0.2;
 
         if (gamepad1.b){
-            closeright = .9;
+           // closeright = .9;
             //servoflapRight = .1;
         }
 

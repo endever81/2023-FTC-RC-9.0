@@ -62,7 +62,7 @@ public Servo Rotate = null;
 
         //leftPickup = hwMap.get(CRServo.class, "servo_left_pickup");
         //rightPickup = hwMap.get(CRServo.class, "servo_right_pickup");
-closeleft = hwMap.get(Servo.class, "closeright");
+         closeleft = hwMap.get(Servo.class, "closeleft");
 Artic = hwMap.get(Servo.class, "Artic");
 Rotate = hwMap.get(Servo.class, "Rotate");
 
@@ -91,10 +91,10 @@ Rotate = hwMap.get(Servo.class, "Rotate");
         //leftintake.setPower(0);
         //rightintake.setPower(0);
         //servorelease.setPosition(.5);
-        closeleft.setPosition(.65);
-        Artic.setPosition(.42);
-        Rotate.setPosition(.28);
-        closeright.setPosition(.8);
+        Artic.setPosition(.3);
+        Rotate.setPosition(.23); //.23
+        closeright.setPosition(.65);
+        closeleft.setPosition(.25);
         //servoflapright.setPosition(.2);
 
 

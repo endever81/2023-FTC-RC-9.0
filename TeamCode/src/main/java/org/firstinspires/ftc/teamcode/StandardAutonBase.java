@@ -22,18 +22,16 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
-@Autonomous(name = "Park", group = "Automonous")
+@Autonomous(name = "Purple Pixel", group = "Automonous")
 
 
 
 public class StandardAutonBase extends LinearOpMode{
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
-    private static final String TFOD_MODEL_ASSET = "PowerPlay.tflite";
+    private static final String TFOD_MODEL_ASSET = "MyModel.tflite";
     private static final String[] LABELS = {
-            "1 Bolt",
-            "2 Bulb",
-            "3 Panel"
+            "Monkey"
     };
 
     private TfodProcessor tfod;
@@ -150,27 +148,47 @@ public class StandardAutonBase extends LinearOpMode{
 
         // Right Spike Tape Trajectory Path
         if (x == 0) {
-
-            gyroStrafe(0, 0, 0);
-            gyroDrive(.5, 27, 0);
+            gyroDrive(.5, 29, 0);
             gyroTurn(.5, -90);
-            gyroDrive(.5, 38, -90);
-        }
-
-        //Left Spike Tape
-        if (x==1) {
-            gyroStrafe(0, 0, 0);
-            gyroDrive(.5, 27, 0);
-            gyroTurn(.5, -90);
-            gyroDrive(.5, 56, -90);
+            gyroDrive(.5, 5, -90);
+            robot.Artic.setPosition(.5); //lower arm
+            sleep(500);
+            robot.closeright.setPosition(.4);
+            sleep (1000);
+            robot.Rotate.setPosition(.9); //raise arm
+            gyroDrive(.2,-5,-90);
+            //gyroDrive(.5, -20, -90);
+            //gyroTurn(.5,0);
+            //gyroDrive(.5,20,0);
+            //gyroTurn(.5,-90);
+            //gyroDrive(.5,-20,-90);
         }
 
         //Center Spike Tape
+        if (x==1) {
+            gyroStrafe(.3,-8,0);
+            gyroDrive(.5, 21, 0);
+            robot.Artic.setPosition(.5); //lower arm
+            sleep(500);
+            robot.closeright.setPosition(.4);
+            sleep (1000);
+            robot.Rotate.setPosition(.9); //raise arm
+            gyroDrive(.5, -4, 0);
+
+        }
+
+        //Left Spike Tape
         if (x==2) {
-            gyroStrafe(0, 0, 0);
-            gyroDrive(.5, 27, 0);
-            gyroTurn(.5, -90);
-            gyroDrive(.5, 29, -90);
+            gyroDrive(.5, 24, 0);
+            gyroTurn(.5, 90);
+            gyroDrive(.5, -4, 90);
+            robot.Artic.setPosition(.5); //lower arm
+            sleep(500);
+            robot.closeright.setPosition(.4);
+            sleep (1000);
+            robot.Rotate.setPosition(.9); //raise arm
+            gyroDrive(.5, -4, 90);
+
 
         }
 
@@ -583,12 +601,12 @@ public class StandardAutonBase extends LinearOpMode{
                 // choose one of the following:
                 //   Use setModelAssetName() if the custom TF Model is built in as an asset (AS only).
                 //   Use setModelFileName() if you have downloaded a custom team model to the Robot Controller.
-                //.setModelAssetName(TFOD_MODEL_ASSET)
+                .setModelAssetName(TFOD_MODEL_ASSET)
                 //.setModelFileName(TFOD_MODEL_FILE)
 
                 // The following default settings are available to un-comment and edit as needed to
                 // set parameters for custom models.
-                //.setModelLabels(LABELS)
+                .setModelLabels(LABELS)
                 //.setIsModelTensorFlow2(true)
                 //.setIsModelQuantized(true)
                 //.setModelInputSize(300)
