@@ -148,6 +148,12 @@ public void runOpMode() {
    // servoRight2Power = 1;
     }
 
+    //double WheelrightPower = 0;
+    //double WheelleftPower = 0;
+    //if (gamepad2.dpad_left){
+        //WheelrightPower = 1;}
+    //if (gamepad2.dpad_right){
+        //WheelleftPower = -1;}
 
 
         if (gamepad2.y){
@@ -228,6 +234,8 @@ public void runOpMode() {
     robot.dronelauncher.setPower(dronePower);
     robot.droneClamp.setPosition(droneClampPosition);
 
+    //robot.GrabWheelRight.setPower(WheelrightPower);
+    //robot.GrabWheelLeft.setPower(WheelleftPower);
     }
 
 }
