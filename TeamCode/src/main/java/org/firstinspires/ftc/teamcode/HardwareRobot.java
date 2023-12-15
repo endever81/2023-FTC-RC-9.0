@@ -34,8 +34,8 @@ public class HardwareRobot {
     public Servo leftRotate = null;
     public Servo rightRotate = null;
     public Servo droneClamp = null;
-    //public CRServo GrabWheelRight = null;
-    //public CRServo GrabWheelLeft = null;
+    public CRServo GrabWheelRight = null;
+    public CRServo GrabWheelLeft = null;
 
     //public Servo grabber = null;
 
@@ -59,10 +59,10 @@ public class HardwareRobot {
         //servorelease = hwMap.get(Servo.class, "servo_release");
 
         leftGrab = hwMap.get(Servo.class, "servo_left_grab");
-        leftIntakeRear = hwMap.get(CRServo.class, "servo_left_rear");
+        //leftIntakeRear = hwMap.get(CRServo.class, "servo_left_rear");
         leftRotate = hwMap.get(Servo.class, "servo_left_rotate");
         rightGrab = hwMap.get(Servo.class, "servo_right_grab");
-        rightIntakeRear = hwMap.get(CRServo.class, "servo_right_rear");
+       // rightIntakeRear = hwMap.get(CRServo.class, "servo_right_rear");
         rightRotate = hwMap.get(Servo.class, "servo_right_rotate");
 
         dronelauncher = hwMap.get(DcMotor.class, "drone_launcher");
@@ -71,8 +71,8 @@ public class HardwareRobot {
         blinkinLedDriver = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
         blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
 
-        //GrabWheelRight = hwMap.get(CRServo.class, "Wheel_Right");
-        //GrabWheelLeft = hwMap.get(CRServo.class, "Wheel_Left");
+        GrabWheelRight = hwMap.get(CRServo.class, "Wheel_Right");
+        GrabWheelLeft = hwMap.get(CRServo.class, "Wheel_Left");
 
         leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
@@ -86,7 +86,7 @@ public class HardwareRobot {
         liftleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftright.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        dronelauncher.setDirection(DcMotor.Direction.REVERSE);
+        dronelauncher.setDirection(DcMotor.Direction.FORWARD);
 
         leftFrontDrive.setPower(0);
         rightFrontDrive.setPower(0);

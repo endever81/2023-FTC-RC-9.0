@@ -62,7 +62,7 @@ public class RR_Auton_CS_Blue_Right extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d (-1, -35, Math.toRadians(90)))
                 .build();
         Trajectory spikeLeft = drive.trajectoryBuilder(startPose)
-                .lineToLinearHeading(new Pose2d (-8, -35, Math.toRadians(145)))
+                .lineToLinearHeading(new Pose2d (-4, -34, Math.toRadians(145)))
                 .build();
 
         //back away from dropped pixel and spike lines
@@ -70,10 +70,10 @@ public class RR_Auton_CS_Blue_Right extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d (-4, -46, Math.toRadians(50)))
                 .build();
         Trajectory backFromPixelCenter = drive.trajectoryBuilder(spikeCenter.end())
-                .lineToLinearHeading(new Pose2d (4, -38, Math.toRadians(95)))
+                .lineToLinearHeading(new Pose2d (8, -38, Math.toRadians(95)))
                 .build();
         Trajectory backFromPixelLeft = drive.trajectoryBuilder(spikeLeft.end())
-                .lineToLinearHeading(new Pose2d (8, -42, Math.toRadians(135)))
+                .lineToLinearHeading(new Pose2d (9, -41, Math.toRadians(135)))
                 .build();
 
         //Swing Out to Center
@@ -100,13 +100,13 @@ public class RR_Auton_CS_Blue_Right extends LinearOpMode {
 
         //Approach Backdrop
         Trajectory backDropRight = drive.trajectoryBuilder(runUpMiddleRight.end())
-                .lineToLinearHeading(new Pose2d (-88, -34, Math.toRadians(180)))
+                .lineToLinearHeading(new Pose2d (-88, -30, Math.toRadians(180)))
                 .build();
         Trajectory backDropCenter = drive.trajectoryBuilder(runUpMiddleCenter.end())
-                .lineToLinearHeading(new Pose2d (-86.5, -41.5, Math.toRadians(180)))
+                .lineToLinearHeading(new Pose2d (-86.5, -37.5, Math.toRadians(180)))
                 .build();
         Trajectory backDropLeft = drive.trajectoryBuilder(runUpMiddleLeft.end())
-                .lineToLinearHeading(new Pose2d (-86.5, -48.5, Math.toRadians(180)))
+                .lineToLinearHeading(new Pose2d (-86.5, -44.5, Math.toRadians(180)))
                 .build();
 
         //Back from Backdrop

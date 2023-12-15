@@ -56,18 +56,18 @@ public class RR_Auton_CS_Blue_Left extends LinearOpMode {
 
         //Approach Spike Line
         Trajectory spikeRight = drive.trajectoryBuilder(startPose)
-                .lineToLinearHeading(new Pose2d (-37, -42, Math.toRadians(50)))
+                .lineToLinearHeading(new Pose2d (-34, -41, Math.toRadians(50)))
                 .build();
         Trajectory spikeCenter = drive.trajectoryBuilder(startPose)
-                .lineToLinearHeading(new Pose2d (-39, -35, Math.toRadians(90)))
+                .lineToLinearHeading(new Pose2d (-39, -34, Math.toRadians(90)))
                 .build();
         Trajectory spikeLeft = drive.trajectoryBuilder(startPose)
-                .lineToLinearHeading(new Pose2d (-32, -35, Math.toRadians(145)))
+                .lineToLinearHeading(new Pose2d (-39, -41, Math.toRadians(145)))
                 .build();
 
         //back away from dropped pixel and spike lines
         Trajectory backFromPixelRight = drive.trajectoryBuilder(spikeRight.end())
-                .lineToLinearHeading(new Pose2d (-36, -55, Math.toRadians(50)))
+                .lineToLinearHeading(new Pose2d (-38, -55, Math.toRadians(50)))
                 .build();
         Trajectory backFromPixelCenter = drive.trajectoryBuilder(spikeCenter.end())
                 .lineToLinearHeading(new Pose2d (-36, -55, Math.toRadians(95)))
@@ -78,10 +78,10 @@ public class RR_Auton_CS_Blue_Left extends LinearOpMode {
 
         //Approach Backdrop
         Trajectory backDropRight = drive.trajectoryBuilder(backFromPixelRight.end())
-                .lineToLinearHeading(new Pose2d (-74, -26, Math.toRadians(180)))
+                .lineToLinearHeading(new Pose2d (-73, -26, Math.toRadians(180)))
                 .build();
         Trajectory backDropCenter = drive.trajectoryBuilder(backFromPixelCenter.end())
-                .lineToLinearHeading(new Pose2d (-74, -33.5, Math.toRadians(180)))
+                .lineToLinearHeading(new Pose2d (-73, -33.5, Math.toRadians(180)))
                 .build();
         Trajectory backDropLeft = drive.trajectoryBuilder(backFromPixelLeft.end())
                 .lineToLinearHeading(new Pose2d (-74, -38.5, Math.toRadians(180)))
@@ -100,13 +100,13 @@ public class RR_Auton_CS_Blue_Left extends LinearOpMode {
 
         //Move to corner and park
         Trajectory toCornerRight = drive.trajectoryBuilder(backUpRight.end())
-                .lineToLinearHeading(new Pose2d (-80, -58, Math.toRadians(0))) //Alternate end point center field x-75 y-10
+                .lineToLinearHeading(new Pose2d (-86, -58, Math.toRadians(0))) //Alternate end point center field x-75 y-10
                 .build();
         Trajectory toCornerCenter = drive.trajectoryBuilder(backUpCenter.end())
-                .lineToLinearHeading(new Pose2d (-80, -58, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (-86, -58, Math.toRadians(0)))
                 .build();
         Trajectory toCornerLeft = drive.trajectoryBuilder(backUpLeft.end())
-                .lineToLinearHeading(new Pose2d (-80, -58, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (-86, -58, Math.toRadians(0)))
                 .build();
 
                 //.strafeRight(1)
