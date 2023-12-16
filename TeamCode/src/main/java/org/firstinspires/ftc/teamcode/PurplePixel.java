@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
@@ -15,9 +14,8 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import java.util.List;
-import org.firstinspires.ftc.robotcore.external.ClassFactory;
+
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.tfod.TfodProcessor;
@@ -26,7 +24,7 @@ import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 
 
-public class StandardAutonBase extends LinearOpMode{
+public class PurplePixel extends LinearOpMode{
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
     private static final String TFOD_MODEL_ASSET = "MyModel.tflite";
@@ -129,11 +127,14 @@ public class StandardAutonBase extends LinearOpMode{
 
                     for (Recognition recognition : updatedRecognitions) {
                         double xPos = recognition.getLeft();
+                        telemetry.addData("xPos", xPos);
+                        telemetry.update();
 
-                        if (xPos <= 25) {
+
+                        if (xPos >= 200) {
                             x = 1; // TSE on Left Spike Tape
                         }
-                        if (xPos > 25) {
+                        if (xPos <= 200) {
                             x = 2; // TSE on Center Spike Tape
                         }
 
@@ -148,46 +149,66 @@ public class StandardAutonBase extends LinearOpMode{
 
         // Right Spike Tape Trajectory Path
         if (x == 0) {
-            gyroDrive(.5, 29, 0);
-            gyroTurn(.5, -90);
-            gyroDrive(.5, 5, -90);
+            telemetry.addData("Position", "right");
+            telemetry.update();
+
+            gyroDrive(.3, 30, 0);
+            gyroTurn(.3, -90);
+            robot.Artic.setPosition(.4);
+            gyroDrive(.3, 4, -90);
             robot.Artic.setPosition(.5); //lower arm
             sleep(500);
-            robot.closeright.setPosition(.4);
-            sleep (1000);
-            robot.Rotate.setPosition(.9); //raise arm
-            gyroDrive(.2,-5,-90);
-            //gyroDrive(.5, -20, -90);
-            //gyroTurn(.5,0);
-            //gyroDrive(.5,20,0);
-            //gyroTurn(.5,-90);
-            //gyroDrive(.5,-20,-90);
+            robot.closeright.setPosition(.3);
+            sleep(1000);
+            gyroDrive(.1,-5,-90);
+           //robot.closeright.setPosition(.4);
+
+
+
+
         }
 
         //Center Spike Tape
         if (x==1) {
-            gyroStrafe(.3,-8,0);
-            gyroDrive(.5, 21, 0);
+            telemetry.addData("Position", "center");
+            telemetry.update();
+
+            //gyroStrafe(.1,-14,0);
+
+            gyroDrive(.3, 22, 0);
+            sleep(1000);
+            robot.Artic.setPosition(.4);
+            sleep(1000);
+            gyroDrive(.3,6,0);
+            sleep(1000);
             robot.Artic.setPosition(.5); //lower arm
             sleep(500);
-            robot.closeright.setPosition(.4);
+            robot.closeright.setPosition(.3);
             sleep (1000);
             robot.Rotate.setPosition(.9); //raise arm
-            gyroDrive(.5, -4, 0);
+            gyroDrive(.2, -4, 0);
 
         }
 
         //Left Spike Tape
         if (x==2) {
-            gyroDrive(.5, 24, 0);
-            gyroTurn(.5, 90);
-            gyroDrive(.5, -4, 90);
+            telemetry.addData("Position", "left");
+            telemetry.update();
+
+            gyroDrive(.3, 24, 0);
+            gyroTurn(.3, 90);
+            robot.Artic.setPosition(.4);
+            sleep(1000);
+            gyroDrive(.3, -1, 90);
+            sleep(1000);
             robot.Artic.setPosition(.5); //lower arm
-            sleep(500);
-            robot.closeright.setPosition(.4);
+            sleep(1000);
+            robot.closeright.setPosition(.3);
             sleep (1000);
             robot.Rotate.setPosition(.9); //raise arm
-            gyroDrive(.5, -4, 90);
+            sleep(1000);
+            gyroDrive(.2,-4,90);
+
 
 
         }

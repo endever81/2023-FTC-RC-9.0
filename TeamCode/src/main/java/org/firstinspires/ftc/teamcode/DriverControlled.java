@@ -157,16 +157,20 @@ public void runOpMode() {
             closeright = .4;
     }
 
+       // double articAngle = .1;
+        //double RotateAngle = .12;
 
     if (gamepad2.x){
-        //plane = .25;
+
+      //  RotateAngle = .4;
+       // articAngle = .4;
 
     }
 
         double RotateAngle = .12;
 
         if (gamepad2.b){
-            RotateAngle = .8;
+          RotateAngle = .8;
         }
 
         double articAngle = .1;

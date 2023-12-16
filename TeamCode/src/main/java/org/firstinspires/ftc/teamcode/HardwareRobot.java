@@ -92,7 +92,7 @@ Rotate = hwMap.get(Servo.class, "Rotate");
         //rightintake.setPower(0);
         //servorelease.setPosition(.5);
         Artic.setPosition(.3);
-        Rotate.setPosition(.23); //.23
+        Rotate.setPosition(.15); //.23
         closeright.setPosition(.65);
         closeleft.setPosition(.25);
         //servoflapright.setPosition(.2);
