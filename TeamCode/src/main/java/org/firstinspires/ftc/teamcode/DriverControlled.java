@@ -76,10 +76,10 @@ public void runOpMode() {
     double intakeAngleAdjuster = 0.0;
     double iaaRightFloor = .87;//.12
     double iaaLeftFloor = .13;//.88
-    double iaaRightBackdrop = .43;//57
-    double iaaLeftBackdrop = .57;//43
-    double iaaRightTuck = 0;//1
-    double iaaLeftTuck = 0.8;//0
+    double iaaRightBackdrop = .65;//43
+    double iaaLeftBackdrop = .35;//57
+    double iaaRightTuck = .50;//.43
+    double iaaLeftTuck = .50;//.57
 
     while (opModeIsActive()){
 
@@ -127,7 +127,7 @@ public void runOpMode() {
     }
 
    
-   double servoLeftPosition = 0.52;
+   double servoLeftPosition = 0.5;
    double servoRightPosition = 0.5;
    //double servoRight2Power = 0;
    //double servoLeft2Power = 0;
@@ -136,13 +136,13 @@ public void runOpMode() {
 
    if (gamepad2.x){
   //  servoRightPower = -1;//left
-    servoLeftPosition = 0.45;
+    servoLeftPosition = 0.60;
    // servoLeft2Power = 1;
     //servoRight2Power = -1;
     }
     
     if (gamepad2.a){
-    servoRightPosition = 0.55;//right
+    servoRightPosition = 0.40;//right
    // servoLeftPower = -.25;
    // servoLeft2Power = -1;
    // servoRight2Power = 1;
