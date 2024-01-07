@@ -72,15 +72,15 @@ public void runOpMode() {
     telemetry.addData("Say", "Waiting for Start");
     telemetry.update();
 
-    robot.liftleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-    robot.liftright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+  //  robot.liftleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+  //  robot.liftright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     waitForStart();
 
-    newLiftTargetLeft = robot.liftleft.getCurrentPosition();
-    newLiftTargetRight = robot.liftright.getCurrentPosition();
-    robot.liftleft.setTargetPosition(newLiftTargetLeft);
-    robot.liftright.setTargetPosition(newLiftTargetRight);
+  //  newLiftTargetLeft = robot.liftleft.getCurrentPosition();
+  //  newLiftTargetRight = robot.liftright.getCurrentPosition();
+   // robot.liftleft.setTargetPosition(newLiftTargetLeft);
+   // robot.liftright.setTargetPosition(newLiftTargetRight);
 
     while (opModeIsActive()){
 
@@ -198,14 +198,14 @@ public void runOpMode() {
 //*******************************************************************
         //Robot Coloration Conditions and Controls
         //***********************************************************
-        if (gamepad2.dpad_right){
+/*        if (gamepad2.dpad_right){
             patternPrime = RevBlinkinLedDriver.BlinkinPattern.DARK_RED;
         }
 
         if (gamepad2.dpad_left){
             patternPrime = RevBlinkinLedDriver.BlinkinPattern.DARK_BLUE;
         }
-/*
+
         if (robot.pole.getDistance(DistanceUnit.INCH) > 9 && robot.pole.getDistance(DistanceUnit.INCH) <14) {
             pattern = RevBlinkinLedDriver.BlinkinPattern.DARK_GREEN;
         }
@@ -217,23 +217,23 @@ public void runOpMode() {
 
 
 
-        robot.blinkinLedDriver.setPattern(patternPrime);
+//        robot.blinkinLedDriver.setPattern(patternPrime);
 
     robot.leftFrontDrive.setPower(front_left);
     robot.rightFrontDrive.setPower(front_right);
     robot.leftRearDrive.setPower(rear_left);
     robot.rightRearDrive.setPower(rear_right);
-    robot.liftleft.setPower(liftleftPower);
-    robot.liftright.setPower(liftrightPower);
+ //   robot.liftleft.setPower(liftleftPower);
+ //   robot.liftright.setPower(liftrightPower);
 
-    robot.liftleft2.setPower(liftleftPower);
-    robot.liftright2.setPower(liftrightPower);
+ //   robot.liftleft2.setPower(liftleftPower);
+ //   robot.liftright2.setPower(liftrightPower);
 
-    robot.rightintake.setPower(servoRightPower);
-    robot.leftintake.setPower(servoLeftPower);
-    robot.servorelease.setPosition(quickrelease);
-    robot.leftPickup.setPower(PickUpLeftPosition);
-    robot.rightPickup.setPower(PickupRightPosition);
+  //  robot.rightintake.setPower(servoRightPower);
+   // robot.leftintake.setPower(servoLeftPower);
+   // robot.servorelease.setPosition(quickrelease);
+   // robot.leftPickup.setPower(PickUpLeftPosition);
+   // robot.rightPickup.setPower(PickupRightPosition);
 
     }
 
