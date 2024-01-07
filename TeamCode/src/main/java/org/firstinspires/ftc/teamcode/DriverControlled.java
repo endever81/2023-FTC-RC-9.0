@@ -155,7 +155,7 @@ public void runOpMode() {
         if (gamepad1.dpad_down){dropperPosition = dropperPosition - 0.00001;}
         telemetry.addData("Dropper Value", dropperPosition);
         telemetry.update();
-        dropperPosition = .65;
+        dropperPosition = .57;
         if (gamepad2.b){
             dropperPosition = 0;
         }
@@ -165,17 +165,14 @@ public void runOpMode() {
       //  }
     
 
-        double servoReleasePosition = 0.5;
+        double launcherPower = 0;
    
         if (gamepad1.a && gamepad1.left_bumper){
 
-            servoReleasePosition = 0;
+            launcherPower = -1;
         }
 
-        if (gamepad1.b){
-            servoReleasePosition = 0.5;
 
-        }
 
    double liftleftPower = gamepad2.left_stick_y;
     double liftrightPower = gamepad2.left_stick_y;
@@ -234,7 +231,7 @@ public void runOpMode() {
 
     robot.intake.setPower(intakePower);
     robot.servoDropper.setPosition(dropperPosition);
-    robot.servorelease.setPosition(servoReleasePosition);
+    robot.launcher.setPower(launcherPower);
 
     }
 

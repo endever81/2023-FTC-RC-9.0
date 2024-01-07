@@ -21,12 +21,15 @@ public class HardwareRobot {
     public DcMotor liftleft = null;
     public DcMotor liftright = null;
     public DcMotor intake = null;
+
+    public DcMotor launcher = null;
     public Servo servorelease = null;
 
     public Servo servoDropper = null;
     public CRServo rightPickup = null;
     public CRServo leftPickup = null;
     public RevBlinkinLedDriver blinkinLedDriver = null;
+
 
 
 
@@ -49,6 +52,8 @@ public class HardwareRobot {
         liftleft = hwMap.get(DcMotor.class, "lift_left");
         liftright = hwMap.get(DcMotor.class, "lift_right");
         intake = hwMap.get(DcMotor.class, "motor_intake");
+        launcher = hwMap.get(DcMotor.class, "launcher");
+
 
         servorelease = hwMap.get(Servo.class, "servo_release");
         servoDropper = hwMap.get(Servo.class, "servo_dropper");
