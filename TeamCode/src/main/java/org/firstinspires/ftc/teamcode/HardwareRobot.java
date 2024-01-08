@@ -23,7 +23,7 @@ public class HardwareRobot {
     public DcMotor liftright = null;
     public DcMotor liftleft2 = null;
     public DcMotor liftright2 = null;
-    public DcMotor spinner = null;
+    public Servo grabber = null;
     public CRServo leftintake = null;
     public CRServo rightintake = null;
     public Servo servorelease = null;
@@ -57,7 +57,7 @@ public class HardwareRobot {
       // leftintake = hwMap.get(CRServo.class, "left_intake");
       // rightintake = hwMap.get(CRServo.class, "right_intake");
        // servorelease = hwMap.get(Servo.class, "servo_release");
-        //grabber = hwMap.get(Servo.class, "servo_grabber");
+        grabber = hwMap.get(Servo.class, "servo_grabber");
        // leftPickup = hwMap.get(CRServo.class, "servo_left_pickup");
        // rightPickup = hwMap.get(CRServo.class, "servo_right_pickup");
 
@@ -66,10 +66,10 @@ public class HardwareRobot {
         //blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
 
 
-        leftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
-        rightFrontDrive.setDirection(DcMotor.Direction.REVERSE);
-        leftRearDrive.setDirection(DcMotor.Direction.FORWARD);
-        rightRearDrive.setDirection(DcMotor.Direction.REVERSE);
+        leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
+        rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
+        leftRearDrive.setDirection(DcMotor.Direction.REVERSE);
+        rightRearDrive.setDirection(DcMotor.Direction.FORWARD);
        // liftleft2.setDirection(DcMotor.Direction.REVERSE);
        // liftright2.setDirection(DcMotor.Direction.REVERSE);
        // liftleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -86,7 +86,7 @@ public class HardwareRobot {
         rightRearDrive.setPower(0);
         //leftintake.setPower(0);
        // rightintake.setPower(0);
-        //servorelease.setPosition(.5);
+        grabber.setPosition(.5);
     }
 
 }

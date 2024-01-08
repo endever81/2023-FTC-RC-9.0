@@ -159,17 +159,15 @@ public void runOpMode() {
 
     
     
-       double PickUpLeftPosition = 0;
+       double GrabberPosition = 0.5;
         double PickupRightPosition =0;
    
         if (gamepad1.a){
-            PickUpLeftPosition = 1;
-            PickupRightPosition = -1;
+            GrabberPosition = .65;
         }
 
-        if (gamepad1.b){
-            PickUpLeftPosition = -1;
-            PickupRightPosition = 1;
+        if (gamepad2.a){
+            GrabberPosition = .65;
         }
 
    double liftleftPower = gamepad2.left_stick_y;
@@ -223,7 +221,7 @@ public void runOpMode() {
     robot.rightFrontDrive.setPower(front_right);
     robot.leftRearDrive.setPower(rear_left);
     robot.rightRearDrive.setPower(rear_right);
- //   robot.liftleft.setPower(liftleftPower);
+    robot.grabber.setPosition(GrabberPosition);
  //   robot.liftright.setPower(liftrightPower);
 
  //   robot.liftleft2.setPower(liftleftPower);
