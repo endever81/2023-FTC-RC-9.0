@@ -72,11 +72,11 @@ public void runOpMode() {
 
     double intakeAngleRight = 0;
     double intakeAngleLeft = 0.8;
-    double droneClampPosition = 0.25;
+
     double intakeAngleAdjuster = 0.0;
-    double iaaRightFloor = .87;//.12
+    double iaaRightFloor = .85;//.12
     double iaaLeftFloor = .13;//.88
-    double iaaRightBackdrop = .65;//43
+    double iaaRightBackdrop = .62;//.65
     double iaaLeftBackdrop = .35;//57
     double iaaRightTuck = .50;//.43
     double iaaLeftTuck = .50;//.57
@@ -177,9 +177,9 @@ public void runOpMode() {
             intakeAngleAdjuster= intakeAngleAdjuster - .001;
         }
 
-
+        double droneClampPosition = 0.5;
         if (gamepad1.x) {
-            droneClampPosition = 0;
+            droneClampPosition = 0.6;
         }
 
         double dronePower = 0;

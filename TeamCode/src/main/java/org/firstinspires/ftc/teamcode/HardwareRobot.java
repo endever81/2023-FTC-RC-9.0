@@ -95,9 +95,9 @@ public class HardwareRobot {
         rightGrab.setPosition(.5);
         leftGrab.setPosition(.5);
         //servorelease.setPosition(.5);
-        droneClamp.setPosition(0.25);
-        leftRotate.setPosition(0.8);
-        rightRotate.setPosition(0);
+        droneClamp.setPosition(0.5);
+        leftRotate.setPosition(0.13);
+        rightRotate.setPosition(0.85);
 
 
     }
