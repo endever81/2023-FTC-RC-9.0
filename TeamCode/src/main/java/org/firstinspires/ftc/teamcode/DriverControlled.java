@@ -70,16 +70,16 @@ public void runOpMode() {
     waitForStart();
 
 
-    double intakeAngleRight = 0;
-    double intakeAngleLeft = 0.8;
+    double intakeAngleRight = 0.5;
+    double intakeAngleLeft = 0.5;
 
     double intakeAngleAdjuster = 0.0;
-    double iaaRightFloor = .85;//.12
-    double iaaLeftFloor = .13;//.88
-    double iaaRightBackdrop = .62;//.65
-    double iaaLeftBackdrop = .35;//57
-    double iaaRightTuck = .50;//.43
-    double iaaLeftTuck = .50;//.57
+    double iaaRightFloor = .47;//.5
+    double iaaLeftFloor = .53;//.5
+    double iaaRightBackdrop = .67;//.65
+    double iaaLeftBackdrop = .30;//57
+    double iaaRightTuck = .8;//.85
+    double iaaLeftTuck = .18;//.13
 
     while (opModeIsActive()){
 
@@ -127,8 +127,8 @@ public void runOpMode() {
     }
 
    
-   double servoLeftPosition = 0.5;
-   double servoRightPosition = 0.5;
+   double servoLeftPosition = 0.44;
+   double servoRightPosition = 0.59;
    //double servoRight2Power = 0;
    //double servoLeft2Power = 0;
 
@@ -149,7 +149,7 @@ public void runOpMode() {
     }
 
     double WheelrightPower = 0;
-    double WheelleftPower = 0;
+    double WheelleftPower = .5;
     if (gamepad2.dpad_left){
         WheelleftPower = -1;}
     if (gamepad2.dpad_right){
@@ -157,28 +157,22 @@ public void runOpMode() {
 
 
         if (gamepad2.y){
-            intakeAngleRight =  (iaaRightBackdrop + intakeAngleAdjuster );//backdrop angle    .47;
-            intakeAngleLeft =  (iaaLeftBackdrop + intakeAngleAdjuster );             //.53;
+            intakeAngleRight =  (iaaRightBackdrop);//backdrop angle    .85;
+            intakeAngleLeft =  (iaaLeftBackdrop);             //.
         }
         if (gamepad2.b){
-            intakeAngleRight =  (iaaRightFloor + intakeAngleAdjuster );//floor angle   .02;
-            intakeAngleLeft =  (iaaLeftFloor + intakeAngleAdjuster ); //.98;
+            intakeAngleRight =  (iaaRightFloor);//floor angle   .62;
+            intakeAngleLeft =  (iaaLeftFloor); //.35;
         }
 
         if (gamepad2.left_bumper){
-            intakeAngleRight = (iaaRightTuck + intakeAngleAdjuster ); //Tucked angle   0;
-            intakeAngleLeft =  (iaaLeftTuck + intakeAngleAdjuster ); //0.8;
-        }
-        if (gamepad2.dpad_up){
-            intakeAngleAdjuster = intakeAngleAdjuster + .001;
+            intakeAngleRight = (iaaRightTuck ); //Tucked angle   .85;
+            intakeAngleLeft =  (iaaLeftTuck); //0.13;
         }
 
-        if (gamepad2.dpad_down){
-            intakeAngleAdjuster= intakeAngleAdjuster - .001;
-        }
 
         double droneClampPosition = 0.5;
-        if (gamepad1.x) {
+        if ( (gamepad1.left_bumper || gamepad2.right_bumper)&& gamepad1.x) {
             droneClampPosition = 0.6;
         }
 
