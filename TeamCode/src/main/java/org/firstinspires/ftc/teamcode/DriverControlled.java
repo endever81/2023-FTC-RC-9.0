@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import static java.lang.Math.abs;
+
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -128,7 +130,7 @@ public void runOpMode() {
 
    
    double servoLeftPosition = 0.44;
-   double servoRightPosition = 0.59;
+   double servoRightPosition = 0.6;
    //double servoRight2Power = 0;
    //double servoLeft2Power = 0;
 
@@ -185,6 +187,58 @@ public void runOpMode() {
 
         double liftleftPower = gamepad2.left_stick_y;
         double liftrightPower = gamepad2.left_stick_y;
+
+        if (gamepad1.right_trigger != 0)
+        { double leftDistance = robot.SensorLeft.getDistance(DistanceUnit.INCH);
+            double rightDistance = robot.SensorRight.getDistance(DistanceUnit.INCH)-.16;
+            telemetry.addData("Left", Math.floor(leftDistance*100)/100d);
+            telemetry.addData("Right", Math.floor(rightDistance*100)/100d);
+            telemetry.update();
+
+
+            if (Math.floor(leftDistance*100)/100d <= Math.floor(rightDistance*100)/100d)
+            {
+                if (abs(leftDistance-rightDistance) >= 1)
+                { front_left = -.25;
+                front_right = .25;
+                rear_left = -.25;
+                rear_right = .25;}
+                if ((abs(leftDistance-rightDistance) <= 1) && (abs(leftDistance-rightDistance) >= .75) )
+                { front_left = -.1;
+                    front_right = .1;
+                    rear_left = -.1;
+                    rear_right = .1;}
+                if (abs(leftDistance-rightDistance) <= .75)
+                { front_left = -.07;
+                    front_right = .07;
+                    rear_left = -.07;
+                    rear_right = .07;}
+            }
+            else if (Math.floor(leftDistance*100)/100d >= Math.floor(rightDistance*100)/100d)
+            {
+                if (abs(leftDistance-rightDistance) >= 1)
+                { front_left = .25;
+                    front_right = -.25;
+                    rear_left = .25;
+                    rear_right = -.25;}
+                if ((abs(leftDistance-rightDistance) <= 1) && (abs(leftDistance-rightDistance) >= .75) )
+                { front_left = .1;
+                    front_right = -.1;
+                    rear_left = .1;
+                    rear_right = -.1;}
+                if (abs(leftDistance-rightDistance) <= .75)
+                { front_left = .07;
+                    front_right = -.07;
+                    rear_left = .07;
+                    rear_right = -.07;}
+            }
+            else {
+                front_left = 0;
+                front_right = 0;
+                rear_left = 0;
+                rear_right = 0;
+            }
+        }
 
 //*******************************************************************
         //Robot Coloration Conditions and Controls

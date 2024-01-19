@@ -37,6 +37,9 @@ public class HardwareRobot {
     public CRServo GrabWheelRight = null;
     public CRServo GrabWheelLeft = null;
 
+    public DistanceSensor SensorRight = null;
+    public DistanceSensor SensorLeft = null;
+
     //public Servo grabber = null;
 
     HardwareMap hwMap = null;
@@ -73,6 +76,10 @@ public class HardwareRobot {
 
         GrabWheelRight = hwMap.get(CRServo.class, "Wheel_Right");
         GrabWheelLeft = hwMap.get(CRServo.class, "Wheel_Left");
+
+        SensorRight = hwMap.get(DistanceSensor.class, "Right_Distance");
+        SensorLeft = hwMap.get(DistanceSensor.class, "Left_Distance");
+
 
         leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);

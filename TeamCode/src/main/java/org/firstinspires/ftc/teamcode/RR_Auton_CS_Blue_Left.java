@@ -78,13 +78,13 @@ public class RR_Auton_CS_Blue_Left extends LinearOpMode {
 
         //Approach Backdrop
         Trajectory backDropRight = drive.trajectoryBuilder(backFromPixelRight.end())
-                .lineToLinearHeading(new Pose2d (-76, -26, Math.toRadians(180)))
+                .lineToLinearHeading(new Pose2d (-76, -25.9, Math.toRadians(180)))
                 .build();
         Trajectory backDropCenter = drive.trajectoryBuilder(backFromPixelCenter.end())
-                .lineToLinearHeading(new Pose2d (-76, -33.5, Math.toRadians(180)))
+                .lineToLinearHeading(new Pose2d (-76, -34, Math.toRadians(180)))
                 .build();
         Trajectory backDropLeft = drive.trajectoryBuilder(backFromPixelLeft.end())
-                .lineToLinearHeading(new Pose2d (-76, -38.5, Math.toRadians(180)))
+                .lineToLinearHeading(new Pose2d (-76, -39, Math.toRadians(180)))
                 .build();
 
         //Back from Backdrop
@@ -182,7 +182,7 @@ public class RR_Auton_CS_Blue_Left extends LinearOpMode {
             robot.rightRotate.setPosition(0.67);
             drive.followTrajectory(backFromPixelRight);
             robot.rightGrab.setPosition(0.5);//relax grab right
-            lift(1, 5);
+            lift(1, 3.5);
             drive.followTrajectory(backDropRight);
             robot.leftGrab.setPosition(0.60);//release pixel
             sleep(2000);
@@ -210,7 +210,7 @@ public class RR_Auton_CS_Blue_Left extends LinearOpMode {
             robot.rightRotate.setPosition(0.67);
             drive.followTrajectory(backFromPixelLeft);
             robot.rightGrab.setPosition(0.5);//relax grab right
-            lift(.5, 5);
+            lift(.5, 3.5);
             drive.followTrajectory(backDropLeft);
             robot.leftGrab.setPosition(0.6);//release pixel
             sleep(2000);
@@ -224,7 +224,7 @@ public class RR_Auton_CS_Blue_Left extends LinearOpMode {
 //            drive.turn(Math.toRadians(0));
         }
 
-        // Center Spike Tape
+        // Center Spike Tape/87p07
         if (x == 2) {
             telemetry.addData("Center Spike", 10);
             telemetry.update();
@@ -238,7 +238,7 @@ public class RR_Auton_CS_Blue_Left extends LinearOpMode {
             robot.rightRotate.setPosition(0.67);
             drive.followTrajectory(backFromPixelCenter);
             robot.rightGrab.setPosition(0.5);//relax grab right
-            lift(.5, 5);
+            lift(.5, 3.5);
             drive.followTrajectory(backDropCenter);
             robot.leftGrab.setPosition(0.6);//release pixel
             sleep(2000);

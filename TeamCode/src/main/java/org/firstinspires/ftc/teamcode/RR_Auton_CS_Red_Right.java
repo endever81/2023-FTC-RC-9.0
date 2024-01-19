@@ -80,13 +80,13 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
 
         //Approach Backdrop
         Trajectory backDropRight = drive.trajectoryBuilder(backFromPixelRight.end())
-                .lineToLinearHeading(new Pose2d (74.75, -38.5, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (74.75, -38.65, Math.toRadians(0)))
                 .build();
         Trajectory backDropCenter = drive.trajectoryBuilder(backFromPixelCenter.end())
                 .lineToLinearHeading(new Pose2d (74.75, -33.5, Math.toRadians(0)))
                 .build();
         Trajectory backDropLeft = drive.trajectoryBuilder(backFromPixelLeft.end())
-                .lineToLinearHeading(new Pose2d (74.75, -26, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (74.75, -26.25, Math.toRadians(0)))
                 .build();
 
         //Back from Backdrop
@@ -187,7 +187,7 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
             robot.leftRotate.setPosition(0.3); //raise intake
             robot.rightRotate.setPosition(0.67);
             robot.rightGrab.setPosition(0.5);//relax grab right
-            lift(1, 5);
+            lift(1, 3.5);
             drive.followTrajectory(backDropRight);
             //robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
             //robot.leftIntakeRear.setPower(-.1);
@@ -223,7 +223,7 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
             robot.leftRotate.setPosition(0.3); //raise intake
             robot.rightRotate.setPosition(0.67);
             robot.rightGrab.setPosition(0.5);//relax grab right
-            lift(.5, 5);
+            lift(.5, 3.5);
             drive.followTrajectory(backDropLeft);
             //robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
            // robot.leftIntakeRear.setPower(-.1);
@@ -260,7 +260,7 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
             robot.leftRotate.setPosition(0.3); //raise intake
             robot.rightRotate.setPosition(0.67);
             robot.rightGrab.setPosition(0.5);//relax grab right
-            lift(.5, 5);
+            lift(.5, 3.5);
             drive.followTrajectory(backDropCenter);
             //robot.rightIntakeRear.setPower(.1); //release yellow pixel to backdrop from rear intake
             //robot.leftIntakeRear.setPower(-.1);
