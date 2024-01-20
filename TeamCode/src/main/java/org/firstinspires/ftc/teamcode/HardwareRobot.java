@@ -19,28 +19,16 @@ public class HardwareRobot {
     public DcMotor rightFrontDrive = null;
     public DcMotor leftRearDrive = null;
     public DcMotor rightRearDrive = null;
-    public DcMotor dronelauncher = null;
-    public DcMotor liftleft = null;
-    public DcMotor liftright = null;
-    public DcMotor spinner = null;
-    //public Servo servorelease = null;
+    public DcMotor extender = null;
+    public DcMotor intake = null;
+    public Servo servorelease = null;
     public RevBlinkinLedDriver blinkinLedDriver = null;
 
     //new code:
-    public Servo leftGrab = null;
-    public CRServo leftIntakeRear = null;
-    public Servo rightGrab = null;
-    public CRServo rightIntakeRear = null;
-    public Servo leftRotate = null;
-    public Servo rightRotate = null;
+    public Servo lowArm = null;
+    public Servo hopperRotate = null;
+    public Servo upperHopperRotate = null;
     public Servo droneClamp = null;
-    public CRServo GrabWheelRight = null;
-    public CRServo GrabWheelLeft = null;
-
-    public DistanceSensor SensorRight = null;
-    public DistanceSensor SensorLeft = null;
-
-    //public Servo grabber = null;
 
     HardwareMap hwMap = null;
    
@@ -56,29 +44,18 @@ public class HardwareRobot {
         rightFrontDrive = hwMap.get(DcMotor.class, "motor_front_right");
         leftRearDrive = hwMap.get(DcMotor.class, "motor_rear_left");
         rightRearDrive = hwMap.get(DcMotor.class, "motor_rear_right");
-        liftleft = hwMap.get(DcMotor.class, "lift_left");
-        liftright = hwMap.get(DcMotor.class, "lift_right");
+        extender = hwMap.get(DcMotor.class, "extender");
+        intake = hwMap.get(DcMotor.class, "intake");
 
-        //servorelease = hwMap.get(Servo.class, "servo_release");
+        lowArm = hwMap.get(Servo.class, "servo_low_arm");
+        hopperRotate = hwMap.get(Servo.class, "servo_hopper_rotate");
+        upperHopperRotate = hwMap.get(Servo.class, "servo_upper_hopper");
 
-        leftGrab = hwMap.get(Servo.class, "servo_left_grab");
-        //leftIntakeRear = hwMap.get(CRServo.class, "servo_left_rear");
-        leftRotate = hwMap.get(Servo.class, "servo_left_rotate");
-        rightGrab = hwMap.get(Servo.class, "servo_right_grab");
-       // rightIntakeRear = hwMap.get(CRServo.class, "servo_right_rear");
-        rightRotate = hwMap.get(Servo.class, "servo_right_rotate");
-
-        dronelauncher = hwMap.get(DcMotor.class, "drone_launcher");
         droneClamp = hwMap.get(Servo.class, "drone_Clamp");
 
         blinkinLedDriver = hwMap.get(RevBlinkinLedDriver.class, "blinkin");
         blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
 
-        GrabWheelRight = hwMap.get(CRServo.class, "Wheel_Right");
-        GrabWheelLeft = hwMap.get(CRServo.class, "Wheel_Left");
-
-        SensorRight = hwMap.get(DistanceSensor.class, "Right_Distance");
-        SensorLeft = hwMap.get(DistanceSensor.class, "Left_Distance");
 
 
         leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -86,25 +63,22 @@ public class HardwareRobot {
         leftRearDrive.setDirection(DcMotor.Direction.REVERSE);
         rightRearDrive.setDirection(DcMotor.Direction.FORWARD);
 
-        liftleft.setDirection(DcMotor.Direction.REVERSE);
+        extender.setDirection(DcMotor.Direction.REVERSE);
 
-        liftleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        liftright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        liftleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        liftright.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        extender.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        extender.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        dronelauncher.setDirection(DcMotor.Direction.FORWARD);
+        intake.setDirection(DcMotor.Direction.FORWARD);
 
         leftFrontDrive.setPower(0);
         rightFrontDrive.setPower(0);
         leftRearDrive.setPower(0);
         rightRearDrive.setPower(0);
-        rightGrab.setPosition(.6);
-        leftGrab.setPosition(.4);
-        //servorelease.setPosition(.5);
+        lowArm.setPosition(.5);
+        hopperRotate.setPosition(.5);
+        upperHopperRotate.setPosition(.5);
         droneClamp.setPosition(0.5);
-        leftRotate.setPosition(0.18);
-        rightRotate.setPosition(0.8);
+
 
 
     }

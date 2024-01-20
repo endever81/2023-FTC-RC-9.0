@@ -61,8 +61,7 @@ public void runOpMode() {
             }
 
 
-    robot.liftleft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-    robot.liftright.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    robot.extender.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
     telemetry.addData("Say", "Waiting for Start");
     telemetry.update();
@@ -72,16 +71,6 @@ public void runOpMode() {
     waitForStart();
 
 
-    double intakeAngleRight = 0.5;
-    double intakeAngleLeft = 0.5;
-
-    double intakeAngleAdjuster = 0.0;
-    double iaaRightFloor = .47;//.5
-    double iaaLeftFloor = .53;//.5
-    double iaaRightBackdrop = .67;//.65
-    double iaaLeftBackdrop = .30;//57
-    double iaaRightTuck = .8;//.85
-    double iaaLeftTuck = .18;//.13
 
     while (opModeIsActive()){
 
@@ -128,117 +117,25 @@ public void runOpMode() {
     rear_right /=2.5;
     }
 
-   
-   double servoLeftPosition = 0.44;
-   double servoRightPosition = 0.6;
-   //double servoRight2Power = 0;
-   //double servoLeft2Power = 0;
-
-
-
-   if (gamepad2.x){
-  //  servoRightPower = -1;//left
-    servoLeftPosition = 0.60;
-   // servoLeft2Power = 1;
-    //servoRight2Power = -1;
-    }
-    
-    if (gamepad2.a){
-    servoRightPosition = 0.40;//right
-   // servoLeftPower = -.25;
-   // servoLeft2Power = -1;
-   // servoRight2Power = 1;
-    }
-
-    double WheelrightPower = 0;
-    double WheelleftPower = .5;
-    if (gamepad2.dpad_left){
-        WheelleftPower = -1;}
-    if (gamepad2.dpad_right){
-        WheelrightPower = 1;}
-
-
-        if (gamepad2.y){
-            intakeAngleRight =  (iaaRightBackdrop);//backdrop angle    .85;
-            intakeAngleLeft =  (iaaLeftBackdrop);             //.
-        }
-        if (gamepad2.b){
-            intakeAngleRight =  (iaaRightFloor);//floor angle   .62;
-            intakeAngleLeft =  (iaaLeftFloor); //.35;
+        double intakePower = 0;
+        if (gamepad1.x) {
+            intakePower = .5;
         }
 
-        if (gamepad2.left_bumper){
-            intakeAngleRight = (iaaRightTuck ); //Tucked angle   .85;
-            intakeAngleLeft =  (iaaLeftTuck); //0.13;
+        if (gamepad1.a) {
+            intakePower = .0;
         }
-
 
         double droneClampPosition = 0.5;
         if ( (gamepad1.left_bumper || gamepad2.right_bumper)&& gamepad1.x) {
             droneClampPosition = 0.6;
         }
 
-        double dronePower = 0;
-        if (gamepad1.a){
-            dronePower = 1;
-        }
 
 
 
-        double liftleftPower = gamepad2.left_stick_y;
-        double liftrightPower = gamepad2.left_stick_y;
+        double extenderPower = gamepad2.left_stick_y;
 
-        if (gamepad1.right_trigger != 0)
-        { double leftDistance = robot.SensorLeft.getDistance(DistanceUnit.INCH);
-            double rightDistance = robot.SensorRight.getDistance(DistanceUnit.INCH)-.16;
-            telemetry.addData("Left", Math.floor(leftDistance*100)/100d);
-            telemetry.addData("Right", Math.floor(rightDistance*100)/100d);
-            telemetry.update();
-
-
-            if (Math.floor(leftDistance*100)/100d <= Math.floor(rightDistance*100)/100d)
-            {
-                if (abs(leftDistance-rightDistance) >= 1)
-                { front_left = -.25;
-                front_right = .25;
-                rear_left = -.25;
-                rear_right = .25;}
-                if ((abs(leftDistance-rightDistance) <= 1) && (abs(leftDistance-rightDistance) >= .75) )
-                { front_left = -.1;
-                    front_right = .1;
-                    rear_left = -.1;
-                    rear_right = .1;}
-                if (abs(leftDistance-rightDistance) <= .75)
-                { front_left = -.07;
-                    front_right = .07;
-                    rear_left = -.07;
-                    rear_right = .07;}
-            }
-            else if (Math.floor(leftDistance*100)/100d >= Math.floor(rightDistance*100)/100d)
-            {
-                if (abs(leftDistance-rightDistance) >= 1)
-                { front_left = .25;
-                    front_right = -.25;
-                    rear_left = .25;
-                    rear_right = -.25;}
-                if ((abs(leftDistance-rightDistance) <= 1) && (abs(leftDistance-rightDistance) >= .75) )
-                { front_left = .1;
-                    front_right = -.1;
-                    rear_left = .1;
-                    rear_right = -.1;}
-                if (abs(leftDistance-rightDistance) <= .75)
-                { front_left = .07;
-                    front_right = -.07;
-                    rear_left = .07;
-                    rear_right = -.07;}
-            }
-            else {
-                front_left = 0;
-                front_right = 0;
-                rear_left = 0;
-                rear_right = 0;
-            }
-        }
 
 //*******************************************************************
         //Robot Coloration Conditions and Controls
@@ -267,23 +164,14 @@ public void runOpMode() {
     robot.rightFrontDrive.setPower(front_right);
     robot.leftRearDrive.setPower(rear_left);
     robot.rightRearDrive.setPower(rear_right);
-//Lift
-    robot.liftleft.setPower(liftleftPower);
-    robot.liftright.setPower(liftrightPower);
+//Extender
+    robot.extender.setPower(extenderPower);
 //Intake
-    robot.leftGrab.setPosition(servoLeftPosition);
-    robot.rightGrab.setPosition(servoRightPosition);
-   // robot.leftIntakeRear.setPower(servoLeft2Power);
-   // robot.rightIntakeRear.setPower(servoRight2Power);
-    //Intake Angle
-    robot.leftRotate.setPosition(intakeAngleLeft);
-    robot.rightRotate.setPosition(intakeAngleRight);
+    robot.intake.setPower(intakePower);
+
 //Drone Launcher
-    robot.dronelauncher.setPower(dronePower);
     robot.droneClamp.setPosition(droneClampPosition);
 
-    robot.GrabWheelRight.setPower(WheelrightPower);
-    robot.GrabWheelLeft.setPower(WheelleftPower);
     }
 
 }
