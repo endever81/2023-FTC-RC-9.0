@@ -62,7 +62,7 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d (-30, -33, Math.toRadians(90)))
                 .build();
         Trajectory spikeLeft = drive.trajectoryBuilder(startPose)
-                .lineToLinearHeading(new Pose2d (-34, -41, Math.toRadians(135)))
+                .lineToLinearHeading(new Pose2d (-35, -41, Math.toRadians(135)))
                 .build();
 
         //back away from dropped pixel and spike lines
@@ -78,40 +78,40 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
 
         //Approach Backdrop
         Trajectory backDropRight = drive.trajectoryBuilder(backFromPixelRight.end())
-                .lineToLinearHeading(new Pose2d (7, -38.5, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (6.5, -40.5, Math.toRadians(0)))
                 .build();
         Trajectory backDropCenter = drive.trajectoryBuilder(backFromPixelCenter.end())
-                .lineToLinearHeading(new Pose2d (7, -33.5, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (6, -33.5, Math.toRadians(0)))
                 .build();
         Trajectory backDropLeft = drive.trajectoryBuilder(backFromPixelLeft.end())
-                .lineToLinearHeading(new Pose2d (7, -28, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (6, -28, Math.toRadians(0)))
                 .build();
 
         //Back from Backdrop
         Trajectory backUpRight = drive.trajectoryBuilder(backDropRight.end())
-                .lineToLinearHeading(new Pose2d (6, -38.5, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (5.5, -40.5, Math.toRadians(0)))
                 .build();
         Trajectory backUpCenter = drive.trajectoryBuilder(backDropCenter.end())
-                .lineToLinearHeading(new Pose2d (6, -33.5, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (5, -33.5, Math.toRadians(0)))
                 .build();
         Trajectory backUpLeft = drive.trajectoryBuilder(backDropLeft.end())
-                .lineToLinearHeading(new Pose2d (6, -28, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (5, -28, Math.toRadians(0)))
                 .build();
 
         //Approach Backdrop2
         Trajectory backDropRight2 = drive.trajectoryBuilder(backUpRight.end())
-                .lineToLinearHeading(new Pose2d (6.5, -38.5, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (6.5, -40.5, Math.toRadians(0)))
                 .build();
         Trajectory backDropCenter2 = drive.trajectoryBuilder(backUpCenter.end())
-                .lineToLinearHeading(new Pose2d (6.5, -33.5, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (6, -33.5, Math.toRadians(0)))
                 .build();
         Trajectory backDropLeft2 = drive.trajectoryBuilder(backUpLeft.end())
-                .lineToLinearHeading(new Pose2d (6.5, -28, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (6, -28, Math.toRadians(0)))
                 .build();
 
         //Back from Backdrop 2
         Trajectory backUpRight2 = drive.trajectoryBuilder(backDropRight2.end())
-                .lineToLinearHeading(new Pose2d (-10, -38.5, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (-10, -40.5, Math.toRadians(0)))
                 .build();
         Trajectory backUpCenter2 = drive.trajectoryBuilder(backDropCenter2.end())
                 .lineToLinearHeading(new Pose2d (-10, -33.5, Math.toRadians(0)))
@@ -202,7 +202,7 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
             drive.followTrajectory(backFromPixelRight);
             robot.servoDropper.setPosition(.55); // close
             sleep(1000);
-            robot.intake.setPower(.7);
+            robot.intake.setPower(.8);
 
 
             lift(1, 7);

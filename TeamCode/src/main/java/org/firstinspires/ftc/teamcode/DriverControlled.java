@@ -130,12 +130,13 @@ public void runOpMode() {
     rear_left *=2;
     rear_right *=2;
     }    
-
+double droneGuardPosition = .5;
     if (gamepad1.left_bumper){
     front_left /=2.5;
     front_right /=2.5;
     rear_left /=2.5;
     rear_right /=2.5;
+    droneGuardPosition = .9;
     }
    
    
@@ -228,7 +229,7 @@ public void runOpMode() {
     robot.liftleft.setPower(liftleftPower);
     robot.liftright.setPower(liftrightPower);
 
-
+    robot.droneGuard.setPosition(droneGuardPosition);
     robot.intake.setPower(intakePower);
     robot.servoDropper.setPosition(dropperPosition);
     robot.launcher.setPower(launcherPower);
