@@ -189,8 +189,10 @@ public void runOpMode() {
         //double closeright = .8;
         //double servoflapRight = 0.2;
 
+        double launcher = 0;
+
         if (gamepad1.b){
-           // closeright = .9;
+            launcher = 1;
             //servoflapRight = .1;
         }
 
@@ -249,7 +251,7 @@ public void runOpMode() {
     robot.liftright.setPower(liftrightPower);
     robot.closeleft.setPosition(closeleft);
     robot.Rotate.setPosition(RotateAngle);
-    robot.plane.setPower(plane);
+    robot.launcher.setPower(launcher);
 
     robot.closeright.setPosition(closeright);
     //robot.servoflapright.setPosition(servoflapRight);
