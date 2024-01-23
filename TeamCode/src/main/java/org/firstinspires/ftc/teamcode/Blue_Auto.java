@@ -159,12 +159,16 @@ public class Blue_Auto extends LinearOpMode{
             robot.Artic.setPosition(.5); //lower arm
             sleep(500);
             robot.closeright.setPosition(.4);
+            sleep(1000);
+            robot.Rotate.setPosition(.8);
             sleep (1000);
-            lift(1,2);
+            robot.Artic.setPosition(.4);
+            sleep(1000);
+            lift(1,6);
             sleep(1000);
             gyroDrive(.3,-10,-90);
             sleep(1000);
-            gyroTurn(.3,0);
+            gyroTurn(.3,-90);
             gyroDrive(.3,-30,-90);
 
             //robot.Artic.setPosition(.4);
