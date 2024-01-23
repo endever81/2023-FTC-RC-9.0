@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -17,9 +16,9 @@ import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
 
-@Autonomous(name = "Red Right Left Slot", group = "Automonous")
+@Autonomous(name = "Red Right Bonus", group = "Automonous")
 
-public class RR_Auton_CS_Red_Right extends LinearOpMode {
+public class RR_Auton_CS_Red_Right_Center_White extends LinearOpMode {
     //-----------------------------------------------------------
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
@@ -65,6 +64,10 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
                 .build();
         Trajectory spikeLeft = drive.trajectoryBuilder(startPose)
                 .lineToLinearHeading(new Pose2d (33, -35, Math.toRadians(145)))
+                .build();
+        //Center - White Stack
+        Trajectory StackCenter = drive.trajectoryBuilder(spikeCenter.end())
+                .lineToLinearHeading(new Pose2d (-29,-35,Math.toRadians(145)))
                 .build();
 
         //back away from dropped pixel and spike lines
@@ -183,9 +186,9 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
             sleep(2000);
             //robot.rightIntakeFront.setPower(0); //shut off intake
             //robot.leftIntakeFront.setPower(0);
+            drive.followTrajectory(backFromPixelRight);
             robot.leftRotate.setPosition(0.3); //raise intake
             robot.rightRotate.setPosition(0.67);
-            drive.followTrajectory(backFromPixelRight);
             robot.rightGrab.setPosition(0.5);//relax grab right
             lift(1, 3.5);
             drive.followTrajectory(backDropRight);
@@ -274,6 +277,14 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
             robot.leftGrab.setPosition(0.5);//relax grab left
 
             lift(1, -5);
+            drive.followTrajectory(StackCenter);
+            //lift(1,3);
+            //robot.leftRotate.setPosition(.5);
+            //robot.rightRotate.setPosition(.5);
+            //robot.rightGrab.setPosition(.40);
+            //robot.leftGrab.setPosition(.60);
+            //
+            //robot.
             drive.followTrajectory(toCornerCenter);
 
 //            drive.turn(Math.toRadians(0));

@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -17,9 +16,9 @@ import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
 
-@Autonomous(name = "Red Right Left Slot", group = "Automonous")
+@Autonomous(name = "Red Right Right Slot", group = "Automonous")
 
-public class RR_Auton_CS_Red_Right extends LinearOpMode {
+public class RR_Auton_CS_Red_Right_Right_Slot extends LinearOpMode {
     //-----------------------------------------------------------
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
@@ -80,13 +79,13 @@ public class RR_Auton_CS_Red_Right extends LinearOpMode {
 
         //Approach Backdrop
         Trajectory backDropRight = drive.trajectoryBuilder(backFromPixelRight.end())
-                .lineToLinearHeading(new Pose2d (74.75, -38.65, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (74.75, -41.65, Math.toRadians(0)))
                 .build();
         Trajectory backDropCenter = drive.trajectoryBuilder(backFromPixelCenter.end())
-                .lineToLinearHeading(new Pose2d (74.75, -33.5, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (74.75, -36.5, Math.toRadians(0)))
                 .build();
         Trajectory backDropLeft = drive.trajectoryBuilder(backFromPixelLeft.end())
-                .lineToLinearHeading(new Pose2d (74.75, -26.25, Math.toRadians(0)))
+                .lineToLinearHeading(new Pose2d (74.75, -29.25, Math.toRadians(0)))
                 .build();
 
         //Back from Backdrop

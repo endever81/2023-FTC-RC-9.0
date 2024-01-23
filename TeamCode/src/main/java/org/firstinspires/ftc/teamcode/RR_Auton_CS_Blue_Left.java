@@ -16,7 +16,7 @@ import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
 
-@Autonomous(name = "Blue Left", group = "Automonous")
+@Autonomous(name = "Blue Left Left Slot", group = "Automonous")
 
 public class RR_Auton_CS_Blue_Left extends LinearOpMode {
     //-----------------------------------------------------------
