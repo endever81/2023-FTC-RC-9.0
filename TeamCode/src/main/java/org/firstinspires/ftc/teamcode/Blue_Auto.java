@@ -159,6 +159,7 @@ public class Blue_Auto extends LinearOpMode{
             robot.Artic.setPosition(.5); //lower arm
             sleep(500);
             robot.closeright.setPosition(.4);
+
             sleep(1000);
             robot.Rotate.setPosition(.8);
             sleep (1000);
@@ -169,7 +170,16 @@ public class Blue_Auto extends LinearOpMode{
             gyroDrive(.3,-10,-90);
             sleep(1000);
             gyroTurn(.3,-90);
-            gyroDrive(.3,-30,-90);
+            gyroDrive(.3,-25,-90);
+            sleep(1000);
+            robot.Artic.setPosition(.1);
+            sleep(1000);
+            gyroDrive(.3,-8,-90);
+            sleep(500);
+            robot.closeleft.setPosition(.4);
+            sleep(500);
+            gyroDrive(.3,5,-90);
+
 
             //robot.Artic.setPosition(.4);
            // sleep(1000);
@@ -190,14 +200,40 @@ public class Blue_Auto extends LinearOpMode{
             telemetry.addData("Position", "center");
             telemetry.update();
 
-            gyroStrafe(.1,-14,0);
-            gyroDrive(.5, 18, 0);
+            gyroDrive(.3, 22, 0);
+            sleep(1000);
+            robot.Artic.setPosition(.4);
+            sleep(1000);
+            gyroDrive(.3,6,0);
+            sleep(1000);
             robot.Artic.setPosition(.5); //lower arm
             sleep(500);
-            robot.closeright.setPosition(.4);
+            robot.closeright.setPosition(.3);
+
             sleep (1000);
-            robot.Rotate.setPosition(.9); //raise arm
-            gyroDrive(.5, -4, 0);
+            gyroDrive(.2, -2, 0);
+            sleep(1000);
+            robot.Rotate.setPosition(.8);
+            sleep (1000);
+            robot.Artic.setPosition(.4);
+            sleep(1000);
+            lift(1,6);
+            sleep(1000);
+            gyroDrive(.3,-3,0);
+            sleep(1000);
+            gyroTurn(.3,-90);
+            gyroDrive(.3,-30,-90);
+            sleep(1000);
+            robot.Artic.setPosition(.1);
+            sleep(1000);
+            gyroDrive(.3,-10,-90);
+            sleep(500);
+            robot.closeleft.setPosition(.4);
+            sleep(500);
+            gyroDrive(.3,5,-90);
+
+
+
 
         }
 
@@ -206,15 +242,43 @@ public class Blue_Auto extends LinearOpMode{
             telemetry.addData("Position", "left");
             telemetry.update();
 
-            gyroDrive(.5, 24, 0);
-            gyroTurn(.5, 90);
-            gyroDrive(.5, -2, 90);
+
+            gyroDrive(.3, 24, 0);
+            gyroTurn(.3, 90);
+            robot.Artic.setPosition(.4);
+            sleep(1000);
+            gyroDrive(.3, -1, 90);
+            sleep(1000);
             robot.Artic.setPosition(.5); //lower arm
-            sleep(500);
-            robot.closeright.setPosition(.4);
+            sleep(1000);
+            robot.closeright.setPosition(.3);
             sleep (1000);
             robot.Rotate.setPosition(.9); //raise arm
-            gyroDrive(.5, -4, 90);
+            sleep(1000);
+            gyroDrive(.2,-4,90);
+
+            sleep(1000);
+            robot.Rotate.setPosition(.8);
+            sleep (1000);
+            robot.Artic.setPosition(.4);
+            sleep(1000);
+            lift(1,6);
+            sleep(1000);
+            gyroTurn(.3,-0);
+            gyroDrive(.5,-15,0);
+            gyroTurn(.3,-90);
+            gyroDrive(.3,-25,-90);
+            gyroTurn(.3,0);
+            gyroDrive(.5,15,0);
+            gyroTurn(.3,-90);
+            sleep(1000);
+            robot.Artic.setPosition(.1);
+            sleep(1000);
+            gyroDrive(.3,-5,-90);
+            sleep(500);
+            robot.closeleft.setPosition(.4);
+            sleep(500);
+            gyroDrive(.3,5,-90);
 
 
         }
