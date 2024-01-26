@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -22,11 +23,8 @@ import java.util.List;
 
 @Autonomous(name = "Red Auto", group = "Automonous")
 
-
-
 public class Red_Auto extends LinearOpMode{
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
-
     private static final String TFOD_MODEL_ASSET = "MyModel.tflite";
     private static final String[] LABELS = {
             "Monkey"
@@ -110,6 +108,7 @@ public class Red_Auto extends LinearOpMode{
 
 
         telemetry.update();
+        robot.blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.SINELON_LAVA_PALETTE);
 
 
         waitForStart();
@@ -152,21 +151,48 @@ public class Red_Auto extends LinearOpMode{
             telemetry.addData("Position", "right");
             telemetry.update();
 
-            gyroDrive(.5, 28, 0);
-            gyroTurn(.5, -90);
-            gyroDrive(.5, 4, -90);
+            gyroDrive(.4, 30, 0);
+            gyroTurn(.4, -90);
+            robot.Artic.setPosition(.4);
+            gyroDrive(.3, 4, -90);
             robot.Artic.setPosition(.5); //lower arm
             sleep(500);
             robot.closeright.setPosition(.4);
+            sleep(1000);
+            robot.Rotate.setPosition(.8);
             sleep (1000);
-            robot.Rotate.setPosition(.9); //raise arm
-            gyroDrive(.5,28,-90);
-            gyroTurn(.5,0);
-            gyroDrive(.3,-10,0);
-            gyroTurn(.5,-90);
-            robot.Rotate.setPosition(.5);
             robot.Artic.setPosition(.4);
-            gyroDrive(.2,5,-90);
+            sleep(1000);
+            lift(1,6);
+            sleep(1000);
+            gyroDrive(.3,-5,-90);
+            sleep(1000);
+            gyroTurn(.3,-90);
+            gyroDrive(.3,-25,-90);
+            sleep(1000);
+            robot.Artic.setPosition(.1);
+            sleep(1000);
+            gyroDrive(.3,-8,-90);
+            sleep(500);
+            robot.closeleft.setPosition(.4);
+            sleep(500);
+            gyroDrive(3,5,-90);
+
+            //gyroDrive(.5, 28, 0);
+            //gyroTurn(.5, -90);
+            //gyroDrive(.5, 4, -90);
+            //robot.Artic.setPosition(.5); //lower arm
+            //sleep(500);
+            //robot.closeright.setPosition(.4);
+            //sleep (1000);
+            //robot.Rotate.setPosition(.9); //raise arm
+            //gyroDrive(.5,28,-90);
+            //gyroTurn(.5,0);
+            //gyroDrive(.3,-10,0);
+            //gyroTurn(.5,-90);
+            //robot.Rotate.setPosition(.5);
+            //robot.Artic.setPosition(.4);
+            //gyroDrive(.2,5,-90);
 
 
 

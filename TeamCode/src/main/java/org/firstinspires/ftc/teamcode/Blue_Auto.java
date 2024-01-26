@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -110,6 +111,7 @@ public class Blue_Auto extends LinearOpMode{
 
 
         telemetry.update();
+        robot.blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.SINELON_OCEAN_PALETTE);
 
 
         waitForStart();
@@ -159,7 +161,6 @@ public class Blue_Auto extends LinearOpMode{
             robot.Artic.setPosition(.5); //lower arm
             sleep(500);
             robot.closeright.setPosition(.4);
-
             sleep(1000);
             robot.Rotate.setPosition(.8);
             sleep (1000);
@@ -178,8 +179,7 @@ public class Blue_Auto extends LinearOpMode{
             sleep(500);
             robot.closeleft.setPosition(.4);
             sleep(500);
-            gyroDrive(.3,5,-90);
-
+            gyroDrive(3,5,-90);
 
             //robot.Artic.setPosition(.4);
            // sleep(1000);
