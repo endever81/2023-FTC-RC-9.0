@@ -146,7 +146,7 @@ double droneGuardPosition = .5;
     intakePower = -.8;
     }
     
-    if (gamepad2.x){
+    if (gamepad2.left_trigger != 0){
     intakePower = .8;
     }
 
