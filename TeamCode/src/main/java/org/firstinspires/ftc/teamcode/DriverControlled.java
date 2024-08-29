@@ -130,12 +130,13 @@ public void runOpMode() {
     rear_left *=2;
     rear_right *=2;
     }    
-
+double droneGuardPosition = .5;
     if (gamepad1.left_bumper){
     front_left /=2.5;
     front_right /=2.5;
     rear_left /=2.5;
     rear_right /=2.5;
+    droneGuardPosition = .9;
     }
    
    
@@ -145,7 +146,7 @@ public void runOpMode() {
     intakePower = -.8;
     }
     
-    if (gamepad2.x){
+    if (gamepad2.left_trigger != 0){
     intakePower = .8;
     }
 
@@ -155,7 +156,7 @@ public void runOpMode() {
         if (gamepad1.dpad_down){dropperPosition = dropperPosition - 0.00001;}
         telemetry.addData("Dropper Value", dropperPosition);
         telemetry.update();
-        dropperPosition = .65;
+        dropperPosition = .57;
         if (gamepad2.b){
             dropperPosition = 0;
         }
@@ -165,17 +166,14 @@ public void runOpMode() {
       //  }
     
 
-        double servoReleasePosition = 0.5;
+        double launcherPower = 0;
    
         if (gamepad1.a && gamepad1.left_bumper){
 
-            servoReleasePosition = 0;
+            launcherPower = -1;
         }
 
-        if (gamepad1.b){
-            servoReleasePosition = 0.5;
 
-        }
 
    double liftleftPower = gamepad2.left_stick_y;
     double liftrightPower = gamepad2.left_stick_y;
@@ -231,10 +229,10 @@ public void runOpMode() {
     robot.liftleft.setPower(liftleftPower);
     robot.liftright.setPower(liftrightPower);
 
-
+    robot.droneGuard.setPosition(droneGuardPosition);
     robot.intake.setPower(intakePower);
     robot.servoDropper.setPosition(dropperPosition);
-    robot.servorelease.setPosition(servoReleasePosition);
+    robot.launcher.setPower(launcherPower);
 
     }
 
